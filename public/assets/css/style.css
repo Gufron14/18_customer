@@ -1,0 +1,113 @@
+a {
+    text-decoration: none;
+}
+
+/* NAVBAR */
+.navbar {
+    background: linear-gradient(to right, #1500ff, #4b069b);
+    height: 64px;
+    color: #FFFFFF;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-nav li {
+    margin-right: 20px;
+}
+
+.circle {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: #4b069b;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto
+    /* background-image: url('/public/assets/img/formal.png'); */
+    /* background-size: cover; */
+  }
+.circle img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin: auto;
+}
+
+/* Dropdown menu styles */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    color: #1500ff;
+  }
+
+  /* End Dropdown */
+/* END NAVBAR */
+
+/* SEARCH BAR */
+/* .form-control {
+    border-radius: 30px;
+} */
+
+.input-group-text {
+    border-radius: 50px;
+}
+/* END SEARCH BAR */
+
+
+/* BANNER */
+.banner {
+    border-radius: 8px;
+}
+
+.banner img {
+    border-radius: 8px;
+}
+/* END BANNER */
+
+/* FEED*/
+.feed {
+    border-radius: 8px;
+}
+ .feed img {
+    border-radius: 8px;
+ }
+/* END FEED */
+
+.call.btn {
+    border-radius: 30px;
+}
+
+.card {
+    border-radius: 8px;
+}
+.card img {
+    border-radius: 8px;
+}
+
+.bi.bi-star-fill {
+    color: rgb(255, 191, 0);
+}
+
+.bi.bi-star-half {
+    color: rgb(255, 191, 0);
+}

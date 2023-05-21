@@ -6,11 +6,11 @@
 
         <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-4 d-inline-flex">
-                <h4>Selamat pagi, Customer</h4>
+                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat pagi, Customer</h4>
             </div>
-            <div class="col-lg-4 d-inline-flex me-4">
+            <div class="col-lg-6 d-inline-flex">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
             </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="{{ asset ('assets/img/banner1.png') }}" alt="">
+                    <img src="{{ asset ('assets/img/banner1.png') }}" alt=""    >
                   </div>
                   <div class="carousel-item">
                     <img src="{{ asset ('assets/img/banner2.png') }}" alt="">
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-4 d-inline-flex position-absolute mt-3" style="width: 284px; height: 500px;">
-            <div class="card w-75">
+            <div class="card" style="width: 240px">
                 <div class="card-header bg-danger text-white fw-bold">
                     Kategori
                   </div>
@@ -68,8 +68,8 @@
         </div>
 
         <div class="col-lg-8 d-flex justify-content-between mt-5">
-            <h5 class="d-inline-flex">Mitra Kami</h5>
-            <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua -></a>
+            <h5 class="fw-bold d-inline-flex">Mitra Kami</h5>
+            <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
         <div class="feed">

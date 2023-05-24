@@ -24,7 +24,7 @@
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img src="{{ asset('assets/img/call.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('assets/img/call2.gif') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5>Apalagi kalo manggil cuma buat menghoetang</h5>
                     </div>

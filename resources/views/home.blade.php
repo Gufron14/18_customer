@@ -4,18 +4,24 @@
 
     <div class="container position-relative p-5 mx-auto">
 
+        {{-- SEARCH BAR --}}
         <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-4 d-inline-flex">
                 <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat pagi, Customer</h4>
             </div>
-            <div class="col-lg-6 d-inline-flex">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-            </div>
+            <div class="col-lg-4 d-inline-flex me-3">
+              <form class="d-flex" role="search">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Cari Layanan" style="width: 300px">
+                  <div class="input-group-append"><button class="btn btn-primary"><i class="fas fa-search"></i></button></div>
+                </div>
+              </form>
+          </div>
         </div>
+        {{-- END SEARCH BAR --}}
 
+
+        {{-- BANNER --}}
         <div class="banner col-lg-6 bg-warning d-inline-flex me-5 mt-3" style="width: 720px; height: 200px;">
             <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
@@ -44,36 +50,42 @@
                 </button>
               </div>
         </div>
+        {{-- END BANNER --}}
 
-        <div class="col-lg-4 d-inline-flex position-absolute mt-3" style="width: 284px; height: 500px;">
+        {{-- Kategori Bar--}}
+        <div class="col-lg-4 d-inline-flex position-absolute mt-3">
             <div class="card" style="width: 240px">
                 <div class="card-header bg-danger text-white fw-bold">
                     Kategori
                   </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <a href="">Service Elektronik</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Bengkel Terdekat</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Jasa Pasang Internet</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Penjahit</a>
-                    </li>
-                  </ul>
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                          <a href="">Service Elektronik</a>
+                      </li>
+                      <li class="list-group-item">
+                          <a href="">Bengkel Terdekat</a>
+                      </li>
+                      <li class="list-group-item">
+                          <a href="">Jasa Pasang Internet</a>
+                      </li>
+                      <li class="list-group-item">
+                          <a href="">Penjahit</a>
+                      </li>
+                    </ul>
+                  </div>
             </div>
         </div>
-
+        {{-- End Kategori Bar--}}
+        
+        {{-- FEED --}}
         <div class="col-lg-8 d-flex justify-content-between mt-5">
             <h5 class="fw-bold d-inline-flex">Mitra Kami</h5>
             <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
         <div class="feed">
-            <div class="feed col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
+            <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
                 <img src="{{ asset ('assets/img/feed1.png') }}" alt="">
             </div>
             <div class="feed col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
@@ -83,16 +95,8 @@
                 <img src="{{ asset ('assets/img/feed3.png') }}" alt="">
             </div>
         </div>
-
+        {{-- END FEED --}}
     
     </div>
-
-
-        <footer class="d-flex">
-            <div class="container d-flex justify-content-center align-items-center bg-primary" style="max-width: 1300px; height: 80px;">
-                <p class="text-white">Copyright 2023</p>
-            </div>
-        </footer>
-  
 
 @endsection

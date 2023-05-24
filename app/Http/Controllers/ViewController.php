@@ -18,6 +18,12 @@ class ViewController extends Controller
         return view('/mitra', compact('title'));
     }
 
+    public function viewmitra() {
+        
+        $title = 'Mitra Name';
+        return view('/viewmitra', compact('title'));
+    }
+
     public function proses() {
         
         $title = 'Proses';

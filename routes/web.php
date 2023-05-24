@@ -22,4 +22,5 @@ Route::get('/', [ViewController::class, 'home'])->name('home');
 Route::get('/mitra', [ViewController::class, 'mitra'])->name('mitra');
 Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
 Route::get('/riwayat', [ViewController::class, 'riwayat'])->name('riwayat');
+Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra');
 

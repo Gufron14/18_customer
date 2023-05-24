@@ -2,6 +2,10 @@
     font-family: 'barlow', sans-serif;
 }
 
+.min-h-screen {
+    min-height: 70vh;
+}
+
 a {
     text-decoration: none;
 }
@@ -9,7 +13,7 @@ a {
 /* NAVBAR */
 .navbar {
     background: linear-gradient(to right, #1500ff, #4b069b);
-    height: 64px;
+    height: 56px;
     color: #FFFFFF;
 }
 
@@ -30,24 +34,13 @@ a {
     border-radius: 8px;
 }
 
-.circle {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    width: 40px;
-    height: 40px;
-    background-color: #4b069b;
-    border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto
-    /* background-image: url('/public/assets/img/formal.png'); */
-    /* background-size: cover; */
-  }
-.circle img {
+
+.avatar img {
     width: 40px;
     height: 40px;
     object-fit: cover;
     margin: auto;
+    border-radius: 50%;
 }
 
 /* Dropdown menu styles */
@@ -133,11 +126,11 @@ a {
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(150, 148, 148, 0.3);     
     background: #ffffff;
-    border-radius: 30px;   
+      
 }
  
 ::-webkit-scrollbar-thumb {
-    background: rgb(147, 147, 147);
+    background: rgb(208, 208, 208);
     border-radius: 30px;
 }
 
@@ -148,3 +141,46 @@ a {
 .modal-dialog {
     width: 80%;
 }
+
+/* Notif Icon */
+.notif-bg {
+    background-color: #170d82;
+    border-radius: 20px;
+    width: 100px;
+    height: auto;
+}
+
+/* .notif-badge {
+    font-size: 12px;
+    border-radius: 20px;
+} */
+.notif-icon {
+    font-size: 20px;
+}
+
+/* .notif-badge {
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    font-size: 10px;
+} */
+
+.badge {
+    font-size: 12px;
+}
+
+/* End Notif Icon */
+
+.filter-icon {
+    font-size: 28px;
+}
+
+.icon {
+    font-size: 36pt;
+    margin-right: 24px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+

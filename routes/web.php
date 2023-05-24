@@ -24,3 +24,5 @@ Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
 Route::get('/riwayat', [ViewController::class, 'riwayat'])->name('riwayat');
 Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra');
 
+Route::get('/login', [ViewController::class, 'login'])->name('login');
+Route::get('/register', [ViewController::class, 'register'])->name('register');

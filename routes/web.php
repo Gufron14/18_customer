@@ -26,3 +26,4 @@ Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra'
 
 Route::get('/login', [ViewController::class, 'login'])->name('login');
 Route::get('/register', [ViewController::class, 'register'])->name('register');
+Route::get('/gabungmitra', [ViewController::class, 'gabungmitra'])->name('gabungmitra');

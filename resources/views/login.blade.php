@@ -41,19 +41,25 @@
               </div>
             </div>
             <div class="col m-5">
-                <div class="card">
+                <div class="card w-75">
                     <div class="card-body">
                         <form class="">
                             <h2 class="mb-3 text-center fw-bold">Login</h2>
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <label for="email" class="form-label">Email address</label>
+                              <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                              <div id="emailHelp" class="invalid-feedback">
+                                email tidak terdaftar atau salah.
+                              </div>
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
+                              <label for="password" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+                              <div id="passwordHelp" class="invalid-feedback">
+                                password salah.
+                              </div>
                             </div>
-                            <a href="{{ route('home') }}" class="btn btn-primary fw-bold w-100">Login</a>
+                            <a href="" class="btn btn-primary fw-bold w-100">Login</a>
                           </form>
                           <p class="mt-3 text-center">Belum punya akun?
                             <a href="{{ route('register') }}">Daftar</a>

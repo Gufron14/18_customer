@@ -39,11 +39,17 @@ class ViewController extends Controller
     public function login(){
         $title = 'Login';
         return view('/login', compact('title'));
+        
 
     }
 
     public function register(){
         $title = 'Register';
         return view('/register', compact('title'));
+    }
+
+    public function gabungmitra() {
+        $title = 'Gabung Mitra';
+        return view('/gabungmitra', compact('title'));
     }
 }

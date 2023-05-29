@@ -27,6 +27,7 @@ Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
 Route::get('/riwayat', [ViewController::class, 'riwayat'])->name('riwayat');
 Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra');
 
+<<<<<<< HEAD
 Route::get('/login', [ViewController::class, 'login'])->name('logout');
 Route::get('/register', [ViewController::class, 'register'])->name('login');
 
@@ -44,3 +45,8 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
 //    localStorage.setItem("myCat", "Tom");
 // });
 
+=======
+Route::get('/login', [ViewController::class, 'login'])->name('login');
+Route::get('/register', [ViewController::class, 'register'])->name('register');
+Route::get('/gabungmitra', [ViewController::class, 'gabungmitra'])->name('gabungmitra');
+>>>>>>> 99593431a37008ec4dd591e4a33d3f361a2a0635

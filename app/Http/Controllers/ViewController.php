@@ -41,6 +41,7 @@ class ViewController extends Controller
     public function login(){
         $title = 'Login';
         return view('/login', compact('title'));
+        
 
     }
 
@@ -50,5 +51,10 @@ class ViewController extends Controller
         $message['email'] = null;
         $message['password'] = null;
         return view('/register', compact(['title', 'message']));
+    }
+
+    public function gabungmitra() {
+        $title = 'Gabung Mitra';
+        return view('/gabungmitra', compact('title'));
     }
 }

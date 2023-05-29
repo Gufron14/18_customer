@@ -24,7 +24,7 @@
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img src="{{ asset('assets/img/call.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('assets/img/call2.gif') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5>Apalagi kalo manggil cuma buat menghoetang</h5>
                     </div>
@@ -41,12 +41,13 @@
               </div>
             </div>
             <div class="col m-5">
-                <div class="card">
+                <div class="card w-75">
                     <div class="card-body">
                       <form action="/login" method="POST" autocomplete="off">
                         @csrf
                             <h2 class="mb-3 text-center fw-bold">Login</h2>
                             <div class="mb-3">
+<<<<<<< HEAD
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
                               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                             </div>
@@ -55,6 +56,22 @@
                               <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                             </div>
                             <button type="submit" class="btn btn-primary fw-bold w-100">Login</button>
+=======
+                              <label for="email" class="form-label">Email address</label>
+                              <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                              <div id="emailHelp" class="invalid-feedback">
+                                email tidak terdaftar atau salah.
+                              </div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+                              <div id="passwordHelp" class="invalid-feedback">
+                                password salah.
+                              </div>
+                            </div>
+                            <a href="" class="btn btn-primary fw-bold w-100">Login</a>
+>>>>>>> 99593431a37008ec4dd591e4a33d3f361a2a0635
                           </form>
                           <p class="mt-3 text-center">Belum punya akun?
                             <a href="{{ route('register') }}">Daftar</a>

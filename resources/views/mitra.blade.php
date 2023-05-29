@@ -76,8 +76,8 @@
                                   </label>
                                 </div>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                  <label class="form-check-label" for="flexCheckChecked">
+                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                  <label class="form-check-label" for="flexCheckDefault">
                                     Tidak beretika
                                   </label>
                                 </div>
@@ -141,7 +141,19 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            Hide this modal and show the first with the button below.
+                            <h5 class="mb-3">Masalah</h5>
+                            <ul>
+                              <li>Minim sopan santun</li>
+                              <li>Tidak berakhlak</li>
+                              <li>Lainnya : 
+                                <br> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus veniam ullam illum rem cumque rerum blanditiis pariatur quas repellat obcaecati!</span>
+                              </li>
+                            </ul>
+                            <h5 class="mb-3 mt-3">Lokasi</h5>
+                            <p>Titik Koordinat : 972304hk3qd+=</p>
+                            <p>Lokasi Spesifik : 
+                             <br> <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet, molestiae!</span>
+                            </p>
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>

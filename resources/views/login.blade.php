@@ -43,17 +43,18 @@
             <div class="col m-5">
                 <div class="card">
                     <div class="card-body">
-                        <form class="">
+                      <form action="/login" method="POST" autocomplete="off">
+                        @csrf
                             <h2 class="mb-3 text-center fw-bold">Login</h2>
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                             </div>
                             <div class="mb-3">
                               <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
+                              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                             </div>
-                            <a href="{{ route('home') }}" class="btn btn-primary fw-bold w-100">Login</a>
+                            <button type="submit" class="btn btn-primary fw-bold w-100">Login</button>
                           </form>
                           <p class="mt-3 text-center">Belum punya akun?
                             <a href="{{ route('register') }}">Daftar</a>

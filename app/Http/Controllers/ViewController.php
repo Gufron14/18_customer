@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
     public function home() {
-
         $title = 'Home';
         return view('/home', compact('title'));
+
+        //return response()->json($category);
     }
 
     public function mitra() {
@@ -44,6 +46,9 @@ class ViewController extends Controller
 
     public function register(){
         $title = 'Register';
-        return view('/register', compact('title'));
+        $message['username'] = null;
+        $message['email'] = null;
+        $message['password'] = null;
+        return view('/register', compact(['title', 'message']));
     }
 }

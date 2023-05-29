@@ -104,7 +104,12 @@
                     <div class="dropdown-content z-3">
                       <a class="dropdown-item" href="#">Dashboard</a>
                       <a class="dropdown-item" href="#">Edit Profile</a>
-                      <a class="dropdown-item" href="#">Log Out</a>
+                      <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">
+                            <a>Logout</a>
+                        </button>
+                    </form>
                     </div>
                   </div>
                 </li>   

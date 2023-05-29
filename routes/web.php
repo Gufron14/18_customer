@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +21,26 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [ViewController::class, 'home'])->name('home');
+Route::get('/', [UserAuthController::class, 'show'])->name('home'); 
 Route::get('/mitra', [ViewController::class, 'mitra'])->name('mitra');
 Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
 Route::get('/riwayat', [ViewController::class, 'riwayat'])->name('riwayat');
 Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra');
 
-Route::get('/login', [ViewController::class, 'login'])->name('login');
-Route::get('/register', [ViewController::class, 'register'])->name('register');
+Route::get('/login', [ViewController::class, 'login'])->name('logout');
+Route::get('/register', [ViewController::class, 'register'])->name('login');
+
+
+Route::get('/UserAuth', [UserAuthController::class, 'logout'])->name('show');
+Route::post('/register', [UserAuthController::class, 'register'])->name('register');
+Route::post('/login', [UserAuthController::class, 'login'])->name('login');
+Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
+
+// Route::post('/register', function (Request $request) {
+//    $response = Http::post('http://localhost/api/user/register', [
+//        'name' => $request->username,
+//        'role' => 'Network Administrator',
+//    ]);
+//    localStorage.setItem("myCat", "Tom");
+// });
+

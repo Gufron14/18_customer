@@ -102,9 +102,10 @@
                       <img src="{{ asset ('assets/img/formal.png') }}" alt="">
                     </div>
                     <div class="dropdown-content z-3">
-                      <a class="dropdown-item" href="#">Dashboard</a>
-                      <a class="dropdown-item" href="#">Edit Profile</a>
-                      <a class="dropdown-item" href="#">Log Out</a>
+                      <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>
+                      <a class="dropdown-item" href="{{ route('ubahpassword') }}">Change Password</a>
+                      <a class="dropdown-item" href="/logout">Log Out</a>
+                    
                     </div>
                   </div>
                 </li>   

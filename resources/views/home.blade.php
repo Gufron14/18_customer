@@ -7,7 +7,7 @@
         {{-- SEARCH BAR --}}
         <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-4 d-inline-flex">
-                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat pagi, Customer</h4>
+                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat pagi, {{ $user['username'] }}  </h4>
             </div>
             <div class="col-lg-4 d-inline-flex me-3">
               <form class="d-flex" role="search">
@@ -60,18 +60,12 @@
                   </div>
                   <div class="card-body">
                     <ul class="list-group list-group-flush">
+
+                      @foreach ( $categories as $category )
                       <li class="list-group-item">
-                          <a href="">Service Elektronik</a>
+                        <a href="">{{ $category['category_name' ]}}</a>
                       </li>
-                      <li class="list-group-item">
-                          <a href="">Bengkel Terdekat</a>
-                      </li>
-                      <li class="list-group-item">
-                          <a href="">Jasa Pasang Internet</a>
-                      </li>
-                      <li class="list-group-item">
-                          <a href="">Penjahit</a>
-                      </li>
+                    @endforeach
                     </ul>
                   </div>
             </div>

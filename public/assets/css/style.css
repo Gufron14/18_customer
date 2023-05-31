@@ -215,3 +215,15 @@ a {
     background-repeat: no-repeat;
 }
 /* DRAG & DROP FILE */
+
+.square {
+    width: 100px;
+    height: 100px;
+}
+
+.avatar-square img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}

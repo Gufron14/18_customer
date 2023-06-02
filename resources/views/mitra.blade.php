@@ -8,7 +8,7 @@
           <div class="col-lg-4 d-inline-flex">
               <h4 class="fw-bold d-flex justify-content-center align-items-center ms-3">Mitra</h4>
           </div>
-          <div class="col-lg-4 d-inline-flex me-3">
+          <div class="col-lg-4 d-inline-flex me-3"> 
             <form class="d-flex" role="search">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Cari Layanan" style="width: 300px">
@@ -157,7 +157,7 @@
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>
-                            <button class="btn btn-primary" onclick="succes()">Panggil Sekarang</button>
+                            <button class="btn btn-primary" onclick="startCall()">Panggil Sekarang</button>
                           </div>
                         </div>
                       </div>
@@ -293,20 +293,46 @@
 
     {{-- SWEET ALERT --}}
     <script type="text/javascript">
-        function succes() {
-          swal({
-            title: "Berhasil memanggil",
-            text: "Menunggu persetujuan",
-            icon: "success",
-            button: true
-          });
-        }
-      </script>
+      function startCall() {
+        swal({
+          title: "Berhasil memanggil",
+          text: "Menunggu persetujuan",
+          icon: "success",
+          button: true
+        }).then(function() {
+          startCountdown();
+          redirectToOtherPage();
+        });
+      }
+    
+      function startCountdown() {
+        var countdownElement = document.createElement("span");
+        countdownElement.setAttribute("id", "countdown");
+        document.body.appendChild(countdownElement);
+    
+        var count = 300;
+    
+        var countdownInterval = setInterval(function() {
+          var minutes = Math.floor(count / 60);
+          var seconds = count % 60;
+    
+          var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+          var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    
+          countdownElement.innerHTML = formattedMinutes + ":" + formattedSeconds;
+    
+          count--;
+    
+          if (count < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = "";
+          }
+        }, 1000);
+      }
+    
+      function redirectToOtherPage() {
+        window.location.href = "{{ route('proses') }}";
+      }
+    </script>
 
-@endsection
-
-
-@section('breadcrumb')
-      <a href="{{ route('mitra') }}">Mitra</a> /
-      <a href="{{ route('viewmitra') }}">Layanan</a> 
 @endsection

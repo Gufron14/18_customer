@@ -21,81 +21,41 @@
                     <a href="riwayat" class="nav-link">Riwayat</a>
                 </li>
                 <li class="nav-item {{ Request::path() == 'gabungmitra' ? 'active' : '' }}">
-                    <a href="gabungmitra" class="nav-link">Gabung Mitra</a>
+                  @if (session('role')== 0)
+                  <a href="gabungmitra" class="nav-link">Gabung Mitra</a>
+
+                    @else
+                        
+                    <a href="statusmitra" class="nav-link">Toko Saya</a>
+                    @endif
                 </li>
 
-                {{-- Notifications Icon --}}
+              {{-- NOTIFIKASI --}}
                 <div class="notif-bg d-flex align-items-center me-3">
                   <div class="container d-flex justify-content-center">
-                    <div class="dropstart">
-                      <i class="notif-icon bi bi-bell-fill me-3 position-relative" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge position-absolute top-0 start-100 translate-middle bg-danger">
-                          4
-                          <span class="visually-hidden">unread messages</span>
-                        </span>
-                      </i>
-                      <ul class="dropdown-menu shadow " style="width: 400px">
-                        <li>
-                          <h6 class="m-3">Notifikasi</h6>
-                          <hr class="m-3">
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#" class="position-relative">
-                            <div class="row flex-row d-flex align-items-center">
-                              <div class="col-2  d-inline-flex">
-                                <img src="{{ asset ('assets/img/formal.png') }}" class="rounded" alt="" style="width: 40px; height: 50px;">
-                              </div>
-                              <div class="col-4 d-inline-flex d-flex flex-column">
-                                <h6 class="fw-bold">Gufron Nurjalil</h6>
-                                <p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolore necessitatibus quas facere iure culpa sint tempore voluptatem magnam adipisci.</p>
-                              </div>
+
+                    {{-- Notifikasi --}}
+                    <i class="notif-icon bi bi-bell-fill" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <div class="dropstart" >
+                      <ul class="dropdown-menu" style="width: 500px;" style="overflow: hidden;">
+                        <li class="dropdown-item mb-3">
+                          <a href="{{ route('mitra') }}" class="d-flex align-items-center">
+                            <div class="avatar me-3">
+                              <img class="" src="{{ asset('assets/img/formal.png') }}" alt="">
                             </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#" class="position-relative">
-                            <div class="row flex-row d-flex align-items-center">
-                              <div class="col-2  d-inline-flex">
-                                <img src="{{ asset ('assets/img/formal.png') }}" class="rounded" alt="" style="width: 40px; height: 50px;">
-                              </div>
-                              <div class="col-4 d-inline-flex d-flex flex-column">
-                                <h6 class="fw-bold">Ferdy Hahan</h6>
-                                <p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolore necessitatibus quas facere iure culpa sint tempore voluptatem magnam adipisci.</p>
-                              </div>
-                            </div>
+                            <strong class="text-truncated" style="white-space: nowrap; text-overflow: ellipsis;">Job Calling</strong>&nbsp;
+                            <span class="text-truncate">&nbsp;Selamat! Anda berhasil membuat akun Mitra. Segera Aktivasi untuk menjalankan Bisnis dengan Job Calling.</span>   
                           </a>
                         </li>
                       </ul>
-                      <i class="notif-icon bi bi-question-circle-fill" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-                      {{-- help modal --}}
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body text-secondary">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, porro! Magnam eaque exercitationem eius quaerat est, nulla laborum iste sint.
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>  
-                  </div>
-                </div>
-                {{-- end help modal --}} 
                     </div>
+                    {{-- End Notifikasi --}}
+
                   </div>
                 </div>
-
-                
-                
-                {{-- End Notifications Icon --}}
+               {{-- END NOTIFIKASI  --}}
 
                 {{-- Profile --}}
-
                 <li class="nav-item">
                   <div class="dropdown z-3">
                     <div class="avatar">
@@ -105,12 +65,12 @@
                       <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>
                       <a class="dropdown-item" href="{{ route('ubahpassword') }}">Change Password</a>
                       <a class="dropdown-item" href="/logout">Log Out</a>
-                    
                     </div>
                   </div>
                 </li>   
-              </ul>
-              
+                {{-- End Profile --}}
+                
+              </ul> 
         </div>
       </div>
     </div>

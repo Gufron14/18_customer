@@ -22,8 +22,8 @@ class AuthController extends Controller
             return redirect("/login");
         }
         $data['title'] = 'Register';
-        return response()->json($data);
-        //return view("register", $data);
+        // return response()->json($data);
+        return view("auth.register", $data);
     }
 
     public function login(Request $request)
@@ -38,24 +38,30 @@ class AuthController extends Controller
         extract($data);
         if($data['status']){
             $sesi = session()->put('token', $data['token']);
+            $sesi = session()->put('role', $data['user']['role']);
             //$hasilsesi = session('token');
             return redirect("/");
 
             //return response()->json();
         }
         $data['title'] = 'Login';
-        return view("login", $data);
+        return view("auth.login", $data);
     }
 
     public function logout(Request $request)
-    {
-        $client = new Client();
+    {   
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+
         $aResponse = $client->request('POST', "http://localhost:5000/api/user/logout");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         extract($aData);
         if($aData['status']){
             session()->forget('token');
+            session()->forget('role');
+
             return redirect("/login");
 
             //return response()->json();

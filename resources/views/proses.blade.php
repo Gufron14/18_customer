@@ -17,47 +17,62 @@
                           <h6>Menunggu persetujuan</h6>
                           <h1 id="countdown" class="fw-bold"></h1>
                         
-                          <button class="btn btn-danger mt-3" onclick="showCancelModal()">
+                          <button class="btn btn-danger mt-3" onclick="showCancelModal()" id="cancelButton">
                             Batalkan Panggilan
                           </button>
                         
                           <!-- Modal -->
-                          <div id="cancelModal" class="modal">
-                            <div class="modal-content">
-                              <span class="close" onclick="hideCancelModal()">&times;</span>
-                              <h3>Alasan Pembatalan</h3>
-                              <div>
-                                <input type="checkbox" id="notAnsweredCheckbox">
-                                <label for="notAnsweredCheckbox">Tidak menjawab</label>
-                              </div>
-                              <div>
-                                <input type="checkbox" id="tooLongCheckbox">
-                                <label for="tooLongCheckbox">Terlalu lama menunggu</label>
-                              </div>
-                              <div>
-                                <input type="checkbox" id="otherCheckbox">
-                                <label for="otherCheckbox">Lainnya</label>
-                              </div>
-                              <div class="modal-buttons">
-                                <button class="btn btn-secondary" onclick="hideCancelModal()">Batal</button>
-                                <button id="cancelButton" class="btn btn-danger" onclick="cancelCall()">Batalkan Sekarang</button>
+                          <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="cancelModalLabel">Alasan Pembatalan</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="notAnsweredCheckbox">
+                                    <label class="form-check-label" for="notAnsweredCheckbox">
+                                      Tidak ada jawaban
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="tooLongCheckbox">
+                                    <label class="form-check-label" for="tooLongCheckbox">
+                                      Terlalu lama menunggu
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="otherCheckbox">
+                                    <label class="form-check-label" for="otherCheckbox">
+                                      Lainnya
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                  <button type="button" class="btn btn-primary" onclick="cancelCall()">Batalkan Sekarang</button>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>                        
+                          <!-- End Modal -->
+                        </div>
+                                                       
                     </div>
                 </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  var countdownInterval;
+
+    <script>
+      var countdownInterval;
+var countdownElement = document.getElementById("countdown");
 var cancelModal = document.getElementById("cancelModal");
 var cancelButton = document.getElementById("cancelButton");
 
 function countdown() {
-  var countdownElement = document.getElementById("countdown");
   var count = 300;
 
   countdownInterval = setInterval(function() {
@@ -81,11 +96,11 @@ function countdown() {
 }
 
 function showCancelModal() {
-  cancelModal.style.display = "block";
+  $('#cancelModal').modal('show');
 }
 
 function hideCancelModal() {
-  cancelModal.style.display = "none";
+  $('#cancelModal').modal('hide');
 }
 
 function cancelCall() {
@@ -99,7 +114,7 @@ function cancelCall() {
   var reasons = [];
 
   if (notAnswered) {
-    reasons.push("Tidak menjawab");
+    reasons.push("Tidak ada jawaban");
   }
 
   if (tooLong) {
@@ -116,9 +131,9 @@ function cancelCall() {
     icon: 'success',
     title: 'Panggilan Dibatalkan',
     text: message,
-    timer: 3000,
+    timer: 2000,
     showConfirmButton: false
-  }).then(() => {
+  }).then(function() {
     cancelButton.innerHTML = "Dibatalkan";
     cancelButton.disabled = true;
     cancelButton.classList.add("disabled");
@@ -128,15 +143,17 @@ function cancelCall() {
 function answerCall() {
   clearInterval(countdownInterval);
   // Tambahkan kode yang ingin dijalankan saat panggilan dijawab
-}
-
-function redirectToOtherPage() {
-  window.location.href = "{{ route('mitra') }}";
+  Swal.fire({
+    icon: 'success',
+    title: 'Panggilan Dijawab',
+    text: 'Panggilan berhasil dijawab'
+  });
 }
 
 countdown();
 
 
-</script>
+    </script>
+    
       
 @endsection

@@ -7,7 +7,7 @@
         {{-- SEARCH BAR --}}
         <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-4 d-inline-flex">
-                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat pagi, {{ $user['username'] }}  </h4>
+                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat malam, {{ $user['username'] }}  </h4>
             </div>
             <div class="col-lg-4 d-inline-flex me-3">
               <form class="d-flex" role="search">
@@ -79,6 +79,11 @@
         </div>
 
         <div class="feed">
+          @foreach ($partners as $partner)
+          <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
+            <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" alt="">
+          </div>
+          @endforeach
             <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
                 <img src="{{ asset ('assets/img/feed1.png') }}" alt="">
             </div>

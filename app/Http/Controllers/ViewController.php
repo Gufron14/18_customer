@@ -30,9 +30,18 @@ class ViewController extends Controller
     }
 
     public function mitra() {
-        
-        $title = 'Mitra';
-        return view('/mitra', compact('title'));
+
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner");
+        $uBody = $uResponse->getBody()->getContents();
+        $uData = json_decode($uBody, true);
+        extract($uData);
+
+
+        // return response()->json($uData);
+            return view("mitra", ['title' => 'mitra', 'partner' => $uData['partner']]);
     }
 
     public function viewmitra() {

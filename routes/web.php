@@ -71,12 +71,12 @@ Route::prefix('dashboard')->group(function () {
     //     return view('dashboard.partner.index');
     // })->name('partner.index');
 
-    Route::view('/service', 'dashboard.service.index')->name('dashboard.service.index');
-    Route::view('/cateroy', 'dashboard.transaction.index')->name('dashboard.transaction.index');
-    Route::view('/review', 'dashboard.review.index')->name('dashboard.review.index');
-    Route::view('/category', 'dashboard.category.index')->name('dashboard.category.index');
-    Route::view('/squarefeed', 'dashboard.squarefeed.index')->name('dashboard.squarefeed.index');
-    Route::view('/customer', 'dashboard.customer.index')->name('dashboard.customer.index');
+    Route::view('/order',    'mitra.dashboard.order.index')->name('dashboard.order.index');
+    Route::view('/transaction',    'mitra.dashboard.transaction.index')->name('dashboard.transaction.index');
+    Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');
+    Route::view('/history',   'mitra.dashboard.history.index')->name('dashboard.history.index');
+    Route::get('/activation', [DashboardController::class, 'activation'])->name('dashboard.activation.index');
+    Route::view('/profile',   'mitra.dashboard.profile.index')->name('dashboard.profile.index');
 
 });
 // END PARTNER CMS

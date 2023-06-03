@@ -21,16 +21,16 @@
         
 
         {{-- MITRA --}}
-        <div class="container p-3 mt-3">
+       
+        <div class="container border p-3 mt-3">
           <div class="row">
-            {{-- Mitra 1 --}}
         <div class="col-4 d-inline-flex mb-5">
+          {{-- @foreach ($partners as $partner) --}}
           <div class="card shadow" >
               <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
               <div class="card-body">
                   <div class="card-container position-relative d-flex justify-content-between mb-3">
-                      <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Jasa Perbaiki Akhlak</h5>
-
+                      <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">{{ $partner['partner_name'] }}</h5>
                       <div class="icon">
                           <a href="{{ route('viewmitra') }}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
                               <i class="fas fa-eye"></i>
@@ -44,10 +44,10 @@
                   <div class="d-flex justify-content-between">
                       <p class="d-inline">
                           <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp500 M</p>
-                      <p class="d-inline">Jl. Kematian</p>
+                      <p class="d-inline">{{ $partner['address']}}</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                      <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
+                      <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp;&nbsp;{{$partner['operational_status']}}</p>
                       <p class="d-inline">
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-fill"></i>
@@ -58,6 +58,7 @@
 
                  
                   <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Panggil</button>
+          {{-- @endforeach --}}
                   <!-- Modal -->
                   <div class="modal fade modal-dialog-scrollable" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -67,25 +68,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <h5 class="mb-3">Masalah</h5>
-                            <div class="d-flex mb-3">
-                              <div class="form-check me-5">
-                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                  <label class="form-check-label" for="flexCheckDefault">
-                                    Minim sopan santun
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                  <label class="form-check-label" for="flexCheckDefault">
-                                    Tidak beretika
-                                  </label>
-                                </div>
-                            </div>
-         
                             <div class="mb-5">
                               <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="jelaskan masalahmu dengan lengkap"></textarea>
                             </div>
                           
                             <h5 class="mb-3">Alamat</h5>
@@ -141,19 +126,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <h5 class="mb-3">Masalah</h5>
                             <ul>
-                              <li>Minim sopan santun</li>
-                              <li>Tidak berakhlak</li>
-                              <li>Lainnya : 
-                                <br> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus veniam ullam illum rem cumque rerum blanditiis pariatur quas repellat obcaecati!</span>
+                              <li>
+                                <h5>Masalah</h5>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit assumenda illo repellendus, reprehenderit maxime vitae et molestias totam nisi aperiam!</p>
+                              </li>
+                              <li>
+                                <h5>Alamat/lokasi</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                               </li>
                             </ul>
-                            <h5 class="mb-3 mt-3">Lokasi</h5>
-                            <p>Titik Koordinat : 972304hk3qd+=</p>
-                            <p>Lokasi Spesifik : 
-                             <br> <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet, molestiae!</span>
-                            </p>
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>
@@ -165,127 +147,12 @@
                   {{-- End Modal Konfirmasi --}}
               </div>
             </div>
+            
       </div>
       {{-- End Mitra 1 --}}
+      
           
-        
-          {{-- Mitra 2 --}}
-        <div class="col-4 d-inline-flex mb-5">
-            <div class="card" >
-                <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-                <div class="card-body">
-                    <div class="card-container position-relative d-flex justify-content-between mb-3">
-                        <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Service Pikiran Kotor</h5>
 
-                        <div class="icon">
-                            <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                                <i class="fas fa-comment"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="detail d-flex justify-content-between">
-                        <p class="d-inline">
-                            <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp1.2 KM</p>
-                        <p class="d-inline">Jl. Kehidupan</p>
-                    </div>
-                    <div class="detail d-flex justify-content-between">
-                        <p class="d-inline text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp&nbspTutup</p>
-                        <p class="d-inline">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p>
-                    </div>
-
-                   
-                    <a href="" class="call btn btn-primary mt-3 fw-bold w-100 disabled">Panggil</a>
-                </div>
-            </div>
-        </div>
-        {{-- Mitra 2 --}}
-
-        {{-- Mitra 3 --}}
-        <div class="col-4 d-inline-flex mx-auto mb-5">
-            <div class="card" >
-                <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-                <div class="card-body">
-                    <div class="card-container position-relative d-flex justify-content-between mb-3">
-                        <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Bengkel Hati & Pikiran</h5>
-
-                        <div class="icon">
-                            <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                                <i class="fas fa-comment"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="detail d-flex justify-content-between">
-                        <p class="d-inline">
-                            <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp800 M</p>
-                        <p class="d-inline">Jl. Kegelapan</p>
-                    </div>
-                    <div class="detail d-flex justify-content-between">
-                        <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
-                        <p class="d-inline">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>&nbsp&nbsp5.0</p>
-                    </div>
-
-                   
-                    <a href="" class="call btn btn-primary mt-3 fw-bold w-100">Panggil</a>
-                </div>
-            </div>
-        </div>
-
-        {{-- Mitra 3 --}}
-        <div class="col-4 d-inline-flex mb-5">
-          <div class="card" >
-              <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-              <div class="card-body">
-                  <div class="card-container position-relative d-flex justify-content-between mb-3">
-                      <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Bengkel Hati & Pikiran</h5>
-
-                      <div class="icon">
-                          <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                              <i class="fas fa-eye"></i>
-                          </a>
-                          <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                              <i class="fas fa-comment"></i>
-                          </a>
-                      </div>
-                  </div>
-
-                  <div class="detail d-flex justify-content-between">
-                      <p class="d-inline">
-                          <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp800 M</p>
-                      <p class="d-inline">Jl. Kegelapan</p>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                      <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
-                      <p class="d-inline">
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>&nbsp&nbsp5.0</p>
-                  </div>
-
-                 
-                  <a href="" class="call btn btn-primary mt-3 fw-bold w-100">Panggil</a>
-              </div>
-          </div>
-      </div>
         {{-- END MITRA --}}
       </div>
         </div>

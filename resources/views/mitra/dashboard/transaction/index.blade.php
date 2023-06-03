@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main')
+@extends('mitra.dashboard.layouts.main')
 @section('title', 'Transaction')
 @section('content')
     <div class="container-fluid">

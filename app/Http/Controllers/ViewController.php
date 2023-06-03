@@ -30,9 +30,15 @@ class ViewController extends Controller
     }
 
     public function mitra() {
-        
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $pBody = $pResponse->getBody()->getContents();
+        $pData = json_decode($pBody, true);
+        extract($pData);
         $title = 'Mitra';
-        return view('/mitra', compact('title'));
+        return view("mitra", ['title' => 'Mitra', 'partners' => $pData['partner']]);
     }
 
     public function viewmitra() {
@@ -42,9 +48,15 @@ class ViewController extends Controller
     }
 
     public function proses() {
-        
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call");
+        $cBody = $cResponse->getBody()->getContents();
+        $cData = json_decode($cBody, true);
+        extract($cData);
         $title = 'Proses';
-        return view('/proses', compact('title'));
+        return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
     }
 
     public function riwayat() {
@@ -55,7 +67,7 @@ class ViewController extends Controller
 
     public function login(){
         $title = 'Login';
-        return view('auth.login', compact('title'));
+        return view('auth.login', ['title' => 'Login', 'message' => null]);
         
 
     }

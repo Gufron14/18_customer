@@ -1,3 +1,20 @@
+<?php
+  use GuzzleHttp\Client;
+  if(session('token')){
+    $client = new Client(['headers' => [
+    'Authorization' => 'Bearer '.session('token')
+  ]]);
+  $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+  $uBody = $uResponse->getBody()->getContents();
+  $uData = json_decode($uBody, true);
+  extract($uData);
+  $sesi = session()->put('role', $uData['user']['role']);
+  }else{
+
+  }
+  
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container p-5">
       <img src="{{ asset ('assets/img/logo.png') }}" alt="" style="width: 8%">
@@ -21,7 +38,7 @@
                     <a href="riwayat" class="nav-link">Riwayat</a>
                 </li>
                 <li class="nav-item {{ Request::path() == 'gabungmitra' ? 'active' : '' }}">
-                  @if (session('role')== 0)
+                  @if (session('role') == 0)
                   <a href="gabungmitra" class="nav-link">Gabung Mitra</a>
 
                     @else

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CallController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PartnerController;
@@ -48,6 +49,10 @@ Route::post('/editProfile', [AuthController::class, 'editProfile']);
 Route::get('/avatar', [AuthController::class, 'getAvatar']);
 
 Route::post('/gabungmitra', [PartnerController::class, 'store'])->name('gabungmitra')->middleware('auth-jwt');
+
+Route::get('/call/{id}', [CallController::class, 'callNow']);
+
+
 
 
 // PARTNER CMS

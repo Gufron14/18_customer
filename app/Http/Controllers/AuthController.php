@@ -38,7 +38,6 @@ class AuthController extends Controller
         extract($data);
         if($data['status']){
             $sesi = session()->put('token', $data['token']);
-            $sesi = session()->put('role', $data['user']['role']);
             //$hasilsesi = session('token');
             return redirect("/");
 
@@ -52,7 +51,8 @@ class AuthController extends Controller
     {   
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
-        ]]);
+            ]]);
+            
 
         $aResponse = $client->request('POST', "http://localhost:5000/api/user/logout");
         $aBody = $aResponse->getBody()->getContents();

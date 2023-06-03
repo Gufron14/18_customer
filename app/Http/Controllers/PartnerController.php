@@ -56,15 +56,12 @@ class PartnerController extends Controller
                 'name'=>'category_id',
                 'contents'=>$request->category
             ],
-
-
-
         ]]);
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         extract($aData);
 
-        $sesi = session()->put('role', 1);
+        //$sesi = session()->put('role', 1);
         return redirect('/statusmitra');
     }
 
@@ -72,11 +69,11 @@ class PartnerController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner");
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        if ($uData['partner']['request_status']){
+        if ($uData['partner']['request_status'] == 1){
             return view('mitra.dashboard.index');
         }
             // return response()->json($uData);

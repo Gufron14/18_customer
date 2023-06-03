@@ -54,21 +54,22 @@
 
         {{-- Kategori Bar--}}
         <div class="col-lg-4 d-inline-flex position-absolute mt-3">
-            <div class="card" style="width: 240px">
-                <div class="card-header bg-danger text-white fw-bold">
-                    Kategori
-                  </div>
-                  <div class="card-body">
-                    <ul class="list-group list-group-flush">
-
-                      @foreach ( $categories as $category )
-                      <li class="list-group-item">
-                        <a href="">{{ $category['category_name' ]}}</a>
-                      </li>
-                    @endforeach
-                    </ul>
-                  </div>
+          <div class="card" style="width: 240px">
+            <div class="card-header bg-danger text-white fw-bold">
+              Kategori
             </div>
+            <div class="card-body">
+              <div data-bs-spy="scroll" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-0 rounded-2" tabindex="0">
+                <ul class="list-group list-group-flush">
+                  @foreach ( $categories as $category )
+                    <li class="list-group-item">
+                      <a href="">{{ $category['category_name' ]}}</a>
+                    </li>
+                  @endforeach
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         {{-- End Kategori Bar--}}
         
@@ -80,11 +81,11 @@
 
         <div class="feed">
           @foreach ($partners as $partner)
-          <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
-            <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" alt="">
+          <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;"">
+            <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" style="width: 100%; height: 100%;"alt="">
           </div>
           @endforeach
-            <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
+            {{-- <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
                 <img src="{{ asset ('assets/img/feed1.png') }}" alt="">
             </div>
             <div class="feed col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
@@ -92,7 +93,7 @@
             </div>
             <div class="feed col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;">
                 <img src="{{ asset ('assets/img/feed3.png') }}" alt="">
-            </div>
+            </div> --}}
         </div>
         {{-- END FEED --}}
     

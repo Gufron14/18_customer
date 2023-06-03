@@ -20,35 +20,35 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.service.index' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('dashboard/service') }}">
+    <li class="nav-item {{ Route::current()->getName() == 'dashboard.order.index' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('dashboard/order') }}">
             <i class="fas fa-fw fa-shop"></i>
-            <span>Service</span></a>
+            <span>Order</span></a>
     </li>
     <li class="nav-item {{ Route::current()->getName() == 'dashboard.transaction.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/transaction') }}">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Transaction</span></a>
     </li>
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.category.index' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('dashboard/category') }}">
-            <i class="fas fa-fw fa-image"></i>
-            <span>C1ategory</span></a>
-    </li>
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.squarefeed.index' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('dashboard/squarefeed') }}">
-            <i class="fas fa-fw fa-images"></i>
-            <span>Square Feed</span></a>
-    </li>
+    {{-- <li class="nav-item {{ Route::current()->getName() == 'dashboard.history.index' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('dashboard/history') }}">
+            <i class="fas fa-history"></i>
+            <span>Order History</span></a>
+    </li> --}}
     <li class="nav-item {{ Route::current()->getName() == 'dashboard.review.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/review') }}">
             <i class="fas fa-fw fa-star"></i>
             <span>Review</span></a>
     </li>
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.customer.index' ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('dashboard/customer') }}">
+    <li class="nav-item {{ Route::current()->getName() == 'dashboard.activation.index' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('dashboard/activation') }}">
+            <i class="fas fa-fw fa-images"></i>
+            <span>Activation</span></a>
+    </li>
+    <li class="nav-item {{ Route::current()->getName() == 'dashboard.profile.index' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('dashboard/profile') }}">
             <i class="fas fa-fw fa-users"></i>
-            <span>Customer</span></a>
+            <span>Profile</span></a>
     </li>
 
     <!-- Divider -->

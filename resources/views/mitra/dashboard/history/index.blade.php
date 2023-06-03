@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main')
+@extends('mitra.dashboard.layouts.main')
 @section('title', 'SquareFeed')
 @section('content')
     <div class="container-fluid">
@@ -16,11 +16,10 @@
                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Email</th>
+                                <th>id</th>
                                 <th>Username</th>
-                                <th>Count Order</th>
-                                <th>Admin Id</th>
-                                <th>Account Status</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,15 +28,14 @@
                                 
                                 $faker = Faker::create('id_ID');
                                 for ($i = 1; $i <= 100; $i++) {
-                                    $randomAdminId = random_int(1, 5);
-                                    $randomCountOrder = random_int(50, 200);
-                                    $operationalStatus = ['Open', 'Close'];
+                                    $randomId = random_int(1, 5);
+                                    $status = ['Finished', 'in Progress', 'Canceled'];
+
                                     echo '<tr>';
-                                    echo "<td>$faker->email</td>";
-                                    echo "<td>$faker->username</td>";
-                                    echo "<td>$randomCountOrder</td>";
-                                    echo "<td>$randomAdminId</td>";
-                                    echo '<td>' . $operationalStatus[array_rand($operationalStatus)] . '</td>';
+                                        echo "<td>$randomId</td>";
+                                        echo "<td>$faker->username</td>";
+                                        echo '<td>' . $status[array_rand($status)] . '</td>';
+                                        
                                     echo '</tr>';
                                 }
                             @endphp

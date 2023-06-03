@@ -18,7 +18,7 @@
             </div>
         </div>
     </form> --}}
-
+    <a href="/" class="btn btn-primary">Mode Customer</a>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 

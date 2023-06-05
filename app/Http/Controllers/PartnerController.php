@@ -74,6 +74,7 @@ class PartnerController extends Controller
         $uData = json_decode($uBody, true);
         extract($uData);
         if ($uData['partner']['request_status'] == 1){
+            session()->put('partner', $uData['partner']['id']);
             return view('mitra.dashboard.index');
         }
             // return response()->json($uData);

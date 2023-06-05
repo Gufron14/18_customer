@@ -52,20 +52,74 @@ class AuthController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
             ]]);
-            
+            session()->forget('token');
+            session()->forget('role');
 
         $aResponse = $client->request('POST', "http://localhost:5000/api/user/logout");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         extract($aData);
         if($aData['status']){
-            session()->forget('token');
-            session()->forget('role');
+            
 
             return redirect("/login");
 
             //return response()->json();
         }
         return redirect("/home");
+    }
+
+    public function editProfile(Request $request)
+    {
+        $client = new Client(['headers' => [
+            'Content-Type' => 'multipart/form-data',
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+
+        if($request->file('avatar')){
+            $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+                [
+                    'name' => 'username',
+                    'contents' => $request->username
+                ],
+                [
+                    'name' => 'phone_number',
+                    'contents' => $request->phone_number
+                ],
+                [
+                    'name' => 'avatar',
+                    'contents' => fopen( $request->file('avatar'), 'r' ),
+                    'filename' => $request->file('avatar')->getClientOriginalName(),
+                    'Mime-Type' => $request->file('avatar')->getmimeType()
+                ]
+            ]]);
+        } else {
+            $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+                [
+                    'name' => 'username',
+                    'contents' => $request->username
+                ],
+                [
+                    'name' => 'phone_number',
+                    'contents' => $request->phone_number
+                ],
+            ]]);
+        }
+        
+        
+        $aBody = $aResponse->getBody()->getContents();
+        $aData = json_decode($aBody, true);
+        return redirect('/editProfile');
+    }
+
+    public function getAvatar(){
+        $client = new Client(['headers' => [
+            'Content-Type' => 'multipart/form-data',
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $aResponse = $client->request('GET', "http://localhost:5000/api/user/avatar");
+        $aBody = $aResponse->getBody()->getContents();
+        $aData = json_decode($aBody, true);
+        //return response()->file(Storage::disk('local')->path($aBody));
     }
 }

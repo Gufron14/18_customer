@@ -73,10 +73,12 @@
                {{-- END NOTIFIKASI  --}}
 
                 {{-- Profile --}}
+
+                @if(session('token'))
                 <li class="nav-item">
                   <div class="dropdown z-3">
                     <div class="avatar">
-                      <img src="{{ asset ('assets/img/formal.png') }}" alt="">
+                      <img src="http://localhost:5000/api/user/avatar?token={{session('token')}}" alt="">
                     </div>
                     <div class="dropdown-content z-3">
                       <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>
@@ -84,7 +86,10 @@
                       <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
                   </div>
-                </li>   
+                </li>  
+                @else
+                @endif
+                 
                 {{-- End Profile --}}
                 
               </ul> 

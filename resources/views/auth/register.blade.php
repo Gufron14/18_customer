@@ -6,30 +6,31 @@
             <div class="card-body">
                 <form action="/register" method="POST" autocomplete="off">
                   @csrf
-                    <h2 class="mb-3 text-center fw-bold">Daftar</h2>
+                    <h3 class="mb-3 text-center fw-bold">Daftar</h3>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="username">
+                        <label for="username" class="form-label">Nama</label>
+                        <input type="text" class="form-control @error('username') is-invalid  @enderror" value="{{old('username')}}" name="username" autofocus required>
+                        @error('username')
+                            <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
                     </div>
-                    
+                    {{-- <div class="mb-3">
+                      {{$message}}
+                    </div> --}}
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
                     </div>
-                    
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                      <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                     </div>
-                    <div class="mb-3">
-                      {{$message}}
+                    <div class="mb-5">
+                      <label for="avatar" class="form-label">Foto Profil</label>
+                      <input type="file" class="form-control" name="avatar" required>
                     </div>
-                    <div class="form-group files mb-3">
-                        <label class="mb-3">Upload Foto Kamu</label>
-                        <input type="file" class="form-control" multiple="" name="avatar"> 
-                      </div>
                     <button type="submit" id="submitData" class="btn btn-primary w-100">Daftar</button>
-                  </form>
+                </form>
                   <p class="mt-3 text-center">Sudah punya akun?
                     <a href="{{ route('login') }}">Login</a>
                   </p>

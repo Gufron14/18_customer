@@ -50,7 +50,7 @@ Route::get('/avatar', [AuthController::class, 'getAvatar']);
 
 Route::post('/gabungmitra', [PartnerController::class, 'store'])->name('gabungmitra')->middleware('auth-jwt');
 
-Route::get('/call/{id}', [CallController::class, 'callNow']);
+Route::get('/call/{id}', [CallController::class, 'callNow'])->name('callNow');
 
 
 

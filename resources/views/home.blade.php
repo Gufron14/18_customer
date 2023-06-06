@@ -7,7 +7,7 @@
         {{-- SEARCH BAR --}}
         <div class="d-flex justify-content-between mb-3">
             <div class="col-lg-4 d-inline-flex">
-                <h4 class="fw-bold d-flex justify-content-center align-items-center">Selamat malam, {{ $user['username'] }}  </h4>
+                <h4 id="greeting" class="fw-bold d-flex justify-content-center align-items-center">, {{ $user['username'] }}  </h4>
             </div>
             <div class="col-lg-4 d-inline-flex me-3">
               <form class="d-flex" role="search">
@@ -79,7 +79,7 @@
             <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
-        <div class="feed">
+        <div class="col-lg-9 feed" style="height: 250px;">
           @foreach ($partners as $partner)
           <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;"">
             <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" style="width: 100%; height: 100%;"alt="">
@@ -99,4 +99,29 @@
     
     </div>
 
+    <script>
+      // Mendapatkan elemen dengan ID "greeting"
+      var greetingElement = document.getElementById("greeting");
+    
+      // Mendapatkan waktu saat ini
+      var currentTime = new Date();
+      var currentHour = currentTime.getHours();
+    
+      // Menentukan salam yang sesuai berdasarkan waktu saat ini
+      var greeting;
+      if (currentHour < 6) {
+        greeting = "Selamat pagi";
+      } else if (currentHour < 12) {
+        greeting = "Selamat pagi";
+      } else if (currentHour < 15) {
+        greeting = "Selamat siang";
+      } else if (currentHour < 18){
+        greeting = "Selamat sore";
+      } else {
+        greeting = "Selamat malam"
+      }
+    
+      // Mengganti teks salam pada elemen
+      greetingElement.innerText = greeting + ", " + greetingElement.innerText.split(", ")[1];
+    </script>
 @endsection

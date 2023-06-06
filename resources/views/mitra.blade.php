@@ -63,43 +63,32 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <h5 class="mb-3">Masalah</h5>
-                              {{-- <div class="d-flex mb-3">
-                                <div class="form-check me-5">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Minim sopan santun
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                      Tidak beretika
-                                    </label>
-                                  </div>
-                              </div> --}}
-        
-                            <div class="mb-5">
-                              <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                            <h5 class="mb-3">Alamat</h5>
-                            <div class="d-flex mb-3">
-                              <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>
-                              <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1" disabled readonly></textarea>
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="address"></textarea>
-                            </div>
-                            <div class="d-flex">
-                              <button class="btn btn-primary mt-3 mb-3 w-100" data-bs-target="#konfirmasi{{$partner['id']}}" data-bs-toggle="modal">Konfirmasi Permasalahan</button>
-                            </div>
+                            <form action="{{ route('callNow/$id') }}" method="POST">
+                              @csrf
+                              <h5 class="mb-3">Masalah</h5>
+                              <div class="mb-5">
+                                <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              </div>
+                              <h5 class="mb-3">Alamat</h5>
+                              <div class="d-flex mb-3">
+                                <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>
+                                <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1" disabled readonly></textarea>
+                              </div>
+                              <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="address"></textarea>
+                              </div>
+                              <div class="d-flex">
+                                <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Panggil</button>
+                              </div>
+                          </form>
+                          </div>
+                          <div class="modal-footer mt-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                           </div>
                         </div>
-                        <div class="modal-footer mt-3">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        </div>
+                        
                       </div>
                     </div>
                   {{-- End Modal --}}
@@ -151,6 +140,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>
                             <a class="btn btn-primary" onclick="startCall()" href="/call/{{$partner['id']}}">Panggil Sekarang</a>
                           </div>
+                        
                         </div>
                       </div>
                     </div>

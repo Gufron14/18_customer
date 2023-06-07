@@ -63,7 +63,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <form action="{{ route('callNow/$id') }}" method="POST">
+                            <form action="/call/{{$partner['id']}}" method="POST">
                               @csrf
                               <h5 class="mb-3">Masalah</h5>
                               <div class="mb-5">

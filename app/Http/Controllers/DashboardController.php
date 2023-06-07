@@ -108,12 +108,12 @@ class DashboardController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/$id");
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/$id");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
         
         // return response()->json($uData);
-        return view('mitra.dashboard.order.index', ['title' => 'Order List', 'partners' => $uData['partner']]);
+        return view('mitra.dashboard.order.index', ['title' => 'Order List', 'orders' => $uData['call']]);
     }
 }

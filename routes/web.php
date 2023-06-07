@@ -50,7 +50,7 @@ Route::get('/avatar', [AuthController::class, 'getAvatar']);
 
 Route::post('/gabungmitra', [PartnerController::class, 'store'])->name('gabungmitra')->middleware('auth-jwt');
 
-Route::get('/call/{id}', [CallController::class, 'callNow'])->name('callNow');
+Route::post('/call/{id}', [CallController::class, 'callNow']);
 
 
 
@@ -77,7 +77,7 @@ Route::prefix('dashboard')->group(function () {
     // })->name('partner.index');
 
     Route::get('/order/{id}',    [DashboardController::class, 'orderList'])->name('dashboard.order.index');
-    Route::view('/order',    'mitra.dashboard.order.index')->name('dashboard.order.index');
+    Route::get('/order',    [CallController::class, 'show'])->name('dashboard.order.index');
     Route::view('/transaction',    'mitra.dashboard.transaction.index')->name('dashboard.transaction.index');
     Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');
     Route::view('/history',   'mitra.dashboard.history.index')->name('dashboard.history.index');

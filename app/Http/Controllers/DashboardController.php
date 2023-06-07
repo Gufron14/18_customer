@@ -104,11 +104,11 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function orderList($id){
+    public function orderList(Request $request){
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/$id");
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/".session('partner'));
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);

@@ -68,7 +68,7 @@
                               <h5 class="mb-3">Masalah</h5>
                               <div class="mb-5">
                                 <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
                               </div>
                               <h5 class="mb-3">Alamat</h5>
                               <div class="d-flex mb-3">

@@ -24,7 +24,6 @@
                             </div>
                             <div class="mb-3 text-danger">
                               {{$message}}
-
                             </div>
                             <button type="submit" class="btn btn-primary fw-bold w-100">Login</button>
                           </form>

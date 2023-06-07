@@ -29,8 +29,8 @@
                         @foreach($orders as $order)
                         <tr>
                             <td>{{$order['id']}}</td>
-                            <td>{{$order['customer']['customer_name']}}</td>
-                            <td>{{$order['customer']['address']}}</td>
+                            <td>{{$order['user']['username']}}</td>
+                            <td>Ini lokasi</td>
                             <td>unknown coordinate</td>
                             <td>{{$order['message']}}</td>
                             <td>{{$order['created_at']}}</td>

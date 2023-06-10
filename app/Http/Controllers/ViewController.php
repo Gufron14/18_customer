@@ -43,8 +43,15 @@ class ViewController extends Controller
 
     public function viewmitra() {
         
-        $title = 'Mitra Name';
-        return view('/viewmitra', compact('title'));
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $qResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $qBody = $qResponse->getBody()->getContents();
+        $qData = json_decode($qBody, true);
+        extract($qData);
+        $title = 'Mitra';
+        return view("viewmitra", ['title' => 'Mitra', 'partner' => $qData['partner']]);
     }
 
     public function proses() {

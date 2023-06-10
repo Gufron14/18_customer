@@ -19,7 +19,7 @@
     {{-- SEARCH BAR--}}
     
     {{-- MITRA --}}
-      <div class="container border p-3 mt-3">
+      <div class="container p-3 mt-3">
         <div class="row">
           @foreach($partners as $partner)
             {{-- Mitra 1 --}}
@@ -33,25 +33,35 @@
                         <a href="{{ route('viewmitra') }}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
                           <i class="fas fa-eye"></i>
                         </a>
-                        <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
+                        {{-- <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
                           <i class="fas fa-comment"></i>
-                        </a>
+                        </a> --}}
                       </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                      <p class="d-inline"><i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp500 M</p>
+                      <p class="d-inline"><i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;500 M</p>
                       <p class="d-inline">{{ $partner['address']}}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                      {{-- <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
-                      <p class="d-inline">
+                      
+                        @if ($partner['operational_status'] == 0 )
+                          <p class="text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp;&nbsp;Tutup</p>
+                        @else
+                          <p class="text-success"><i class="bi bi-door-open-fill"></i>&nbsp;&nbsp;Buka</p>
+                        @endif
+                      
+                      
+                      
+                      {{-- <p class="d-inline">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}
                     </div>
-                    <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" class="btn btn-primary" data-bs-target="#call{{$partner['id']}}" data-bs-toggle="modal">Panggil</button>
+                    <button type="button" class="call btn btn-primary w-100 fw-bold mt-3"
+                            data-bs-target="#call{{$partner['id']}}"
+                            data-bs-toggle="modal" {{ $partner['operational_status'] === 0 ? 'disabled' : '' }}>Panggil</button>
                   </div>
                   
                   <!-- Modal -->
@@ -150,115 +160,7 @@
             {{-- End Mitra 1 --}}
           @endforeach
 
-          {{-- Mitra 2 --}}
-            <div class="col-3 d-inline-flex mb-5">
-              <div class="card" >
-                <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-                <div class="card-body">
-                  <div class="card-container position-relative d-flex justify-content-between mb-3">
-                    <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Service Pikiran Kotor</h5>
-                    <div class="icon">
-                      <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                        <i class="fas fa-eye"></i>
-                      </a>
-                      <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                        <i class="fas fa-comment"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                      <p class="d-inline">
-                          <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp1.2 KM</p>
-                      <p class="d-inline">Jl. Kehidupan</p>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                    <p class="d-inline text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp&nbspTutup</p>
-                    <p class="d-inline">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-half"></i>&nbsp&nbsp4.5
-                    </p>
-                  </div>
-                  <a href="" class="call btn btn-primary mt-3 fw-bold w-100 disabled">Panggil</a>
-                </div>
-              </div>
-            </div>
-          {{-- Mitra 2 --}}
-
-          {{-- Mitra 3 --}}
-            <div class="col-3 d-inline-flex mx-auto mb-5">
-              <div class="card" >
-                <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-                <div class="card-body">
-                  <div class="card-container position-relative d-flex justify-content-between mb-3">
-                    <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Bengkel Hati & Pikiran</h5>
-                    <div class="icon">
-                      <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                        <i class="fas fa-eye"></i>
-                      </a>
-                      <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                        <i class="fas fa-comment"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                    <p class="d-inline">
-                      <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp800 M</p>
-                    <p class="d-inline">Jl. Kegelapan</p>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                    <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
-                    <p class="d-inline">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>&nbsp&nbsp5.0
-                    </p>
-                  </div>
-                  <a href="" class="call btn btn-primary mt-3 fw-bold w-100">Panggil</a>
-                </div>
-              </div>
-            </div>
-          {{-- Mitra 3 --}}
           
-          {{-- Mitra 4 --}}
-            <div class="col-3 d-inline-flex mb-5">
-              <div class="card" >
-                <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
-                <div class="card-body">
-                  <div class="card-container position-relative d-flex justify-content-between mb-3">
-                    <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold">Bengkel Hati & Pikiran</h5>
-                    <div class="icon">
-                      <a href="" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
-                          <i class="fas fa-eye"></i>
-                      </a>
-                      <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
-                          <i class="fas fa-comment"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                    <p class="d-inline">
-                      <i class="bi bi-geo-alt-fill"></i>&nbsp&nbsp800 M</p>
-                    <p class="d-inline">Jl. Kegelapan</p>
-                  </div>
-                  <div class="detail d-flex justify-content-between">
-                    <p class="d-inline text-success"><i class="bi bi-door-open-fill"></i>&nbsp&nbspBuka</p>
-                    <p class="d-inline">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>&nbsp&nbsp5.0
-                    </p>
-                  </div>
-                  <a href="" class="call btn btn-primary mt-3 fw-bold w-100">Panggil</a>
-                </div>
-              </div>
-            </div>
           {{-- END MITRA --}}
         </div>
       </div>

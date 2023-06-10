@@ -7,7 +7,7 @@
         {{-- <h1 class="h3 mb-2 text-gray-800">Partner List</h1> --}}
 
         <!-- DataTales Example -->
-        <div class="card border-0 shadow mb-4">
+        <div class="card border-0 shadow mb-4" >
             <div class="card-header d-flex justify-content-beetwen">
                 <p class="mb-0">Aktivasi Akun Mitra</p>
                 <p class="ml-auto">Status Mitra : <span> 
@@ -21,7 +21,12 @@
             <div class="card-body d-inline-flex">   
                 {{-- Paket 1 Bulan --}}
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="card border-left-primary shadow h-100 py-2" 
+                        @if ($partner['account_status'] == 0)
+                            data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        @else
+                            
+                        @endif >
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">

@@ -79,14 +79,14 @@
                                 <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="address"></textarea>
                               </div>
-                              <div class="d-flex">
-                                <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Panggil</button>
-                              </div>
-                          </form>
                           </div>
                           <div class="modal-footer mt-3">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <div class="d-flex">
+                              <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Panggil Sekarang</button>
+                            </div>
                           </div>
+                          </form>
                         </div>
                         
                       </div>

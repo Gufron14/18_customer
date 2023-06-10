@@ -8,9 +8,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('mitra.dashboard.index', [
-            "title" => "Dashboard"
-        ]);
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $uBody = $uResponse->getBody()->getContents();
+        $uData = json_decode($uBody, true);
+        extract($uData);
+        
+        // return response()->json($uData);
+        return view("mitra.dashboard.index", ['title' => 'Dashboard', 'partner' => $uData['partner']]);
+
     }
 
     public function activation(){

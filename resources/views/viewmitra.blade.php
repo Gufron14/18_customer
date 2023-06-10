@@ -3,14 +3,14 @@
 @section('content')
     <div class="container border mx-auto">
 
-        <div class="container ms-5 mt-3">
+        {{-- <div class="container ms-5 mt-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{ route('mitra') }}">Mitra</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Jasa Perbaikan Akhlak</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ $partner['partner_name'] }}</li>
                 </ol>
               </nav>
-        </div>
+        </div> --}}
         
 
         {{-- BANNER MITRA --}}
@@ -41,11 +41,11 @@
             <table class="mb-3 col-6 ">
                 <tr>
                     <td>Nama Perusahaan</td>
-                    <td>: Jasa Perbaikan Akhlak</td>
+                    <td>: {{ $partner['partner_name'] }} </td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
-                    <td>: Jl. Kematian No.108, Garut</td>
+                    <td>: {{ $partner['address'] }}</td>
                 </tr>
                 <tr>
                     <td>Tahun Didirikan</td>

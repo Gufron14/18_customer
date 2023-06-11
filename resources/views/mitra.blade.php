@@ -77,15 +77,16 @@
                             <form action="/call/{{$partner['id']}}" method="POST">
                               @csrf
                               <h5 class="mb-3">Masalah</h5>
-                              <div class="mb-5">
+                              <input type="text" class="form-control mb-3" id="problem" name="problem">
+                              <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="2"></textarea>
                               </div>
-                              <h5 class="mb-3">Alamat</h5>
+                              {{-- <h5 class="mb-3">Alamat</h5>
                               <div class="d-flex mb-3">
                                 <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>
                                 <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1" disabled readonly></textarea>
-                              </div>
+                              </div> --}}
                               <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="address"></textarea>

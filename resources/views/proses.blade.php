@@ -7,57 +7,34 @@
         <div class="card mb-3">
           <div class="card-body d-flex flex-row">
             <div class="col-4 d-flex d-inline-flex">
-              <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
+              <img src="http://localhost:5000/api/user/partner/avatar/{{ $call['partner']['avatar'] }}" alt="" style="width: 200px; height:200px;">
             </div>
-            <div class="col-4 d-inline-flex d-flex flex-column ms-3">
+            <div class="col-4 d-inline-flex d-flex flex-column ms-3 mt-3">
               <div class="d-flex">{{$call['partner']['partner_name']}}</div>
-              {{-- <h4 class="fw-bold d-block-flex">Kekurangan Akhlak</h4> --}}
+              <h4 class="fw-bold d-block-flex">{{ $call['problem'] }}</h4>
               <div class="d-flex">
                 {{ $call['message'] }}
               </div>
             </div>
-            <div class="col-4 text-center mt-3">
-              <h6>Menunggu persetujuan</h6>
-              <h1 id="countdown" class="fw-bold"></h1>
-              <button class="btn btn-danger mt-3" onclick="showCancelModal()" id="cancelButton">
+            <div class="col-6 mt-3">
+              <h6 id="text">
+                @if ($call['order_status'] == 0)
+                    Menunggu persetujuan
+                @elseif ($call['order_status'] == 1)
+                    Panggilan anda disetujui
+                @elseif ($call['order_status'] == 2)
+                    teknisi sedang dalam perjalan
+                @elseif ($call['order_status'] == 3)
+                    dalam proses pengerjaan
+                @elseif ($call['order_status'] == 4)
+                    selesai
+                @endif
+              </h6>
+              <h1 id="timer" class="fw-bold"></h1>
+              <button class="btn btn-danger mt-3" id="cancelBtn"
+              {{ $call['order_status'] !== 0 ? 'disabled' : '' }}>
                 Batalkan Panggilan
               </button>
-            
-              <!-- Modal -->
-              <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="cancelModalLabel">Alasan Pembatalan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="notAnsweredCheckbox">
-                          <label class="form-check-label" for="notAnsweredCheckbox">
-                            Tidak ada jawaban
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="tooLongCheckbox">
-                          <label class="form-check-label" for="tooLongCheckbox">
-                            Terlalu lama menunggu
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="otherCheckbox">
-                          <label class="form-check-label" for="otherCheckbox">
-                            Lainnya
-                          </label>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-primary" onclick="cancelCall()">Batalkan Sekarang</button>
-                      </div>
-                    </div>
-                  </div>
-                <!-- End Modal -->
               </div>
             </div>
           </div>
@@ -67,83 +44,57 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    var countdownInterval;
-    var countdownElement = document.getElementById("countdown");
-    var cancelModal = document.getElementById("cancelModal");
-    var cancelButton = document.getElementById("cancelButton");
+    var countdownTime = 300;
+    var timerInterval;
 
-    function countdown() {
-      var count = 300;
-      countdownInterval = setInterval(function() {
-        var minutes = Math.floor(count / 60);
-        var seconds = count % 60;
-        var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-        var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-        countdownElement.innerHTML = formattedMinutes + ":" + formattedSeconds;
-        count--;
-        if (count < 0) {
-          clearInterval(countdownInterval);
-          countdownElement.innerHTML = "";
-          showCancelModal();
-        }
-      }, 1000);
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      var remainingSeconds = seconds % 60;
+
+      return `${padZero(minutes)}:${padZero(remainingSeconds)}`;
     }
 
-    function showCancelModal() {
-      $('#cancelModal').modal('show');
+    function padZero(number) {
+      return number < 10 ? '0' + number : number;
     }
 
-    function hideCancelModal() {
-      $('#cancelModal').modal('hide');
-    }
+    function updateTimer() {
+      var timerElement = document.getElementById('timer');
 
-    function cancelCall() {
-      clearInterval(countdownInterval);
+      countdownTime--;
+      timerElement.innerText = formatTime(countdownTime);
 
-      // Mengambil status checkbox
-      var notAnswered = document.getElementById("notAnsweredCheckbox").checked;
-      var tooLong = document.getElementById("tooLongCheckbox").checked;
-      var other = document.getElementById("otherCheckbox").checked;
-
-      var reasons = [];
-
-      if (notAnswered) {
-        reasons.push("Tidak ada jawaban");
+      if (countdownTime <= 0) {
+        clearInterval(timerInterval);
+        timerElement.innerText = 'Waktu habis!';
+        document.getElementById('cancelBtn').disabled = true;
       }
-
-      if (tooLong) {
-        reasons.push("Terlalu lama menunggu");
-      }
-
-      if (other) {
-        reasons.push("Lainnya");
-      }
-
-      var message = "Panggilan dibatalkan. Alasan: " + reasons.join(", ");
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Panggilan Dibatalkan',
-        text: message,
-        timer: 2000,
-        showConfirmButton: false
-      }).then(function() {
-        cancelButton.innerHTML = "Dibatalkan";
-        cancelButton.disabled = true;
-        cancelButton.classList.add("disabled");
-      });
     }
 
-    function answerCall() {
-      clearInterval(countdownInterval);
-      // Tambahkan kode yang ingin dijalankan saat panggilan dijawab
-      Swal.fire({
-        icon: 'success',
-        title: 'Panggilan Dijawab',
-        text: 'Panggilan berhasil dijawab'
-      });
+    function cancelTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('cancelBtn').innerText = 'Panggilan Dibatalkan';
+      document.getElementById('cancelBtn').disabled = true;
+      document.getElementById('text').innerText = 'Panggilan Dibatalkan';
     }
 
-    countdown();
+    function startTimer() {
+      timerInterval = setInterval(updateTimer, 1000);
+      document.getElementById('cancelBtn').removeAttribute('disabled');
+    }
+
+    // Cek status order dan atur tombol
+    var partnerOrderStatus = <?php echo $call['order_status']; ?>;
+    if (partnerOrderStatus !== 0) {
+      document.getElementById('cancelBtn').disabled = true;
+    } else {
+      startTimer();
+    }
+
+    // Tambahkan event listener pada tombol "Batalkan Panggilan"
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+      cancelTimer();
+      countdownTime = 0;
+    });
   </script>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+
     <div class="container p-5">
         <div class="row">
             <div class="col">
@@ -35,4 +36,16 @@
             </div>
         </div>
     </div>
+
+    @if (session('success'))
+      <script>
+          // Menampilkan pemberitahuan dengan SweetAlert
+          Swal.fire({
+              icon: 'success',
+              title: 'Berhasil!',
+              text: "{{ session('success') }}",
+          });
+      </script>
+    @endif
+
 @endsection

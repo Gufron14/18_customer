@@ -79,9 +79,9 @@
             <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
-        <div class="col-lg-9 feed" style="height: 250px;">
+        <div class="col-lg-9" style="height: 250px;">
           @foreach ($partners as $partner)
-          <div class="feed shadow col-lg-4 bg-warning mt-3 d-inline-flex me-2" style="width: 232px; height: 200px;"">
+          <div class="feed feed-hover-animation border col-lg-4 bg-warning mt-3 d-inline-flex me-3" style="width: 200px; height: 200px;"">
             <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" style="width: 100%; height: 100%;"alt="">
           </div>
           @endforeach

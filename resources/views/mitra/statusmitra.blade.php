@@ -37,4 +37,16 @@
             </div>
         </div>
     </div>
+
+    @if (session('success'))
+    <script>
+        // Menampilkan pemberitahuan dengan SweetAlert
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil Mendaftar!',
+            text: '{{ session("success") }}',
+        });
+    </script>
+    @endif
+
 @endsection

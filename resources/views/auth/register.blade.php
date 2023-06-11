@@ -25,10 +25,6 @@
                       <label for="exampleInputPassword1" class="form-label">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                     </div>
-                    <div class="mb-5">
-                      <label for="avatar" class="form-label">Foto Profil</label>
-                      <input type="file" class="form-control" name="avatar" required>
-                    </div>
                     <button type="submit" id="submitData" class="btn btn-primary w-100">Daftar</button>
                 </form>
                   <p class="mt-3 text-center">Sudah punya akun?

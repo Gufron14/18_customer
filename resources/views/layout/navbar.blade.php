@@ -47,7 +47,13 @@
                     @endif
                 </li>
 
-              {{-- NOTIFIKASI --}}
+              
+
+                {{-- Profile --}}
+
+                @if(session('token'))
+
+                {{-- NOTIFIKASI --}}
                 <div class="notif-bg d-flex align-items-center me-3">
                   <div class="container d-flex justify-content-center">
 
@@ -58,7 +64,7 @@
                         <li class="dropdown-item mb-3">
                           <a href="{{ route('mitra') }}" class="d-flex align-items-center">
                             <div class="avatar me-3">
-                              <img class="" src="{{ asset('assets/img/formal.png') }}" alt="">
+                              <img class="" src="{{ asset('assets/img/logo.png') }}" alt="">
                             </div>
                             <strong class="text-truncated" style="white-space: nowrap; text-overflow: ellipsis;">Job Calling</strong>&nbsp;
                             <span class="text-truncate">&nbsp;Selamat! Anda berhasil membuat akun Mitra. Segera Aktivasi untuk menjalankan Bisnis dengan Job Calling.</span>   
@@ -72,9 +78,6 @@
                 </div>
                {{-- END NOTIFIKASI  --}}
 
-                {{-- Profile --}}
-
-                @if(session('token'))
                 <li class="nav-item">
                   <div class="dropdown z-3">
                     <div class="avatar">

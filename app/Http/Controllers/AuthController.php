@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -19,9 +20,13 @@ class AuthController extends Controller
         $data = json_decode($cBody, true);
         extract($data);
         if($data['status']){
-            return redirect("/login");
+            // $message = 'Berhasil membuat akun';
+            // Session::flash('message', $message);
+            return redirect("/login")->with('success', 'Akun Berhasil dibuat');
         }
+
         $data['title'] = 'Register';
+        
         // return response()->json($data);
         return view("auth.register", $data);
     }
@@ -38,6 +43,7 @@ class AuthController extends Controller
         extract($data);
         if($data['status']){
             $sesi = session()->put('token', $data['token']);
+            $sesi = session()->put('user', $data['user']['id']);
             //$hasilsesi = session('token');
             return redirect("/");
 

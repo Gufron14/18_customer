@@ -1,18 +1,20 @@
 @extends('layout.app')
 
 @section('content')
-  <div class="container border p-5">
+  <div class="container p-5">
     <div class="row mb-3 m-3">
-      <div class="card">
-        @foreach($calls as $call)
+      @foreach($calls as $call)
+        <div class="card mb-3">
           <div class="card-body d-flex flex-row">
             <div class="col-4 d-flex d-inline-flex">
               <img src="{{ asset ('assets/img/avatar1.png') }}" alt="">
             </div>
             <div class="col-4 d-inline-flex d-flex flex-column ms-3">
               <div class="d-flex">{{$call['partner']['partner_name']}}</div>
-              <h4 class="fw-bold d-block-flex">Kekurangan Akhlak</h4>
-              <div class="d-flex">Saya kekurangan akhlak dan etika yang mana ketika saya sedang maen mobile legends bersama pak ustadz saya sampah maniacnya</div>
+              {{-- <h4 class="fw-bold d-block-flex">Kekurangan Akhlak</h4> --}}
+              <div class="d-flex">
+                {{ $call['message'] }}
+              </div>
             </div>
             <div class="col-4 text-center mt-3">
               <h6>Menunggu persetujuan</h6>
@@ -59,8 +61,8 @@
               </div>
             </div>
           </div>
-        @endforeach
       </div>
+      @endforeach
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

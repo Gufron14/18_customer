@@ -24,7 +24,7 @@
           @foreach($partners as $partner)
             {{-- Mitra 1 --}}
               <div class="col-3 d-inline-flex mb-5">
-                <div class="card shadow" >
+                <div class="card card-hover-animation">
                   <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}" alt="">
                   <div class="card-body">
                     <div class="card-container position-relative d-flex justify-content-between mb-3">
@@ -38,17 +38,18 @@
                         </a> --}}
                       </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                      <p class="d-inline"><i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;500 M</p>
-                      <p class="d-inline">{{ $partner['address']}}</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      
-                        @if ($partner['operational_status'] == 0 )
+                    <div class="">
+                      <p><i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;{{ $partner['address'] }}</p>
+                      {{-- <p class="d-inline">{{ $partner['address']}}</p> --}}
+                      @if ($partner['operational_status'] == 0 )
                           <p class="text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp;&nbsp;Tutup</p>
                         @else
                           <p class="text-success"><i class="bi bi-door-open-fill"></i>&nbsp;&nbsp;Buka</p>
                         @endif
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      
+                        
                       
                       
                       
@@ -61,7 +62,7 @@
                     </div>
                     <button type="button" class="call btn btn-primary w-100 fw-bold mt-3"
                             data-bs-target="#call{{$partner['id']}}"
-                            data-bs-toggle="modal" {{ $partner['operational_status'] === 0 ? 'disabled' : '' }}>Panggil</button>
+                            data-bs-toggle="modal" {{ $partner['user_id'] === session('user') || $partner['operational_status'] === 0 ? 'disabled' : '' }}>Panggil</button>
                   </div>
                   
                   <!-- Modal -->
@@ -167,48 +168,50 @@
     {{-- MITRA --}}
   </div>  
 
+    
+
     {{-- SWEET ALERT --}}
-    <script type="text/javascript">
-      function startCall() {
-        swal({
-          title: "Berhasil memanggil",
-          text: "Menunggu persetujuan",
-          icon: "success",
-          button: true
-        }).then(function() {
-          startCountdown();
-          redirectToOtherPage();
-        });
-      }
-    
-      function startCountdown() {
-        var countdownElement = document.createElement("span");
-        countdownElement.setAttribute("id", "countdown");
-        document.body.appendChild(countdownElement);
-    
-        var count = 300;
-    
-        var countdownInterval = setInterval(function() {
-          var minutes = Math.floor(count / 60);
-          var seconds = count % 60;
-    
-          var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-          var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-    
-          countdownElement.innerHTML = formattedMinutes + ":" + formattedSeconds;
-    
-          count--;
-    
-          if (count < 0) {
-            clearInterval(countdownInterval);
-            countdownElement.innerHTML = "";
-          }
-        }, 1000);
-      }
-    
-      function redirectToOtherPage() {
-        window.location.href = "{{ route('proses') }}";
-      }
-    </script>
+<script>
+function startCall() {
+  Swal.fire({
+    title: "Sukses memanggil",
+    text: "Menunggu persetujuan",
+    icon: "success",
+    showCancelButton: true,
+    cancelButtonText: "Batalkan",
+    showConfirmButton: true,
+    html: "<h3 id='countdown'></h3>",
+    timer: 300000, // 5 menit dalam milidetik (1 detik = 1000 milidetik)
+    onOpen: function() {
+      var countdown = document.getElementById('countdown');
+      var timer = setInterval(function() {
+        var minutes = Math.floor((timer.remaining / 1000) / 60);
+        var seconds = Math.floor((timer.remaining / 1000) % 60);
+        countdown.innerHTML = "Sisa waktu: " + minutes + " menit " + seconds + " detik";
+      }, 1000);
+      timer.on('timerComplete', function() {
+        clearInterval(timer);
+        Swal.close();
+      });
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      cancelCall();
+    }
+  });
+}
+
+function cancelCall() {
+  Swal.fire({
+    title: "Berhasil dibatalkan",
+    icon: "success",
+    showConfirmButton: true,
+    confirmButtonText: "OK"
+  });
+}
+</script>
+
 
 @endsection

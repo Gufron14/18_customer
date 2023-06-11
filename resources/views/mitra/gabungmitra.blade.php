@@ -4,13 +4,13 @@
     <div class="container p-5">
         <form action="/gabungmitra" method="POST" enctype="multipart/form-data">
             @csrf
+            {{-- <div class="card"> --}}
+                {{-- <div class="card-header mb-3"> --}}
+                    <h5 class="fw-bold text-center mb-5">Daftar untuk menjadi Mitra kami</h5>
             <div class="card">
-                <div class="card-header mb-3">
-                    <h5 class="fw-bold text-center">Daftar untuk menjadi Mitra kami</h5>
-                </div>
                 <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-3">
+                    <div class="row justify-content-center mt-3 ">
+                        <div class="col-4   ">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('partnername') is-invalid @enderror" id="name" name="partnername" placeholder="Nama Mitra" value="{{ old('partnername') }}">
                                 <label for="partnername">Nama Mitra</label>
@@ -38,14 +38,10 @@
                                     <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
                                 @endforeach
                             </select>
-                            <div class="">
-                                <label for="avatar" class="form-label">Foto Profil Mitra</label>
-                                <input type="file" class="form-control" name="avatar">
-                            </div>
+                            
                         </div>
                         <div class="col-7">
                             <div class="row g-3 ms-5">
-                                <h5>Alamat</h5>
                                 <div class="col-md-12">
                                     <label for="address" class="form-label">Alamat</label>
                                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{ old('address') }}" required>
@@ -53,13 +49,19 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-2">
-                                    <textarea name="desc" id="desc" rows="3" class="form-control" style="width: 500px;"></textarea>
+                                <div class="col-md-12">
+                                    <label for="desc" class="form-label">Deskripsi</label>
+                                    <textarea name="desc" id="desc" rows="2" class="form-control"></textarea>
+                                </div>
+                                <div class="">
+                                    <label for="avatar" class="form-label">Foto Profil Mitra</label>
+                                    <input type="file" class="form-control" name="avatar">
+                                </div>
+                                <div class="col-7 mt-5 mb-3">
+                                    <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar Sekarang</button>
                                 </div>
                             </div>
-                            <div class="col-7 mt-5">
-                                <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar Sekarang</button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

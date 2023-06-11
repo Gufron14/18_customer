@@ -93,7 +93,14 @@ a {
 /* FEED*/
 .feed {
     border-radius: 8px;
+    transition: box-shadow 0.3s ease;
 }
+.feed-hover-animation:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
  .feed img {
     border-radius: 8px;
  }
@@ -105,7 +112,13 @@ a {
 
 .card {
     border-radius: 8px;
+    transition: box-shadow 0.3s ease;
 }
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
 .card img {
     border-radius: 8px;
 }
@@ -227,3 +240,5 @@ a {
     object-fit: cover;
     border-radius: 5px;
 }
+
+  

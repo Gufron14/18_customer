@@ -62,8 +62,12 @@ class ViewController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
+        $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $pBody = $pResponse->getBody()->getContents();
+        $pData = json_decode($pBody, true);
+        extract($pData);
         $title = 'Proses';
-        return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
+        return view("/proses", ['title' => 'Proses', 'calls' => $cData['call'], 'partner' => $pData['partner'] ]);
     }
 
     public function riwayat() {

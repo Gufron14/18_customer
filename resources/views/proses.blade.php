@@ -11,7 +11,7 @@
             </div>
             <div class="col-4 d-inline-flex d-flex flex-column ms-3 mt-3">
               <div class="d-flex">{{$call['partner']['partner_name']}}</div>
-              <h4 class="fw-bold d-block-flex">{{ $call['problem'] }}</h4>
+              {{-- <h4 class="fw-bold d-block-flex">{{ $call['problem'] }}</h4> --}}
               <div class="d-flex">
                 {{ $call['message'] }}
               </div>

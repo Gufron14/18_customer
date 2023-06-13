@@ -120,8 +120,12 @@ class DashboardController extends Controller
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
+        $pResponse = $client->request('GET', "http://localhost:5000/api/user/progres");
+        $pBody = $pResponse->getBody()->getContents();
+        $pData = json_decode($pBody, true);
+        extract($pData);
         
         // return response()->json($uData);
-        return view('mitra.dashboard.order.index', ['title' => 'Order List', 'orders' => $uData['call']]);
+        return view('mitra.dashboard.order.index', ['title' => 'Order List', 'orders' => $uData['call'], 'progress' => $pData['progres']]);
     }
 }

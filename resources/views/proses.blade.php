@@ -7,7 +7,7 @@
         <div class="card mb-3">
           <div class="card-body d-flex flex-row">
             <div class="col-4 d-flex d-inline-flex">
-              <img src="http://localhost:5000/api/user/partner/avatar/{{ $call['partner']['avatar'] }}" alt="" style="width: 200px; height:200px;">
+              <img src="http://localhost:5000/api/user/partner/avatar/{{ $call['partner_id'] }}?token={{session('token')}}" alt="" style="width: 200px; height:200px;">
             </div>
             <div class="col-4 d-inline-flex d-flex flex-column ms-3 mt-3">
               <div class="d-flex">{{$call['partner']['partner_name']}}</div>
@@ -17,22 +17,10 @@
               </div>
             </div>
             <div class="col-6 mt-3">
-              <h6 id="text">
-                @if ($call['order_status'] == 0)
-                    Menunggu persetujuan
-                @elseif ($call['order_status'] == 1)
-                    Panggilan anda disetujui
-                @elseif ($call['order_status'] == 2)
-                    teknisi sedang dalam perjalan
-                @elseif ($call['order_status'] == 3)
-                    dalam proses pengerjaan
-                @elseif ($call['order_status'] == 4)
-                    selesai
-                @endif
+              <h6 id="text">{{$call['progres']['progres']}}
               </h6>
               <h1 id="timer" class="fw-bold"></h1>
-              <button class="btn btn-danger mt-3" id="cancelBtn"
-              {{ $call['order_status'] !== 0 ? 'disabled' : '' }}>
+              <button class="btn btn-danger mt-3" id="cancelBtn">
                 Batalkan Panggilan
               </button>
               </div>

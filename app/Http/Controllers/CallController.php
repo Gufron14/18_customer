@@ -31,4 +31,14 @@ class CallController extends Controller
         return view('mitra.dashboard.order.index', ['title' => 'Order Page', 'order' => $cData['call']]);
 
     }
+    public function updateProgres(Request $request, $id){
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $cResponse = $client->request('POST', "http://localhost:5000/api/user/call/update/$id", ['json' => ['order_status' => $request->progres]]);
+        $cBody = $cResponse->getBody()->getContents();
+        $cData = json_decode($cBody, true);
+        extract($cData);
+        return redirect('/dashboard/order');
+    }
 }

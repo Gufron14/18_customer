@@ -79,6 +79,7 @@ Route::prefix('dashboard')->group(function () {
     // })->name('partner.index');
 
     Route::get('/order',    [DashboardController::class, 'orderList'])->name('dashboard.order.index');
+    Route::post('/updateProgres/{id}',    [CallController::class, 'updateProgres']);
     //Route::get('/order',    [CallController::class, 'show'])->name('dashboard.order.index');
     Route::view('/transaction',    'mitra.dashboard.transaction.index')->name('dashboard.transaction.index');
     Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');

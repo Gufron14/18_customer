@@ -1,5 +1,5 @@
 @extends('mitra.dashboard.layouts.main')
-@section('title', 'Partner')
+@section('title', 'Profile')
 @section('content')
     <div class="container px-3">
         <form action=" {{ url('/mitra.dashboard.profile.index') }} " method="POST" enctype="multipart/form-data">

@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
-    public function home() {
+    public function home()
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
         $uBody = $uResponse->getBody()->getContents();
@@ -26,12 +27,27 @@ class ViewController extends Controller
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
-        return view("home", ['title' => 'Home', 'user' => $uData['user'], 'categories' => $cData['category'], 'partners' => $pData['partner']]);
+
+
+        $bResponse = $client->request('GET', "http://localhost:5000/api/user/banner");
+        $bBody = $bResponse->getBody()->getContents();
+        $bData = json_decode($bBody, true);
+        extract($bData);
+        return view(
+            "home",
+            [
+                'title' => 'Home', 'user' => $uData['user'],
+                'categories' => $cData['category'],
+                'partners' => $pData['partner'],
+                'banners' => $bData['banner']
+            ]
+        );
     }
 
-    public function mitra() {
+    public function mitra()
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
         $pBody = $pResponse->getBody()->getContents();
@@ -40,10 +56,11 @@ class ViewController extends Controller
         return view("mitra", ['title' => 'Mitra', 'partners' => $pData['partner']]);
     }
 
-    public function viewmitra() {
-        
+    public function viewmitra()
+    {
+
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $qResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
         $qBody = $qResponse->getBody()->getContents();
@@ -52,9 +69,10 @@ class ViewController extends Controller
         return view("viewmitra", ['title' => 'Mitra', 'partner' => $qData['partner']]);
     }
 
-    public function proses() {
+    public function proses()
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/process");
         $cBody = $cResponse->getBody()->getContents();
@@ -63,9 +81,10 @@ class ViewController extends Controller
         return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
     }
 
-    public function riwayat() {
+    public function riwayat()
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/final");
         $cBody = $cResponse->getBody()->getContents();
@@ -76,18 +95,22 @@ class ViewController extends Controller
 
     public function login(){
         return view('auth.login', ['title' => 'Login', 'message' => null]);
+        
+
     }
 
-    public function register(){
+    public function register()
+    {
         $data['title'] = 'Register';
         $data['message'] = null;
         return view('auth.register', $data);
     }
 
-    public function gabungmitra() {
-        
+    public function gabungmitra()
+    {
+
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $uResponse = $client->request('GET', "http://localhost:5000/api/user/category");
         $uBody = $uResponse->getBody()->getContents();
@@ -97,17 +120,20 @@ class ViewController extends Controller
         return view("mitra.gabungmitra", ['title' => 'Gabung Mitra', 'categories' => $uData['category']]);
     }
 
-    public function statusmitra() {
+    public function statusmitra()
+    {
         $title = 'Status Akun Mitra';
         return view('/statusmitra', compact('title'));
     }
 
-    public function editprofile(){
+    public function editprofile()
+    {
         $title = 'Edit Profile';
         return view('/editprofile', compact('title'));
     }
 
-    public function ubahpassword(){
+    public function ubahpassword()
+    {
         $title = 'Ubah Password';
         return view('/ubahpassword', compact('title'));
     }

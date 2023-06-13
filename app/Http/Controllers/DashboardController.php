@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -9,29 +10,55 @@ class DashboardController extends Controller
     public function index()
     {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        
-        // return response()->json($uData);
-        return view("mitra.dashboard.index", ['title' => 'Dashboard', 'partner' => $uData['partner']]);
 
+
+        // return response()->json($uData);
+        return view(
+            "mitra.dashboard.index",
+            [
+                'title' => 'Dashboard',
+                'partner' => $uData['partner'],
+            ]
+        );
     }
 
-    public function activation(){
+    public function activation()
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        
+
         // return response()->json($uData);
         return view("mitra.dashboard.activation.index", ['title' => 'Aktivasi Mitra', 'partner' => $uData['partner']]);
+    }
+    public function profile()
+    {
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer ' . session('token')
+        ]]);
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $uBody = $uResponse->getBody()->getContents();
+        $uData = json_decode($uBody, true);
+        extract($uData);
+
+        // return response()->json($uData);
+        return view(
+            "mitra.dashboard.profile.index",
+            [
+                'title' => 'Profile',
+                'me' => $uData['partner']
+            ]
+        );
     }
     public function table()
     {
@@ -112,11 +139,12 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function orderList(Request $request){
+    public function orderList(Request $request)
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/".session('partner'));
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/" . session('partner'));
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -124,7 +152,7 @@ class DashboardController extends Controller
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
-        
+
         // return response()->json($uData);
         return view('mitra.dashboard.order.index', ['title' => 'Order List', 'orders' => $uData['call'], 'progress' => $pData['progres']]);
     }

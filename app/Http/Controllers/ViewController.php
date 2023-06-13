@@ -58,22 +58,22 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call");
+        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/process");
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-        $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
-        $pBody = $pResponse->getBody()->getContents();
-        $pData = json_decode($pBody, true);
-        extract($pData);
-        $title = 'Proses';
-        return view("/proses", ['title' => 'Proses', 'calls' => $cData['call'], 'partner' => $pData['partner'] ]);
+        return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
     }
 
     public function riwayat() {
-        
-        $title = 'Riwayat';
-        return view('/riwayat', compact('title'));
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/final");
+        $cBody = $cResponse->getBody()->getContents();
+        $cData = json_decode($cBody, true);
+        extract($cData);
+        return view("/riwayat", ['title' => 'riwayat', 'calls' => $cData['call']]);
     }
 
     public function login(){

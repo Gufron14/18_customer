@@ -37,7 +37,6 @@ class ViewController extends Controller
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
-        $title = 'Mitra';
         return view("mitra", ['title' => 'Mitra', 'partners' => $pData['partner']]);
     }
 
@@ -50,7 +49,6 @@ class ViewController extends Controller
         $qBody = $qResponse->getBody()->getContents();
         $qData = json_decode($qBody, true);
         extract($qData);
-        $title = 'Mitra';
         return view("viewmitra", ['title' => 'Mitra', 'partner' => $qData['partner']]);
     }
 
@@ -77,10 +75,7 @@ class ViewController extends Controller
     }
 
     public function login(){
-        $title = 'Login';
         return view('auth.login', ['title' => 'Login', 'message' => null]);
-        
-
     }
 
     public function register(){

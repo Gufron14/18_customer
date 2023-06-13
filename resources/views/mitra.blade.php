@@ -62,7 +62,7 @@
                     </div>
                     <button type="button" class="call btn btn-primary w-100 fw-bold mt-3"
                             data-bs-target="#call{{$partner['id']}}"
-                            data-bs-toggle="modal" {{ $partner['user_id'] === session('user') || $partner['operational_status'] === 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
+                            data-bs-toggle="modal" {{ $partner['user_id'] === session('user') || $partner['operational_status'] == 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
                   </div>
                   
                   <!-- Modal -->

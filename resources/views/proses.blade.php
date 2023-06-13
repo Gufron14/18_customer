@@ -23,9 +23,9 @@
               <div class="col-2 d-flex flex-column justify-content-center align-items-center">
                 <p>{{ \Carbon\Carbon::parse($call['updated_at'])->format('Y-m-d H:i:s') }}</p>
                 <h6>{{$call['progres']['progres']}}</h6>
-                <button class="btn btn-danger mt-3" {{ $call['order_status'] !== 1 && $call['order_status'] !== 2 ? 'disabled' : '' }}>
-                  Batalkan Panggilan
-                </button>
+                  <a type="button" href="dashboard/order/cancel/{{$call['id'] }}" class="btn btn-danger mt-3 {{ $call['order_status'] !== 1 ? 'disabled' : '' }}" >
+                    Batalkan Panggilan
+                  </a>
               </div>
             </div>
         </div>

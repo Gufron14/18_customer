@@ -2,14 +2,14 @@
   use GuzzleHttp\Client;
   if(session('token')){
     $client = new Client(['headers' => [
-    'Authorization' => 'Bearer '.session('token')
-  ]]);
-  $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
-  $uBody = $uResponse->getBody()->getContents();
-  $uData = json_decode($uBody, true);
-  extract($uData);
-  $sesi = session()->put('role', $uData['user']['role']);
-  $sesi = session()->put('ordering', $uData['user']['ordering']);
+      'Authorization' => 'Bearer '.session('token')
+    ]]);
+      $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+      $uBody = $uResponse->getBody()->getContents();
+      $uData = json_decode($uBody, true);
+      extract($uData);
+      $sesi = session()->put('role', $uData['user']['role']);
+      $sesi = session()->put('ordering', $uData['user']['ordering']);
   }else{
 
   }

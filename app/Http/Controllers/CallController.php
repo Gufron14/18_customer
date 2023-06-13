@@ -14,7 +14,6 @@ class CallController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-
         return redirect('/proses');
     }
 
@@ -27,7 +26,6 @@ class CallController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-
         return view('mitra.dashboard.order.index', ['title' => 'Order Page', 'order' => $cData['call']]);
 
     }
@@ -40,5 +38,15 @@ class CallController extends Controller
         $cData = json_decode($cBody, true);
         extract($cData);
         return redirect('/dashboard/order');
+    }
+    public function orderCancel($id){
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $cResponse = $client->request('POST', "http://localhost:5000/api/user/call/update/$id", ['json' => ['order_status' => 8]]);
+        $cBody = $cResponse->getBody()->getContents();
+        $cData = json_decode($cBody, true);
+        extract($cData);
+        return redirect('/proses');
     }
 }

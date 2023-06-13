@@ -80,7 +80,7 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('/order',    [DashboardController::class, 'orderList'])->name('dashboard.order.index');
     Route::post('/updateProgres/{id}',    [CallController::class, 'updateProgres']);
-    //Route::get('/order',    [CallController::class, 'show'])->name('dashboard.order.index');
+    Route::get('/order/cancel/{id}',    [CallController::class, 'orderCancel']);
     Route::view('/transaction',    'mitra.dashboard.transaction.index')->name('dashboard.transaction.index');
     Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');
     Route::view('/history',   'mitra.dashboard.history.index')->name('dashboard.history.index');

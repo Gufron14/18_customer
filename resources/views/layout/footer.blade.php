@@ -1,5 +1,5 @@
-<footer class="d-flex mt-5 shadow">
-    <div class="container d-flex justify-content-center align-items-center bg-light text-center" style="max-width: 1300px; height: 80px;">
-      © Copyright 2023 Kelompok 18. <br> All rights reserved.
-    </div>
+<footer class="mt-5">
+  <div class="text-center p-3 bg-light">
+    © 2023 Copyright Kelompok 18 | Studi Independen | Gits.id
+  </div>
 </footer>

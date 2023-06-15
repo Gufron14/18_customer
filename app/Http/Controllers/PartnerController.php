@@ -59,6 +59,14 @@ class PartnerController extends Controller
                 'name' => 'category_id',
                 'contents' => $request->category
             ],
+            [
+                'name' => 'link_google_map',
+                'contents' => $request->gmap
+            ],
+            [
+                'name' => 'village_id',
+                'contents' => $request->village
+            ],
         ]]);
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);

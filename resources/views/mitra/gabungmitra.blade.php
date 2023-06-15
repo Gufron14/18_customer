@@ -41,27 +41,43 @@
                             
                         </div>
                         <div class="col-7">
-                            <div class="row g-3 ms-5">
-                                <div class="col-md-12">
-                                    <label for="address" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{ old('address') }}" required>
-                                    @error('address')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="desc" class="form-label">Deskripsi</label>
-                                    <textarea name="desc" id="desc" rows="2" class="form-control"></textarea>
-                                </div>
-                                <div class="">
-                                    <label for="avatar" class="form-label">Foto Profil Mitra</label>
-                                    <input type="file" class="form-control" name="avatar">
-                                </div>
-                                <div class="col-7 mt-5 mb-3">
-                                    <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar Sekarang</button>
-                                </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="address" name="address" placeholder="Alamat" value="{{ old('address') }}" required>
+                                <label for="address">Alamat</label>
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            
+                            <select name="province" id="province" onchange="getCity()"  class="form-select mb-3" aria-label="Default select example" >
+                                <option>Pilih Provinsi</option>
+                            </select>
+                            <select name="city" id="city" onchange="getDistrict()" class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kota / Kabupaten</option>
+                            </select>
+                            <select name="district" id="district" onchange="getVillage()" class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kecamatan</option>
+                            </select>
+                            <select name="village" id="village"  class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kelurahan / Desa</option>
+                            </select>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="gmap" name="gmap" placeholder="Link Google Map" value="{{ old('gmap') }}" required>
+                                <label for="#gmap">Link Google Map</label>
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="">
+                                <label for="desc" class="form-label">Deskripsi</label>
+                                <textarea name="desc" id="desc" rows="2" class="form-control"></textarea>
+                            </div>
+                            <div class="">
+                                <label for="avatar" class="form-label">Foto Profil Mitra</label>
+                                <input type="file" class="form-control" name="avatar">
+                            </div>
+                            <div class="col-7 mt-5 mb-3">
+                                <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar Sekarang</button>
+                            </div>
                         </div>
                     </div>
                 </div>

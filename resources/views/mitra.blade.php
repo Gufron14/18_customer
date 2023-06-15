@@ -34,7 +34,9 @@
                                         <a href="{{ route('viewmitra') }}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        {{-- <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end"> <i class="fas fa-comment"></i> </a> --}}
+                                        <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
+                                            <i class="bi bi-geo-alt-fill"></i>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="">
@@ -64,11 +66,9 @@
                                         <form action="/call/{{ $partner['id'] }}" method="POST">
                                             @csrf
                                             <div class="modal-body">
-                                                <h5 class="mb-3">Masalah</h5>
-                                                <input type="text" class="form-control mb-3" id="problem" name="problem">
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="2"></textarea>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4"></textarea>
                                                 </div>
                                                     {{-- <h5 class="mb-3">Alamat</h5> <div class="d-flex mb-3"> <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button> <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1" disabled readonly></textarea> </div> --}}
                                                 <div class="mb-3">

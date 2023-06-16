@@ -34,9 +34,9 @@
                                         <a href="{{ route('viewmitra') }}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
+                                        {{-- <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
                                             <i class="bi bi-geo-alt-fill"></i>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                                 <div class="">
@@ -70,9 +70,16 @@
                                                     <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4"></textarea>
                                                 </div>
-                                                    {{-- <h5 class="mb-3">Alamat</h5> <div class="d-flex mb-3"> <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button> <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1" disabled readonly></textarea> </div> --}}
+                                                
                                                 <div class="mb-3">
+                                                    
                                                     <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
+                                                    <div class="mb-3 d-block-flex">
+                                                        <a href="" class="btn btn-warning">
+                                                            <i class="bi bi-geo-alt-fill"></i>
+                                                        </a>
+                                                        <label for="" class="form-label">Pilih dari Maps</label>
+                                                    </div>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address"></textarea>
                                                 </div>
                                             </div>
@@ -87,24 +94,6 @@
                                 </div>
                             </div>
                             {{-- End Modal --}}
-
-                            {{-- Maps Modal --}}
-                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body"> Ini buat maps</div>
-                                        <div class="modal-footer mt-3">
-                                            <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>
-                                            <button type="button" class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Konfirmasi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- End Maps Modal --}}
 
                             {{-- Modal Konfirmasi --}}
                             <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">

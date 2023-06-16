@@ -3,14 +3,14 @@
 @section('content')
 
     <div class="container p-5">
-        <div class="row">
-            <div class="col">
-              <div class="d-flex justify-content-center align-items-center mt-5">
-                <img src="{{ asset ('assets/img/cs.png') }}" alt="" style="width: 60%">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-4">
+              <div class="d-flex d-none d-md-block justify-content-center align-items-center mt-3">
+                <img src="{{ asset ('assets/img/cs.png') }}" class="img-fluid">
               </div>
             </div>
-            <div class="col m-5">
-                <div class="card w-75">
+            <div class="col-xl-6 col-lg-6 col-sm-6 m-5 col-md-6 mx-auto">
+                <div class="card">
                     <div class="card-body">
                       <form action="/login" method="POST" autocomplete="off">
                         @csrf

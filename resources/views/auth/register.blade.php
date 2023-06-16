@@ -1,7 +1,8 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container p-5 w-50">
+    <div class="container p-5 mb-3">
+      <div class="col-lg-6 col-sm-12 mx-auto">
         <div class="card">
             <div class="card-body">
                 <form action="/register" method="POST" autocomplete="off">
@@ -31,5 +32,6 @@
                     <a href="{{ route('login') }}">Login</a>
                   </p>
             </div>
+          </div>
     </div>
 @endsection

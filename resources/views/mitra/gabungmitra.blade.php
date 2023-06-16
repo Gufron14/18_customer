@@ -48,13 +48,13 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <select name="province" id="province" onchange="getCity()"  class="form-select mb-3" aria-label="Default select example" >
+                            <select name="province" id="province" onclick="getCity()"  class="form-select mb-3" aria-label="Default select example" >
                                 <option>Pilih Provinsi</option>
                             </select>
-                            <select name="city" id="city" onchange="getDistrict()" class="form-select mb-3" aria-label="Default select example">
+                            <select name="city" id="city" onclick="getDistrict()" class="form-select mb-3" aria-label="Default select example">
                                 <option>Pilih Kota / Kabupaten</option>
                             </select>
-                            <select name="district" id="district" onchange="getVillage()" class="form-select mb-3" aria-label="Default select example">
+                            <select name="district" id="district" onclick="getVillage()" class="form-select mb-3" aria-label="Default select example">
                                 <option>Pilih Kecamatan</option>
                             </select>
                             <select name="village" id="village"  class="form-select mb-3" aria-label="Default select example">

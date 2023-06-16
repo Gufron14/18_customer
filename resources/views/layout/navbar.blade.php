@@ -1,18 +1,18 @@
 <?php
-    use GuzzleHttp\Client;
-        if(session('token')){
-            $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
-        ]]);
-            $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
-            $uBody = $uResponse->getBody()->getContents();
-            $uData = json_decode($uBody, true);
-            extract($uData);
-            $sesi = session()->put('role', $uData['user']['role']);
-            $sesi = session()->put('ordering', $uData['user']['ordering']);
-        }else{
+    // use GuzzleHttp\Client;
+    //     if(session('token')){
+    //         $client = new Client(['headers' => [
+    //         'Authorization' => 'Bearer '.session('token')
+    //     ]]);
+    //         $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+    //         $uBody = $uResponse->getBody()->getContents();
+    //         $uData = json_decode($uBody, true);
+    //         extract($uData);
+    //         $sesi = session()->put('role', $uData['user']['role']);
+    //         $sesi = session()->put('ordering', $uData['user']['ordering']);
+    //     }else{
 
-        }
+    //     }
   
 ?>
 
@@ -43,14 +43,12 @@
                             <a href="riwayat" class="nav-link">Riwayat</a>
                         </li>
                         <li class="nav-item {{ Request::path() == 'gabungmitra' ? 'active' : '' }}">
-                            @if (session('role') == 0)
+                            @if ($userData['partner_id'] == 0)
                                 <a href="gabungmitra" class="nav-link">Gabung Mitra</a>
                             @else
                                 <a href="statusmitra" class="nav-link">Toko Saya</a>
                             @endif
                         </li>
-
-
 
                         {{-- Profile --}}
                         {{-- NOTIFIKASI --}}
@@ -87,7 +85,7 @@
                         <li class="nav-item">
                             <div class="dropdown z-3">
                                 <div class="avatar">
-                                    @if ($uData['user']['avatar'])
+                                    @if ($userData['avatar'])
                                         <img src="http://localhost:5000/api/user/avatar?token={{ session('token') }}"
                                             alt="">
                                     @else

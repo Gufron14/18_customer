@@ -89,7 +89,6 @@ class PartnerController extends Controller
             session()->put('partner', $uData['partner']['id']);
             return view('mitra.dashboard.index');
         }
-        // return response()->json($uData);
         return view('mitra.statusmitra', ['title' => 'Informasi Mitra', 'partner' => $uData['partner']]);
     }
     function OperationalStatusUpdate(Request $request)

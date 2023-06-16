@@ -20,35 +20,27 @@
                                 <form action="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="row btn-group p-3" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="options" id="1" onclick="chooseOption(1)" autocomplete="off">
-                                            <label class="btn btn-secondary" for="1">
-                                                <div class="row">
-                                                    <div class="col text-start">Paket 1 Bulan</div>
-                                                    <div class="col-4 text-start">Rp. 500.000</div>
-                                                </div>
-                                            </label>
-                                            <input type="radio" class="btn-check" name="options" id="2" onclick="chooseOption(2)" autocomplete="off">
-                                            <label class="btn btn-secondary" for="2">
-                                                <div class="row">
-                                                    <div class="col text-start">Paket 3 Bulan</div>
-                                                    <div class="col-4 text-start">Rp. 1.250.000</div>
-                                                </div>
-                                            </label>
-                                            <input type="radio" class="btn-check" name="options" id="3" onclick="chooseOption(3)" autocomplete="off">
-                                            <label class="btn btn-secondary" for="3">
-                                                <div class="row">
-                                                    <div class="col text-start">Paket 6 Bulan</div>
-                                                    <div class="col-4 text-start">Rp. 2.500.000</div>
-                                                </div>
-                                            </label>
-                                            <input type="radio" class="btn-check" name="options" id="4" onclick="chooseOption(4)" autocomplete="off">
-                                            <label class="btn btn-secondary" for="4">
-                                                <div class="row">
-                                                    <div class="col text-start">Paket 1 tahun</div>
-                                                    <div class="col-4 text-start">Rp. 5.000.000</div>
-                                                </div>
-                                            </label>
+                                        <div class="row btn-group p-3" role="group" id="package_list" aria-label="Basic radio toggle button group">
+                                            @foreach($packages as $package)
+                                                <input type="radio" value="{{ $package['id']}}" class="btn-check" name="options" id="{{ $package['id']}}" onclick="chooseOption('{{ json_encode($package) }}')" autocomplete="off">
+                                                <label class="btn " for="{{ $package['id']}}">
+                                                    <div class="row">
+                                                        <div class="shadow card card-paket h-100 border-left-primary">
+                                                            <div class="card-body">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-2">
+                                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ $package['package_name']}}</div>
+                                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@toRP($package['price'])</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        {{-- <div class="col text-start">{{ $package['package_name']}}</div>
+                                                        <div class="col-4 text-start">{{ $package['price']}}</div> --}}
+                                                    </div>
+                                                </label>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -67,31 +59,28 @@
                                     <h1 class="modal-title fs-5" id="exampleModal1Label">Konfirmasi</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#exampleModal" aria-label="Close"></button>
                                 </div>
-                                <form action="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Paket</td>
-                                                    <td id="packageInput"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Harga</td>
-                                                    <td id="price"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Pilih tanggal mulai</td>
-                                                    <td id="price"><input type="date"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" onclick="closeModal2()" data-bs-dismiss="modal" data-bs-target="#exampleModal1" >Close</button>
-                                        <button type="button" class="btn btn-primary">lanjutkan</button>
-                                    </div>
-                                </form>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Paket</td>
+                                                <td id="packageInput"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Harga</td>
+                                                <td id="price"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pilih tanggal mulai</td>
+                                                <td><input type="date" id="date_start"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" onclick="closeModal2()" data-bs-dismiss="modal" data-bs-target="#exampleModal1" >Close</button>
+                                    <button type="button" class="btn btn-primary" id="order" onclick="orderNow()">Beli Sekarang</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,40 +92,37 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Quantity</th>
-                                <th>Sub Price</th>
+                                <th>Id</th>
+                                <th>Package</th>
                                 <th>Price</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                use Faker\Factory as Faker;
-                                use Carbon\Carbon;
-                                
-                                $faker = Faker::create('id_ID');
-                                $transactions = [];
-                                for ($i = 1; $i <= 100; $i++) {
-                                    $created_at = Carbon::now();
-                                    $quantity = random_int(1, 30);
-                                    $subPrice = 20000;
-                                
-                                    $transactions[] = [
-                                        'created_at' => $created_at,
-                                        'quantity' => $quantity,
-                                        'subPrice' => $subPrice,
-                                        'price' => $quantity * $subPrice,
-                                    ];
-                                }
-                            @endphp
                             @foreach ($transactions as $transaction)
                                 <tr>
-                                    <td>{{ $transaction['created_at'] }}</td>
-                                    <td>{{ $transaction['quantity'] }}</td>
-                                    <td>@toRP($transaction['subPrice'])</td>
+                                    <td>{{ \Carbon\Carbon::parse($transaction['updated_at'])->format('Y-m-d H:i:s') }}</td>
+                                    <td>{{ $transaction['id'] }}</td>
+                                    <td>{{ $transaction['package_name']}}</td>
                                     <td>@toRP($transaction['price'])</td>
+                                    <td>
+                                        @if(is_null($transaction['payment_proof']))
+                                            Pemesanan belum dibayar
+                                        @else
+                                            @if(!is_null($transaction['status'] ))
+                                                @if($transaction['status'] == 1)
+                                                    Pembayaran diterima
+                                                @else
+                                                    Pembayaran ditolak
+                                                @endif
+                                            @else
+                                                Menunggu persetujuan
+                                            @endif
+                                        @endif
+                                    </td>
                                     <td class="text-center">
-                                        <div class="btn btn-sm btn-primary btn-icon shadow-sm">Detail</div>
+                                        <div class="btn btn-sm btn-primary btn-icon shadow-sm" onclick="editModal('{{ json_encode($transaction) }}')">Detail</div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -144,44 +130,154 @@
                     </table>
                 </div>
             </div>
+            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form method="POST" id="updateTransaksi" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="detailModalLabel">Detail Transaksi</h1>
+                                <button type="button" class="btn-close" onclick="closeEditModal()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Paket</td>
+                                            <td id="packageDetail"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Harga</td>
+                                            <td id="priceDetail"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Mulai</td>
+                                            <td id="dateStartDetail"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Berakhir</td>
+                                            <td id="dateEndDetail"></td>
+                                        </tr>
+                                        <tr id="buktiBayar">
+                                            <td>Bukti Bayar</td>
+                                            <td ><button type="button" class="btn btn-info" id="buktiBayarDetail" target="_blank" rel="noopener noreferrer" onclick="getPaymentProof()"> Lihat Bukti Bayar </button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div id="mustPayment">
+                                    <label for="" class="form-label">Silahkan lakukan pembayaran pada no rekening berikut : </label>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <th>Nama Bank</th>
+                                            <th>Nomor Rekening</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>BRI</td>
+                                                <td>0987654321234</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BCA</td>
+                                                <td>0987654321234</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ShopeePay</td>
+                                                <td>081234567890</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dana</td>
+                                                <td>081234567890</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <tr class="mb-3">
+                                        <label for="formFile" class="form-label">Upload Bukti pembayaran</label>
+                                        <input class="form-control" required type="file" id="formFile" name="avatar">
+                                    </tr>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="save" >Simpan</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Tutup</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>
+        url = "http://localhost:5000/api/user/"
+        
         function openModal2() {
             $('#exampleModal1').modal('show');
             $('#exampleModal').modal('hide');
+            
+            document.getElementById('packageInput').innerHTML
         }
 
         function closeModal2() {
             $('#exampleModal1').modal('hide');
             $('#exampleModal').modal('show');
         }
-        function chooseOption(id) {
-            switch(id){
-                case 1 : 
-                    document.getElementById('packageInput').innerHTML = "1 Bulan";
-                    document.getElementById('price').innerHTML = "500000";
-                    break;
-                case 2 :
-                    document.getElementById('packageInput').innerHTML = "3 Bulan";
-                    document.getElementById('price').innerHTML = "1500000";
-                    break;
-                case 3 :
-                    document.getElementById('packageInput').innerHTML = "6 Bulan";
-                    document.getElementById('price').innerHTML = "3000000";
-                    break;
-                case 4:
-                    document.getElementById('packageInput').innerHTML = "1 Tahun";
-                    document.getElementById('price').innerHTML = "6000000";
-                    break;
+
+        function orderNow(){
+            $('#exampleModal1').modal('hide');
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", url + "partner/transaction");
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            xhr.setRequestHeader("Authorization", "Bearer {{session('token')}}");
+
+            let data = {
+                "package_id" : document.getElementById('order').value,
+                "package_name": document.getElementById('packageInput').value,
+                "price": document.getElementById('price').value,
+                "date_start": document.getElementById('date_start').value
+            };
+            console.log(data);
+            xhr.send(JSON.stringify(data));
+            document.getElementById('order').action = 'dashboard/transaction';
+        }
+        function chooseOption(packagejsn) {
+            const package = JSON.parse(packagejsn);
+            document.getElementById('packageInput').innerHTML = package.package_name
+            document.getElementById('packageInput').value = package.package_name
+            document.getElementById('price').innerHTML = package.price
+            document.getElementById('price').value = package.price
+            document.getElementById('order').value = package.id
+        }
+
+        function editModal(transactionjsn){
+            $('#detailModal').modal('show');
+            const transaction = JSON.parse(transactionjsn);
+            document.getElementById('packageDetail').innerHTML = transaction.package_name
+            document.getElementById('priceDetail').innerHTML = transaction.price
+            document.getElementById('dateStartDetail').innerHTML = transaction.date_start
+            document.getElementById('dateEndDetail').innerHTML = transaction.date_end
+            document.getElementById('updateTransaksi').action = "/dashboard/transaction/update/" + transaction.id
+
+            if(transaction.payment_proof != null){
+                document.getElementById("formFile").disabled = true;
+                document.getElementById("buktiBayarDetail").disabled = false;
+                document.getElementById("buktiBayarDetail").value = transaction.id;
+                document.getElementById("save").style.visibility = "collapse";
+                document.getElementById("mustPayment").style.visibility = "collapse";
+                document.getElementById("buktiBayar").style.visibility = "visible";
+            } else{
+                document.getElementById("formFile").disabled = false;
+                document.getElementById("buktiBayarDetail").disabled = true;
+                document.getElementById("save").style.visibility = "visible";
+                document.getElementById("mustPayment").style.visibility = "visible";
+                document.getElementById("buktiBayar").style.visibility = "collapse";
             }
-            
-
-            // now you can access properties of the partner object like this:
-
-            // console.log(partner.id);
-            
 
         }
+        function closeEditModal(){
+            $('#detailModal').modal('hide');
+        }
+        function getPaymentProof(){
+            window.open(url + "payment_proof/" + document.getElementById("buktiBayarDetail").value);
+        }
+
     </script>
 @endsection

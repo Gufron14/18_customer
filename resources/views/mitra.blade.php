@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <a href="{{$partner['link_google_map']}}"" target="_blank" rel="noopener noreferrer""><i class="bi bi-geo-alt-fill text-dark"></i class="text-dark">&nbsp;&nbsp;{{ $partner['address'] }}</a>
+                                    <a href="{{$partner['link_google_map']}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt-fill text-dark"></i class="text-dark">&nbsp;&nbsp;{{ $partner['address'] }}</a>
                                     {{-- <p class="d-inline">{{ $partner['address']}}</p> --}}
                                     @if ($partner['operational_status'] == 0)
                                         <p class="text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp;&nbsp;Tutup

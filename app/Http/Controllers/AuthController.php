@@ -57,10 +57,7 @@ class AuthController extends Controller
     {   
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
-            ]]);
-            session()->forget('token');
-            session()->forget('role');
-
+        ]]);
         $aResponse = $client->request('POST', "http://localhost:5000/api/user/logout");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);

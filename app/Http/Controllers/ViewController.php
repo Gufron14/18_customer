@@ -95,8 +95,6 @@ class ViewController extends Controller
 
     public function login(){
         return view('auth.login', ['title' => 'Login', 'message' => null]);
-        
-
     }
 
     public function register()
@@ -136,5 +134,20 @@ class ViewController extends Controller
     {
         $title = 'Ubah Password';
         return view('/ubahpassword', compact('title'));
+    }
+
+    public function transactionList(){
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer ' . session('token')
+        ]]);
+        $tResponse = $client->request('GET', "http://localhost:5000/api/user/partner/transaction/");
+        $tBody = $tResponse->getBody()->getContents();
+        $tData = json_decode($tBody, true);
+        extract($tData);
+        $pResponse = $client->request('GET', "http://localhost:5000/api/user/package");
+        $pBody = $pResponse->getBody()->getContents();
+        $pData = json_decode($pBody, true);
+        extract($pData);
+        return view('mitra.dashboard.transaction.index', ['title' => 'Activation', 'transactions' => $tData['transaction'], 'packages' => $pData['package']]);
     }
 }

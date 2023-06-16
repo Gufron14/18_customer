@@ -1,9 +1,10 @@
 * {
     font-family: 'barlow', sans-serif;
 }
+  
 
 .min-h-screen {
-    min-height: 70vh;
+    min-height: 90vh;
 }
 
 a {

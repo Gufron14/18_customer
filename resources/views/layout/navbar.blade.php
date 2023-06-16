@@ -21,8 +21,8 @@
 @if (session('token'))
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container p-5">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 8%">
-            <a class="navbar-brand  text-white fw-bold" href="#">Job Calling</a>
+            <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 5%">
+            <a class="navbar-brand text-white fw-bold" href="#">Job Calling</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,12 +50,17 @@
                             @endif
                         </li>
 
+
                         {{-- Profile --}}
                         {{-- NOTIFIKASI --}}
+
+                        
+                        <!-- Profile -->
+                        <!-- NOTIFIKASI -->
+
                         <div class="notif-bg d-flex align-items-center me-3">
                             <div class="container d-flex justify-content-center">
-
-                                {{-- Notifikasi --}}
+                                <!-- Notifikasi -->
                                 <i class="notif-icon bi bi-bell-fill" data-bs-toggle="dropdown"
                                     aria-expanded="false"></i>
                                 <div class="dropstart">
@@ -76,11 +81,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                                {{-- End Notifikasi --}}
-
+                                <!-- End Notifikasi -->
                             </div>
                         </div>
-                        {{-- END NOTIFIKASI  --}}
+                        <!-- END NOTIFIKASI -->
 
                         <li class="nav-item">
                             <div class="dropdown z-3">
@@ -103,13 +107,11 @@
                                 </div>
                             </div>
                         </li>
-                    @else
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+@else
 @endif
 
-{{-- End Profile --}}
-
-</ul>
-</div>
-</div>
-</div>
-</nav>

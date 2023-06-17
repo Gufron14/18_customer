@@ -27,7 +27,7 @@
                     <div class="card-body px-4">
                         <div class="d-flex justify-content-between mb-3">
                             <p class="my-auto fw-semibold">{{ $partner['partner_name'] }}</p>
-                            <a href="{{ route('viewmitra') }}" class="btn btn-sm btn-warning">
+                            <a href="/viewmitra/{{ $partner['id'] }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>

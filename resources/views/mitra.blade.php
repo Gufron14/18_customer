@@ -31,7 +31,7 @@
                                 <div class="card-container position-relative d-flex justify-content-between mb-3">
                                     <h5 class="d-flex col-lg-6 d-flex justify-content-center align-items-center fw-bold"> {{ $partner['partner_name'] }}</h5>
                                     <div class="icon">
-                                        <a href="{{ route('viewmitra') }}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
+                                        <a href="/viewmitra/{{$partner['id']}}" class="col-lg-12 btn btn-warning d-block-flex my-2 d-flex justify-content-end">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         {{-- <a href="" class="col-lg-12 btn btn-success d-block-flex d-flex justify-content-end">
@@ -52,7 +52,7 @@
                                 <div class="d-flex justify-content-between">
                                     {{-- <p class="d-inline"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}
                                 </div>
-                                <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" data-bs-target="#call{{ $partner['id'] }}" data-bs-toggle="modal" {{ $partner['user_id'] === session('user') || $partner['operational_status'] == 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
+                                <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" data-bs-target="#call{{ $partner['id'] }}" data-bs-toggle="modal" {{ $partner['user_id'] === $userData['partner_id'] || $partner['operational_status'] == 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
                             </div>
 
                             <!-- Modal -->
@@ -68,7 +68,7 @@
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4"></textarea>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4" required></textarea>
                                                 </div>
                                                 
                                                 <div class="mb-3">
@@ -80,7 +80,7 @@
                                                         </a>
                                                         <label for="" class="form-label">Pilih dari Maps</label>
                                                     </div>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address"></textarea>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer mt-3">

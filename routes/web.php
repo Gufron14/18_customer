@@ -41,7 +41,7 @@ Route::middleware('auth-jwt')->group(function ($router){
     Route::get('/mitra', [ViewController::class, 'mitra'])->name('mitra');
     Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
     Route::get('/riwayat', [ViewController::class, 'riwayat'])->name('riwayat');
-    Route::get('/viewmitra', [ViewController::class, 'viewmitra'])->name('viewmitra');
+    Route::get('/viewmitra/{id}', [ViewController::class, 'viewmitra'])->name('viewmitra');
     Route::get('/editprofile', [ViewController::class, 'editprofile'])->name('editprofile');
     Route::get('/ubahpassword', [ViewController::class, 'ubahpassword'])->name('ubahpassword');
     Route::get('/statusmitra', [PartnerController::class, 'mypartner'])->name('statusmitra');

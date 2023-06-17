@@ -1,62 +1,49 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container position-relative p-5 mx-auto">
+    <div class="container py-4 mx-auto">
 
-        {{-- SEARCH BAR --}}
-        <div class="d-flex justify-content-between mb-3">
-            <div class="col-lg-4 d-inline-flex">
-                <h4 id="greeting" class="fw-bold d-flex justify-content-center align-items-center">, {{ $user['username'] }}
-                </h4>
-            </div>
-            <div class="col-lg-4 d-inline-flex me-3">
-                <form class="d-flex" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari Layanan" style="width: 300px">
-                        <div class="input-group-append"><button class="btn btn-primary"><i
-                                    class="fas fa-search"></i></button></div>
-                    </div>
-                </form>
-            </div>
+        <div class="alert border-0 alert-success alert-dismissible fade show" role="alert">
+            <p id="greeting" class="mb-0">, {{ $user['username'] }}
+            </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        {{-- SEARCH BAR --}}
+
         {{-- END SEARCH BAR --}}
 
 
         {{-- BANNER --}}
-        <div class="banner col-lg-6 bg-warning d-inline-flex me-5 mt-3" style="width: 720px; height: 200px;">
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+        <div id="carouselExampleControlsNoTouching" class="carousel slide mt-3" data-bs-touch="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    {{-- <img src="http://localhost:5000/api/user/banner/{{ $banner['id'] }}?token={{ session('token') }}"
+                                alt=""> --}}
+                    <img src="{{ asset('assets/img/banner1.png') }}" class="d-block w-100" alt="">
                 </div>
-
-                <div class="carousel-inner">
-                    @foreach ($banners as $banner)
-                        <div class="carousel-item active">
-                            <img src="http://localhost:5000/api/user/banner/{{ $banner['id'] }}?token={{session('token')}}" alt="">
-                        </div>
-                    @endforeach
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/banner2.png') }}" class="d-block w-100" alt="...">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/banner3.png') }}" class="d-block w-100" alt="...">
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+
         {{-- END BANNER --}}
 
         {{-- Kategori Bar --}}
-        <div class="col-lg-4 d-inline-flex position-absolute mt-3">
+        {{-- <div class="col-lg-4 d-inline-flex position-absolute mt-3">
             <div class="card" style="width: 240px">
                 <div class="card-header bg-danger text-white fw-bold">
                     Kategori
@@ -74,21 +61,32 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- End Kategori Bar --}}
 
         {{-- FEED --}}
-        <div class="col-lg-8 d-flex justify-content-between mt-5">
-            <h5 class="fw-bold d-inline-flex">Mitra Kami</h5>
-            <a href="{{ route('mitra') }}" class="d-inline-flex">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
+        <div class="d-flex justify-content-between mt-5">
+            <h5 class="fw-bold">Mitra Kami</h5>
+            <a href="{{ route('mitra') }}">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
-        <div class="col-lg-9">
-            @foreach ($partners as $partner)
-                <div class="feed feed-hover-animation border col-lg-4 bg-warning mt-3 d-inline-flex me-3" style="width: 200px; height: 200px;"">
-                    <img src="http://localhost:5000/api/admin/partner/avatar/{{ $partner['id'] }}?token={{session('token')}}" style="width: 100%; height: 100%;"alt="">
+        <div class="d-flex justify-content-center bg-light rounded p-2 row gy-4 gx-4 mt-3">
+            @php
+                // Sort the remaining partners by `created_at`
+                usort($partners, function ($a, $b) {
+                    return strtotime($b['created_at']) - strtotime($a['created_at']);
+                });
+            @endphp
+
+            @foreach (array_slice($partners, 0, 6) as $partner)
+                <div class="col-1 col-lg-3 feed feed-hover-animation" style="height: 200px">
+                    <img src="http://localhost:5000/api/admin/partner/avatar/{{ $partner['id'] }}?token={{ session('token') }}"
+                        style="width: 100%; height: 100%; object-fit: cover;" alt="">
+                    {{-- <img src="{{ asset('assets/img/feed1.png') }}" style="width: 100%; height: 100%;"alt=""> --}}
                 </div>
             @endforeach
+
+
         </div>
         {{-- END FEED --}}
 

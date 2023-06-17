@@ -20,40 +20,76 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 d-inline-flex mb-3">
-                            {{-- Banner  --}}
-                            <div class="col-6 mb-3">
-                                <label for="" class="form-label">Banner</label>
-                                <input type="file" class="form-control">
+                    <div class="row justify-content-center mt-3 ">
+                        <div class="col-4   ">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('partnername') is-invalid @enderror" id="name" name="partnername" placeholder="Nama Mitra" value="{{ old('partnername') }}">
+                                <label for="partnername">Nama Mitra</label>
+                                @error('partnername')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            {{-- End Banner --}}
-
-                            {{-- Feed --}}
-                            <div class="col-6 mb-3">
-                                <label for="" class="form-label">Feed</label>
-                                <input type="file" name="" id="" class="form-control">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email Perusahaan" value="{{ old('email') }}">
+                                <label for="email">Email Perusahaan</label>
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            {{-- End Feed --}}
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('nophone') is-invalid @enderror" id="nophone" name="nophone" placeholder="No. Telepon" value="{{ old('nophone') }}">
+                                <label for="nophone">No. Telepon</label>
+                                @error('nophone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <select name="category" class="form-select mb-3" aria-label="Default select example">
+                                <option selected>Kategori</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
+                                @endforeach
+                            </select>
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label">Avatar</label>
+                                <input type="file" class="form-control" name="avatar">
+                            </div>
+                            <div class="mb-3">
+                                <label for="banner" class="form-label">Tambahkan Banner</label>
+                                <input type="file" class="form-control" name="banner">
+                            </div>
+                            
                         </div>
-                    </div>
-                    <div class="row">
-                        <label for="" class="form-label h5 ms-3 mb-3">Profil</label>
-                        <div class="col-12 mb-3 d-inline-flex">
-                            <div class="col-6 mb-3">
-                                <label for="partner_name" class="form-label">Nama Perusahaan</label>
-                                <input type="text" id="partner_name" name="partner_name" class="form-control">
+                        <div class="col-7">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="address" name="address" placeholder="Alamat" value="{{ old('address') }}" required>
+                                <label for="address">Alamat</label>
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <div class="col-6 mb-3">
-                                <label for="address" class="form-label">Alamat Perusahaan</label>
-                                <input type="text" id="address" name="address" class="form-control">
+                            <select name="province" id="province" onclick="getCity()"  class="form-select mb-3" aria-label="Default select example" >
+                                <option>Pilih Provinsi</option>
+                            </select>
+                            <select name="city" id="city" onclick="getDistrict()" class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kota / Kabupaten</option>
+                            </select>
+                            <select name="district" id="district" onclick="getVillage()" class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kecamatan</option>
+                            </select>
+                            <select name="village" id="village"  class="form-select mb-3" aria-label="Default select example">
+                                <option>Pilih Kelurahan / Desa</option>
+                            </select>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="gmap" name="gmap" placeholder="Link Google Map" value="{{ old('gmap') }}" required>
+                                <label for="#gmap">Link Google Map</label>
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-11 m-2">
-                            <label for="" class="form-label">Deskripsi Perusahaan</label>
-                            <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                            <div class="mb-3">
+                                <label for="desc" class="form-label">Deskripsi</label>
+                                <textarea name="desc" id="desc" rows="2" class="form-control"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

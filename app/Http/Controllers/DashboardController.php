@@ -50,13 +50,18 @@ class DashboardController extends Controller
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
+        $cResponse = $client->request('GET', "http://localhost:5000/api/user/category");
+        $cBody = $cResponse->getBody()->getContents();
+        $cData = json_decode($cBody, true);
+        extract($cData);
 
         // return response()->json($uData);
         return view(
             "mitra.dashboard.profile.index",
             [
                 'title' => 'Profile',
-                'me' => $uData['partner']
+                'me' => $uData['partner'],
+                'categories' => $cData ['category']
             ]
         );
     }

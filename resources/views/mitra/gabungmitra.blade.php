@@ -38,6 +38,10 @@
                                     <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
                                 @endforeach
                             </select>
+                            <div class="">
+                                <label for="avatar" class="form-label ms-2">Avatar Mitra</label>
+                                <input type="file" class="form-control" name="avatar">
+                            </div>
                             
                         </div>
                         <div class="col-7">
@@ -70,10 +74,6 @@
                             <div class="">
                                 <label for="desc" class="form-label">Deskripsi</label>
                                 <textarea name="desc" id="desc" rows="2" class="form-control"></textarea>
-                            </div>
-                            <div class="">
-                                <label for="avatar" class="form-label">Foto Profil Mitra</label>
-                                <input type="file" class="form-control" name="avatar">
                             </div>
                             <div class="col-7 mt-5 mb-3">
                                 <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar Sekarang</button>

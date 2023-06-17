@@ -12,7 +12,7 @@ a {
 }
 
 /* NAVBAR */
-.navbar {
+/* .navbar {
     background: linear-gradient(to right, #1500ff, #4b069b);
     height: 68px;
     color: #FFFFFF;
@@ -33,7 +33,7 @@ a {
 .navbar-nav .nav-item.active {
     background-color: rgba(255,255,255,0.3);
     border-radius: 8px;
-}
+} */
 
 
 .avatar img {
@@ -152,9 +152,9 @@ a {
     border-radius: 30px;
 }
 
-.modal-dialog {
+/* .modal-dialog {
     width: 80%;
-}
+} */
 
 /* Notif Icon */
 .notif-bg {

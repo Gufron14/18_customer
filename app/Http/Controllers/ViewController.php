@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use App\Models\User;
@@ -53,7 +53,17 @@ class ViewController extends Controller
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
-        return view("mitra", ['title' => 'Mitra', 'partners' => $pData['partner']]);
+
+        $user_ip = getenv('REMOTE_ADDR');
+        $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+        $country = $geo['geoplugin_countryName'];
+        $city = $geo['geoplugin_city'];
+        // dd($geo);
+        return view("mitra", [
+            'title' => 'Mitra',
+            'partners' => $pData['partner'],
+            'geo' => $geo,
+        ]);
     }
 
     public function viewmitra($id)
@@ -90,10 +100,11 @@ class ViewController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-        return view("/riwayat", ['title' => 'riwayat', 'calls' => $cData['call']]);
+        return view("/riwayat", ['title' => 'Riwayat', 'calls' => $cData['call']]);
     }
 
-    public function login(){
+    public function login()
+    {
         return view('auth.login', ['title' => 'Login', 'message' => null]);
     }
 
@@ -143,7 +154,8 @@ class ViewController extends Controller
         return view('/ubahpassword', compact('title'));
     }
 
-    public function transactionList(){
+    public function transactionList()
+    {
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
@@ -156,5 +168,14 @@ class ViewController extends Controller
         $pData = json_decode($pBody, true);
         extract($pData);
         return view('mitra.dashboard.transaction.index', ['title' => 'Activation', 'transactions' => $tData['transaction'], 'packages' => $pData['package']]);
+    }
+    function tes()
+    {
+        $user_ip = getenv('REMOTE_ADDR');
+        $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+        $country = $geo['geoplugin_countryName'];
+        $city = $geo['geoplugin_city'];
+        // dd($geo);
+        return view('tes', ['geo' => $geo]);
     }
 }

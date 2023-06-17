@@ -1,48 +1,32 @@
-<?php
-    // use GuzzleHttp\Client;
-    //     if(session('token')){
-    //         $client = new Client(['headers' => [
-    //         'Authorization' => 'Bearer '.session('token')
-    //     ]]);
-    //         $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
-    //         $uBody = $uResponse->getBody()->getContents();
-    //         $uData = json_decode($uBody, true);
-    //         extract($uData);
-    //         $sesi = session()->put('role', $uData['user']['role']);
-    //         $sesi = session()->put('ordering', $uData['user']['ordering']);
-    //     }else{
-
-    //     }
-  
-?>
-
-
-
 @if (session('token'))
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container p-5">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 5%">
-            <a class="navbar-brand text-white fw-bold" href="#">Job Calling</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container my-2">
+            <a class="navbar-brand text-white fw-semibold" href="#">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                Job Calling
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}">
+                <div class="navbar-nav text-white">
+                    <ul class="navbar-nav gx-4 mx-3">
+                        <li class="nav-item  {{ Request::path() == '/' ? 'active' : '' }}">
                             <a href="/" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item {{ Request::path() == 'mitra' ? 'active' : '' }}">
+                        <li class="nav-item  {{ Request::path() == 'mitra' ? 'active' : '' }}">
                             <a href="mitra" class="nav-link">Mitra</a>
                         </li>
-                        <li class="nav-item {{ Request::path() == 'proses' ? 'active' : '' }}">
+                        <li class="nav-item  {{ Request::path() == 'proses' ? 'active' : '' }}">
                             <a href="proses" class="nav-link">Proses</a>
                         </li>
-                        <li class="nav-item {{ Request::path() == 'riwayat' ? 'active' : '' }}">
+                        <li class="nav-item  {{ Request::path() == 'riwayat' ? 'active' : '' }}">
                             <a href="riwayat" class="nav-link">Riwayat</a>
                         </li>
-                        <li class="nav-item {{ Request::path() == 'gabungmitra' ? 'active' : '' }}">
+                        <li class="nav-item  {{ Request::path() == 'gabungmitra' ? 'active' : '' }}">
                             @if ($userData['partner_id'] == 0)
                                 <a href="gabungmitra" class="nav-link">Gabung Mitra</a>
                             @else
@@ -50,14 +34,7 @@
                             @endif
                         </li>
 
-
-                        {{-- Profile --}}
-                        {{-- NOTIFIKASI --}}
-
-                        
-                        <!-- Profile -->
-                        <!-- NOTIFIKASI -->
-
+                        {{-- <!-- NOTIFIKASI -->
                         <div class="notif-bg d-flex align-items-center me-3">
                             <div class="container d-flex justify-content-center">
                                 <!-- Notifikasi -->
@@ -84,7 +61,7 @@
                                 <!-- End Notifikasi -->
                             </div>
                         </div>
-                        <!-- END NOTIFIKASI -->
+                        <!-- END NOTIFIKASI --> --}}
 
                         <li class="nav-item">
                             <div class="dropdown z-3">
@@ -93,8 +70,9 @@
                                         <img src="http://localhost:5000/api/user/avatar?token={{ session('token') }}"
                                             alt="">
                                     @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                            fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            class="rounded-circle bg-dark border border-2 border-white"
+                                            fill="currentColor" viewBox="0 0 16 16">
                                             <path
                                                 d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                         </svg>
@@ -115,3 +93,11 @@
 @else
 @endif
 
+<style>
+    .navbar-nav .nav-link {
+        color: white;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+</style>

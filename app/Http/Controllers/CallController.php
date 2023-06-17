@@ -10,7 +10,10 @@ class CallController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $cResponse = $client->request('POST', "http://localhost:5000/api/user/call/$id", ['json' => ['message' => $request->message]]);
+        $cResponse = $client->request('POST', "http://localhost:5000/api/user/call/$id", ['json' => [
+            'message' => $request->message,
+            'address' => $request->address
+        ]]);
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);

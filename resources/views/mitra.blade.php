@@ -1,21 +1,19 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container position-relative p-5 mb-5">
+    <div class="container py-4 mx-auto">
         {{-- SEARCH BAR --}}
-        <div class="d-flex justify-content-between mb-3 z-1">
-            <div class="col-lg-4 d-inline-flex">
-                <h4 class="fw-bold d-flex justify-content-center align-items-center ms-3">Mitra</h4>
-            </div>
-            <div class="col-lg-4 d-inline-flex me-3">
-                <form class="d-flex" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari Layanan" style="width: 300px">
-                        <div class="input-group-append"><button class="btn btn-primary"><i class="fas fa-search"></i></button></div>
-                    </div>
-                </form>
+        <div class="d-flex justify-content-between">
+            <h4 class="fw-bold">Mitra</h4>
+            <div class="d-flex">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-filter-right"></i></span>
+                    <input type="text" class="form-control" placeholder="Masukkan Kelurahan" aria-label="Kelurahan"
+                        aria-describedby="basic-addon1" id="kelurahan-filter">
+                </div>
             </div>
         </div>
+
         {{-- SEARCH BAR --}}
 
         {{-- MITRA --}}
@@ -39,31 +37,14 @@
                                         </a> --}}
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-1 mt-1">
-                                        <i class="bi bi-geo-alt-fill text-dark"></i>
-                                    </div> 
-                                    <div class="col-10">
-                                        <a href="{{$partner['link_google_map']}}"" target="_blank" rel="noopener noreferrer"">
-                                            {{ $partner['address'] }}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row">                     
+                                <div class="">
+                                    <a href="{{$partner['link_google_map']}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt-fill text-dark"></i class="text-dark">&nbsp;&nbsp;{{ $partner['address'] }}</a>
+                                    {{-- <p class="d-inline">{{ $partner['address']}}</p> --}}
                                     @if ($partner['operational_status'] == 0)
-                                        <div class="col-1 text-danger">
-                                            <i class="bi bi-door-closed-fill"></i>
-                                        </div>
-                                        <div class="col-10 text-danger">
-                                            Tutup
-                                        </div>
+                                        <p class="text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp;&nbsp;Tutup
+                                        </p>
                                     @else
-                                        <div class="col-1 text-success">
-                                            <i class="bi bi-door-closed-fill"></i>
-                                        </div>
-                                        <div class="col-10 text-success">
-                                            Buka
-                                        </div>
+                                        <p class="text-success"><i class="bi bi-door-open-fill"></i>&nbsp;&nbsp;Buka</p>
                                     @endif
                                 </div>
                                 <div class="d-flex justify-content-between">
@@ -72,48 +53,46 @@
                                 <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" data-bs-target="#call{{ $partner['id'] }}" data-bs-toggle="modal" {{ $partner['user_id'] === $userData['partner_id'] || $partner['operational_status'] == 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
                             </div>
 
-                            <!-- Modal -->
-                            <div class="modal fade modal-dialog-scrollable" id="call{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5 fw-bold" id="exampleModalToggleLabel"> {{ $partner['partner_name'] }}</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="/call/{{ $partner['id'] }}" method="POST">
-                                            @csrf
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Masalah Spesifik</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4" required></textarea>
-                                                </div>
-                                                
-                                                <div class="mb-3">
-                                                    
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
-                                                    <div class="mb-3 d-block-flex">
-                                                        <a href="" class="btn btn-warning">
-                                                            <i class="bi bi-geo-alt-fill"></i>
-                                                        </a>
-                                                        <label for="" class="form-label">Pilih dari Maps</label>
-                                                    </div>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer mt-3">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <div class="d-flex">
-                                                    <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Panggil Sekarang</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+    <!-- Modal Panggil -->
+    <div class="modal fade modal-dialog-scrollable" id="call" aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-normal d-flex">Calling
+                        <p id="partner_name" class="fw-semibold ms-1"></p>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#" method="POST" id="formPanggilPartner">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4"></textarea>
                             </div>
-                            {{-- End Modal --}}
+
+                            <div class="d-flex gap-2">
+                                <i class="bi bi-geo-alt-fill text-danger"></i>
+                                <p>Lokasi Saya: {{ $geo['geoplugin_city'] }}, {{ $geo['geoplugin_region'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-primary w-100">Panggil
+                                Sekarang</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal --}}
 
                             {{-- Modal Konfirmasi --}}
-                            {{-- <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+                            <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -148,7 +127,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             {{-- End Modal Konfirmasi --}}
                         
                         </div>
@@ -165,6 +144,31 @@
 
     {{-- SWEET ALERT --}}
     <script>
+        function parterModalPanggil(partnerJson) {
+            const partner = JSON.parse(partnerJson);
+            const title = document.getElementById('partner_name');
+            title.textContent = partner.partner_name;
+            console.log(partner.id);
+            document.getElementById('formPanggilPartner').action = `call/${partner.id}`;
+        }
+
+        const searchInput = document.getElementById('kelurahan-filter');
+        searchInput.addEventListener('keyup', function() {
+            const searchValue = searchInput.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(function(card) {
+                const village_name = card.querySelector('.village_name').textContent.toLowerCase();
+
+                // Show or hide the card based on the search value
+                if (village_name.includes(searchValue)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
         function startCall() {
             Swal.fire({
                 title: "Sukses memanggil",

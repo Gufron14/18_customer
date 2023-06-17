@@ -34,9 +34,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 // END Autentikasi
 
-Route::middleware('auth-jwt')->group(function ($router){
+Route::middleware('auth-jwt')->group(function ($router) {
     Route::get('/logout', [AuthController::class, 'logout']);
-    
+
     Route::get('/', [ViewController::class, 'home'])->name('home');
     Route::get('/mitra', [ViewController::class, 'mitra'])->name('mitra');
     Route::get('/proses', [ViewController::class, 'proses'])->name('proses');
@@ -77,18 +77,16 @@ Route::middleware('auth-jwt')->group(function ($router){
         Route::get('/order',    [DashboardController::class, 'orderList'])->name('dashboard.order.index');
         Route::post('/updateProgres/{id}',    [CallController::class, 'updateProgres']);
         Route::get('/order/cancel/{id}',    [CallController::class, 'orderCancel']);
-        
+
         Route::get('/transaction',    [ViewController::class, 'transactionList'])->name('dashboard.transaction.index');
         Route::post('/transaction/update/{id}',    [TransactionController::class, 'updateTransaction']);
-        
         Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');
-        Route::view('/history',   'mitra.dashboard.history.index')->name('dashboard.history.index');
+        Route::view('/history',   'mitrwa.dashboard.history.index')->name('dashboard.history.index');
         Route::get('/activation', [DashboardController::class, 'activation'])->name('dashboard.activation.index');
-
         Route::get('/profile',   [DashboardController::class, 'profile'])->name('dashboard.profile.index');
         Route::post('/profile/update_operational_status',   [PartnerController::class, 'OperationalStatusUpdate'])->name('dashboard.profile.index');
     });
     // END PARTNER CMS
 });
 
-
+Route::get('/tes', [ViewController::class, 'tes']);

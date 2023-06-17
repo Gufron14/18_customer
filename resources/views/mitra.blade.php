@@ -8,7 +8,7 @@
             <div class="d-flex">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-filter-right"></i></span>
-                    <input type="text" class="form-control" placeholder="Masukkan Kelurahan" aria-label="Kelurahan"
+                    <input type="text" class="form-control" placeholder="Masukkan Kota" aria-label="Kota"
                         aria-describedby="basic-addon1" id="city-filter">
                 </div>
             </div>

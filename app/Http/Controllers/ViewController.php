@@ -56,9 +56,7 @@ class ViewController extends Controller
 
         $user_ip = getenv('REMOTE_ADDR');
         $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
-        $country = $geo['geoplugin_countryName'];
-        $city = $geo['geoplugin_city'];
-        // dd($geo);
+
         return view("mitra", [
             'title' => 'Mitra',
             'partners' => $pData['partner'],

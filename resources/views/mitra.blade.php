@@ -45,7 +45,7 @@
                                 <p class="text-success">Buka</p>
                             @endif
                         </div>
-                        <p style="display: none" class="village_name">{{ $partner['village']['village'] }}</p>
+                        <p style="display: none" class="village_name">{{ $partner['village'] }}</p>
 
                         <div class="d-flex justify-content-between">
                             {{-- <p class="d-inline"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}
@@ -80,7 +80,10 @@
                             <div class="input-group">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4"></textarea>
                             </div>
-
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Detail lokasi lebih lengkap" name="address"
+                                    rows="2"></textarea>
+                            </div>
                             <div class="d-flex gap-2">
                                 <i class="bi bi-geo-alt-fill text-danger"></i>
                                 <p>Lokasi Saya: {{ $geo['geoplugin_city'] }}, {{ $geo['geoplugin_region'] }}</p>

@@ -20,15 +20,6 @@
                                     placeholder="">
                             </div>
                             <div class="mb-3">
-                                <label for="address" class="form-label d-block">Alamat</label>
-                                <div class="d-flex mb-3">
-                                    <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2"
-                                        data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>
-                                    <textarea class="form-control d-inline-flex" id="exampleFormControlTextarea1" rows="1"
-                                        placeholder="pilih dari peta" disabled readonly></textarea>
-                                </div>
-                            </div>
-                            <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address" placeholder="""></textarea>
                             </div>

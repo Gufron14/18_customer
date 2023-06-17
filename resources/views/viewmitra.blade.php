@@ -34,9 +34,9 @@
                 <tr>
                     <td>Email</td>
                     <td>: &nbsp; 
-                        <a href="{{$partner['email']}}" target="_blank" rel="noopener noreferrer"">{{ $partner['email'] }} </a>
+                        <a href="mailto:{{ $partner['email'] }}" >{{ $partner['email'] }} </a>
                     </td>
-                </tr>
+                </tr>                
                 <tr>
                     <td>Nomor Telepon</td>
                     <td>: &nbsp; {{ $partner['phone_number'] }} </td>

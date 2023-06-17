@@ -30,13 +30,17 @@
                                     class="col-lg-3 col-xl-3 col-sm-12 col-xs-12 d-flex flex-column justify-content-center px-3 gap-2">
                                     <div class="mb-2">
                                         <p class="my-0">
-                                            {{ \Carbon\Carbon::parse($call['updated_at'])->format('Y-m-d H:i:s') }}
+                                            {{-- {{ \Carbon\Carbon::parse($call['updated_at'])->format('Y-m-d H:i:s') }} --}}
                                         </p>
-                                        <h6 class="my-0">{{ $call['progres']['progres'] }}</h6>
+                                        <p class="m-0">{{ $call['progres']['progres'] }}</p>
+                                        <p class="m-0 p-0 text-muted">
+                                            <strong>{{ $call['partner']['phone_number'] }}</strong>
+                                            (Nomor Mitra)
+                                        </p>
                                     </div>
                                     <a type="button" href="dashboard/order/cancel/{{ $call['id'] }}"
                                         class="btn btn-danger my-0 {{ $call['order_status'] !== 1 ? 'disabled' : '' }}">
-                                        Batalkan Panggilan
+                                        Batalkan
                                     </a>
                                 </div>
                             </div>

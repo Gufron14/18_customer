@@ -49,35 +49,12 @@
 
         {{-- END BANNER --}}
 
-        {{-- Kategori Bar --}}
-        {{-- <div class="col-lg-4 d-inline-flex position-absolute mt-3">
-            <div class="card" style="width: 240px">
-                <div class="card-header bg-danger text-white fw-bold">
-                    Kategori
-                </div>
-                <div class="card-body">
-                    <div data-bs-spy="scroll" data-bs-smooth-scroll="true"
-                        class="scrollspy-example bg-body-tertiary p-0 rounded-2" tabindex="0">
-                        <ul class="list-group list-group-flush">
-                            @foreach ($categories as $category)
-                                <li class="list-group-item">
-                                    <a href="">{{ $category['category_name'] }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- End Kategori Bar --}}
-
-        {{-- FEED --}}
         <div class="d-flex justify-content-between mt-5">
             <h5 class="fw-bold">Mitra Kami</h5>
             <a href="{{ route('mitra') }}">Lihat semua&nbsp&nbsp<i class="bi bi-arrow-right"></i></a>
         </div>
 
-        <div class="d-flex justify-content-center bg-light rounded p-2 row gy-4 gx-4 mt-3">
+        <div class="d-flex justify-content-center p-2 row gy-4 gx-4 mt-3">
             @php
                 // Sort the remaining partners by `created_at`
                 usort($partners, function ($a, $b) {

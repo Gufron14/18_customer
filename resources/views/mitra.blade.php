@@ -39,14 +39,31 @@
                                         </a> --}}
                                     </div>
                                 </div>
-                                <div class="">
-                                    <a href="{{$partner['link_google_map']}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt-fill text-dark"></i class="text-dark">&nbsp;&nbsp;{{ $partner['address'] }}</a>
-                                    {{-- <p class="d-inline">{{ $partner['address']}}</p> --}}
+                                <div class="row mb-3">
+                                    <div class="col-1 mt-1">
+                                        <i class="bi bi-geo-alt-fill text-dark"></i>
+                                    </div> 
+                                    <div class="col-10">
+                                        <a href="{{$partner['link_google_map']}}"" target="_blank" rel="noopener noreferrer"">
+                                            {{ $partner['address'] }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">                     
                                     @if ($partner['operational_status'] == 0)
-                                        <p class="text-danger"><i class="bi bi-door-closed-fill"></i>&nbsp;&nbsp;Tutup
-                                        </p>
+                                        <div class="col-1 text-danger">
+                                            <i class="bi bi-door-closed-fill"></i>
+                                        </div>
+                                        <div class="col-10 text-danger">
+                                            Tutup
+                                        </div>
                                     @else
-                                        <p class="text-success"><i class="bi bi-door-open-fill"></i>&nbsp;&nbsp;Buka</p>
+                                        <div class="col-1 text-success">
+                                            <i class="bi bi-door-closed-fill"></i>
+                                        </div>
+                                        <div class="col-10 text-success">
+                                            Buka
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="d-flex justify-content-between">
@@ -96,7 +113,7 @@
                             {{-- End Modal --}}
 
                             {{-- Modal Konfirmasi --}}
-                            <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+                            {{-- <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -131,7 +148,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             {{-- End Modal Konfirmasi --}}
                         
                         </div>

@@ -14,7 +14,8 @@ class AuthController extends Controller
         $cResponse = $client->request('POST', "http://localhost:5000/api/user/register", [ 'json'=> [
             'username' => $request->username,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
+            'no_phone' => $request->no_phone
         ]]);
         $cBody = $cResponse->getBody()->getContents();
         $data = json_decode($cBody, true);

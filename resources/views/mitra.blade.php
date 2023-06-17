@@ -45,7 +45,7 @@
                                 <p class="text-success">Buka</p>
                             @endif
                         </div>
-                        <p style="display: none" class="village_name">{{ $partner['village']['village'] }}</p>
+                        <p style="display: none" class="village_name">{{ $partner['village']}}</p>
 
                         <div class="d-flex justify-content-between">
                             {{-- <p class="d-inline"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}

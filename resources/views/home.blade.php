@@ -17,8 +17,15 @@
         <div id="carouselExampleControlsNoTouching" class="carousel slide mt-3" data-bs-touch="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    {{-- <img src="http://localhost:5000/api/user/banner/{{ $banner['id'] }}?token={{ session('token') }}"
-                                alt=""> --}}
+                    <img src="http://localhost:5000/api/user/banner/{{$banners[0]['id']}}?token={{session('token')}}" class="d-block w-100" alt="">
+                    {{--<img src="{{ asset('assets/img/banner1.png') }}" class="d-block w-100" alt="">--}}
+                </div>
+                @for($i = 1; $i < count($banners); $i++ )
+                <div class="carousel-item">
+                    <img src="http://localhost:5000/api/user/banner/{{$banners[$i]['id']}}?token={{session('token')}}" class="d-block w-100" alt="...">
+                </div>
+                @endfor
+                {{-- <div class="carousel-item">
                     <img src="{{ asset('assets/img/banner1.png') }}" class="d-block w-100" alt="">
                 </div>
                 <div class="carousel-item">
@@ -26,7 +33,7 @@
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('assets/img/banner3.png') }}" class="d-block w-100" alt="...">
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
                 data-bs-slide="prev">

@@ -1,5 +1,27 @@
 url = "http://localhost:5000/api/";
 
+//Register
+function login(){
+    const request = new XMLHttpRequest();
+    request.open("GET", url + "provinsi");
+    request.send();
+    request.onload = ()=>{
+        if (request.status === 200){
+            var data = JSON.parse(request.response);
+            data.provinsi.forEach((item) => {
+                let o = document.createElement('option');
+                o.text = item.province;
+                o.value = item.id;
+                province.appendChild(o);
+            });
+
+            console.log(request.status + request.statusText);
+        } else {
+            console.log(request.status);
+        }
+    }
+}
+
 //menampilkan daftar provinsi
 const request = new XMLHttpRequest();
 request.open("GET", url + "provinsi");

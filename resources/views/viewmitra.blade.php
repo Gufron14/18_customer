@@ -26,15 +26,17 @@
                     <td>: &nbsp; {{ $partner['partner_name'] }} </td>
                 </tr>
                 <tr>
-                    <td>Alamat Perusahaan</td>
-                    <td>: &nbsp; {{ $partner['address'] }} </td>
-                </tr>
-                <tr>
-                    <td>Email Perusahaan</td>
-                    <td>: &nbsp; 
-                        <a href="">{{ $partner['email'] }} </a>
+                    <td>Alamat</td>
+                    <td>: &nbsp;
+                        <a href="{{$partner['link_google_map']}}" target="_blank" rel="noopener noreferrer">{{ $partner['address'] }}</a>                       
                     </td>
                 </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>: &nbsp; 
+                        <a href="mailto:{{ $partner['email'] }}" >{{ $partner['email'] }} </a>
+                    </td>
+                </tr>                
                 <tr>
                     <td>Nomor Telepon</td>
                     <td>: &nbsp; {{ $partner['phone_number'] }} </td>

@@ -2,7 +2,7 @@
 @section('title', 'Profile')
 @section('content')
     <div class="container px-3">
-        <form action=" {{ url('/mitra.dashboard.profile.index') }} " method="POST" enctype="multipart/form-data">
+        <form action="/editProfile" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card border-0 shadow mb-4">
                 <div class="card-header  d-flex align-items-center justify-content-between">
@@ -23,7 +23,7 @@
                     <div class="row justify-content-center mt-3 ">
                         <div class="col-4   ">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('partnername') is-invalid @enderror" id="name" name="partnername" placeholder="Nama Mitra" value="{{ old('partnername') }}">
+                                <input type="text" class="form-control @error('partnername') is-invalid @enderror" id="name" name="partnername" placeholder="{{ $partner['partner_name'] }}">
                                 <label for="partnername">Nama Mitra</label>
                                 @error('partnername')
                                     <span class="text-danger">{{ $message }}</span>
@@ -52,10 +52,6 @@
                             <div class="mb-3">
                                 <label for="avatar" class="form-label">Avatar</label>
                                 <input type="file" class="form-control" name="avatar">
-                            </div>
-                            <div class="mb-3">
-                                <label for="banner" class="form-label">Tambahkan Banner</label>
-                                <input type="file" class="form-control" name="banner">
                             </div>
                             
                         </div>
@@ -101,11 +97,112 @@
             <input type="hiden" value="{{ $me['operational_status'] }}" name="operational_status">
         </form>
 
+        
         <script>
             const checkbox = document.getElementById('operational_status_toogle');
             checkbox.addEventListener('click', function() {
                 const form = document.getElementById('form_toogle_operational_status');
                 form.submit();
             });
+
+            url = "http://localhost:5000/api/";
+
+//menampilkan daftar provinsi
+const request = new XMLHttpRequest();
+request.open("GET", url + "provinsi");
+request.send();
+request.onload = ()=>{
+    if (request.status === 200){
+        var data = JSON.parse(request.response);
+        // var html = "<selected>";
+        // for(var i = 0; i < data.provinsi.length; i++ ){
+        //     html += "<option>"+ data.provinsi[i].province +'</option>'
+        // }
+        // document.getElementById('province').innerHTML = html;
+        data.provinsi.forEach((item) => {
+            let o = document.createElement('option');
+            o.text = item.province;
+            o.value = item.id;
+            province.appendChild(o);
+        });
+        
+        console.log(request.status + request.statusText);
+    } else {
+        console.log(request.status);
+    }
+}
+
+//menampilkan daftar kota
+function getCity() {
+    document.getElementById('city').innerHTML = "";
+    document.getElementById('district').innerHTML = "";
+    document.getElementById('village').innerHTML = "";
+    const request = new XMLHttpRequest();
+    request.open("GET", url + "kota/" + document.getElementById('province').value);
+    request.onload = ()=>{
+        if (request.status === 200){
+            data = JSON.parse(request.response);
+            data.kota.forEach((item) => {
+                let o = document.createElement('option');
+                o.text = item.city;
+                o.value = item.id;
+                city.appendChild(o);
+            });
+            console.log(request.status + request.statusText);
+        } else {
+            console.log(request.status);
+        }
+    }
+    request.send();
+}
+
+//menampilkan daftar kecamatan
+function getDistrict() {
+    document.getElementById('district').innerHTML = "";
+    document.getElementById('village').innerHTML = "";
+    const request = new XMLHttpRequest();
+    request.open("GET", url + "kecamatan/" + document.getElementById('city').value);
+    request.onload = ()=>{
+        if (request.status === 200){
+            data = JSON.parse(request.response);
+            data.kecamatan.forEach((item) => {
+                let o = document.createElement('option');
+                o.text = item.district;
+                o.value = item.id;
+                district.appendChild(o);
+            });
+            console.log(request.status + request.statusText);
+        } else {
+            console.log(request.status);
+        }
+    }
+    request.send();
+}
+
+//menampilkan daftar kecamatan
+function getVillage() {
+    document.getElementById('village').innerHTML = "";
+    const request = new XMLHttpRequest();
+    request.open("GET", url + "kelurahan/" + document.getElementById('district').value);
+    request.onload = ()=>{
+        if (request.status === 200){
+            data = JSON.parse(request.response);
+            data.kelurahan.forEach((item) => {
+                let o = document.createElement('option');
+                o.text = item.village;
+                o.value = item.id;
+                village.appendChild(o);
+            });
+            console.log(request.status + request.statusText);
+        } else {
+            console.log(request.status);
+        }
+    }
+    request.send();
+}
+
+
+    
+
         </script>
     @endsection

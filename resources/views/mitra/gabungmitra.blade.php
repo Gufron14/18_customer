@@ -38,10 +38,14 @@
                                     <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
                                 @endforeach
                             </select>
-                            <div class="input-group mb-3">
+
+                        </div>
+                        <div class="col-7">
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('affress') is-invalid @enderror"
                                     id="address" name="address" placeholder="Alamat" value="{{ old('address') }}"
                                     required>
+                                <label for="address">Alamat</label>
                                 @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -77,17 +81,14 @@
                             <div class="input-group">
                                 <textarea name="desc" id="desc" rows="2" class="form-control" placeholder="Deskripsi"></textarea>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-lg-12 mb-2">
                             <div class="">
-                                <label for="avatar" class="form-label">Foto Profil</label>
+                                <label for="avatar" class="form-label">Foto Profil Mitra</label>
                                 <input type="file" class="form-control" name="avatar">
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-lg-12 my-2">
-                            <button class="btn btn-primary fw-bold w-100 rounded-pill border-0 shadow-sm" type="submit"
-                                onclick="success()">Daftar
-                                Sekarang</button>
+                            <div class="col-7 mt-5 mb-3">
+                                <button class="btn btn-primary fw-bold" type="submit" onclick="success()">Daftar
+                                    Sekarang</button>
+                            </div>
                         </div>
                     </div>
                 </div>

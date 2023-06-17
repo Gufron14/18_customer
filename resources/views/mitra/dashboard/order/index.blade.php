@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{$order['id']}}</td>
                                 <td>{{$order['user']['username']}}</td>
-                                <td>Ini lokasi</td>
+                                <td>{{$order['address']}}</td>
                                 <td>unknown coordinate</td>
                                 <td>{{$order['message']}}</td>
                                 <td>{{$order['created_at']}}</td>
@@ -90,27 +90,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- <tr>
-                            <td>1</td>
-                            <td>Gufron</td>
-                            <td>Bandung</td>
-                            <td>unknown coordinate</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptatem a minima nesciunt quasi itaque possimus blanditiis totam porro beatae?</td>
-                            <td>14.38.58</td>
-                            <td class="d-inline-flex">
-                                <button class="btn btn-success me-2"><i class="fas fa-thumbs-up"></i></button>
-                                <button class="btn btn-danger"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Gufron</td>
-                            <td>Bandung</td>
-                            <td>unknown coordinate</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptatem a minima nesciunt quasi itaque possimus blanditiis totam porro beatae?</td>
-                            <td>14.38.58</td>
-                            <td class="fst-italic">Finished</td>
-                        </tr> --}}
                     </tbody>
                 </table>
             </div>

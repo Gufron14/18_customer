@@ -56,13 +56,13 @@ class ViewController extends Controller
         return view("mitra", ['title' => 'Mitra', 'partners' => $pData['partner']]);
     }
 
-    public function viewmitra()
+    public function viewmitra($id)
     {
 
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $qResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $qResponse = $client->request('GET', "http://localhost:5000/api/user/partner/$id");
         $qBody = $qResponse->getBody()->getContents();
         $qData = json_decode($qBody, true);
         extract($qData);

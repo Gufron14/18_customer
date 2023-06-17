@@ -2,7 +2,7 @@
 @section('title', 'Profile')
 @section('content')
     <div class="container px-3">
-        <form action="/editProfile" method="POST" enctype="multipart/form-data">
+        <form action="/dashboard/editProfilePartner/{{$userData['partner_id']}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card border-0 shadow mb-4">
                 <div class="card-header  d-flex align-items-center justify-content-between">
@@ -10,9 +10,9 @@
                     <div class="d-flex justify-content-end gap-3">
                         <div class="form-check form-switch my-auto">
                             <input class="form-check-input" type="checkbox" role="switch" id="operational_status_toogle"
-                                {{ $me['operational_status'] == '0' ? '' : 'checked' }}>
+                                {{ $partner['operational_status'] == '0' ? '' : 'checked' }}>
                             <label class="form-check-label"
-                                for="operational_status_toogle">{{ $me['operational_status'] == '0' ? 'Close' : 'Open' }}</label>
+                                for="operational_status_toogle">{{ $partner['operational_status'] == '0' ? 'Close' : 'Open' }}</label>
                         </div>
                         <div class="float-end">
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -23,23 +23,23 @@
                     <div class="row justify-content-center mt-3 ">
                         <div class="col-4   ">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('partnername') is-invalid @enderror" id="name" name="partnername" placeholder="{{ $partner['partner_name'] }}">
-                                <label for="partnername">Nama Mitra</label>
-                                @error('partnername')
+                                <input type="text" class="form-control @error('partner_name') is-invalid @enderror" id="partner_name" name="partner_name" placeholder="{{ $partner['partner_name'] }}">
+                                <label for="partner_name">Nama Mitra</label>
+                                @error('partner_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email Perusahaan" value="{{ old('email') }}">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="{{ $partner['email'] }}">
                                 <label for="email">Email Perusahaan</label>
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('nophone') is-invalid @enderror" id="nophone" name="nophone" placeholder="No. Telepon" value="{{ old('nophone') }}">
-                                <label for="nophone">No. Telepon</label>
-                                @error('nophone')
+                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" placeholder="{{ $partner['phone_number'] }}">
+                                <label for="phone_number">No. Telepon</label>
+                                @error('phone_number')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-7">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="address" name="address" placeholder="Alamat" value="{{ old('address') }}" required>
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="address" name="address" placeholder="Alamat" value="{{ old('address') }}">
                                 <label for="address">Alamat</label>
                                 @error('address')
                                     <span class="text-danger">{{ $message }}</span>
@@ -76,7 +76,7 @@
                                 <option>Pilih Kelurahan / Desa</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="gmap" name="gmap" placeholder="Link Google Map" value="{{ old('gmap') }}" required>
+                                <input type="text" class="form-control @error('affress') is-invalid @enderror" id="gmap" name="gmap" placeholder="Link Google Map">
                                 <label for="#gmap">Link Google Map</label>
                                 @error('address')
                                     <span class="text-danger">{{ $message }}</span>
@@ -94,7 +94,7 @@
         <form action="{{ url('dashboard/profile/update_operational_status') }}" method="POST"
             id="form_toogle_operational_status" style="display: none !important">
             @csrf
-            <input type="hiden" value="{{ $me['operational_status'] }}" name="operational_status">
+            <input type="hiden" value="{{ $partner['operational_status'] }}" name="operational_status">
         </form>
 
         

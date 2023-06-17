@@ -60,7 +60,7 @@ class DashboardController extends Controller
             "mitra.dashboard.profile.index",
             [
                 'title' => 'Profile',
-                'me' => $uData['partner'],
+                'partner' => $uData['partner'],
                 'categories' => $cData ['category']
             ]
         );

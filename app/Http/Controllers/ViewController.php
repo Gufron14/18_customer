@@ -6,6 +6,7 @@ use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -56,9 +57,7 @@ class ViewController extends Controller
 
         $user_ip = getenv('REMOTE_ADDR');
         $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
-        $country = $geo['geoplugin_countryName'];
-        $city = $geo['geoplugin_city'];
-        // dd($geo);
+
         return view("mitra", [
             'title' => 'Mitra',
             'partners' => $pData['partner'],
@@ -159,10 +158,14 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $tResponse = $client->request('GET', "http://localhost:5000/api/user/partner/transaction/");
-        $tBody = $tResponse->getBody()->getContents();
-        $tData = json_decode($tBody, true);
-        extract($tData);
+        try{
+            $tResponse = $client->request('GET', "http://localhost:5000/api/user/partner/transaction/");
+            $tBody = $tResponse->getBody()->getContents();
+            $tData = json_decode($tBody, true);
+            extract($tData);
+        }catch(Exception $e){
+            $tData['transaction'] = [];
+        }
         $pResponse = $client->request('GET', "http://localhost:5000/api/user/package");
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);

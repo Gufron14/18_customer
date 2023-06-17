@@ -77,7 +77,7 @@ Route::middleware('auth-jwt')->group(function ($router) {
         Route::get('/order',    [DashboardController::class, 'orderList'])->name('dashboard.order.index');
         Route::post('/updateProgres/{id}',    [CallController::class, 'updateProgres']);
         Route::get('/order/cancel/{id}',    [CallController::class, 'orderCancel']);
-
+        Route::post('editProfilePartner/{id}', [PartnerController::class, 'updateMitra']);
         Route::get('/transaction',    [ViewController::class, 'transactionList'])->name('dashboard.transaction.index');
         Route::post('/transaction/update/{id}',    [TransactionController::class, 'updateTransaction']);
         Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');

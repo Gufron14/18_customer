@@ -46,13 +46,12 @@
                             @endif
                         </div>
                         <p style="display: none" class="village_name">{{ $partner['village']}}</p>
-
                         <div class="d-flex justify-content-between">
                             {{-- <p class="d-inline"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}
                         </div>
                         <button type="button" class="call btn btn-primary w-100 fw-bold mt-3" data-bs-target="#call"
                             data-bs-toggle="modal" onclick="parterModalPanggil('{{ json_encode($partner) }}')"
-                            {{ $partner['user_id'] === session('user') || $partner['operational_status'] == 0 || session('ordering') != 0 ? 'disabled' : '' }}>Panggil</button>
+                            {{ $partner['user_id'] == $userData['id'] || $partner['operational_status'] == 0 || $userData['ordering'] != 0 ? 'disabled' : '' }}>Panggil</button>
                     </div>
                 </div>
             @endforeach
@@ -78,20 +77,27 @@
                     <div class="modal-body">
                         <div class="d-flex flex-column gap-2">
                             <div class="input-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4" required></textarea>
                             </div>
-
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Detail lokasi lebih lengkap" name="address"
+                                    rows="2" required></textarea>
+                            </div>
                             <div class="d-flex gap-2">
                                 <i class="bi bi-geo-alt-fill text-danger"></i>
-                                <p>Lokasi Saya: {{ $geo['geoplugin_city'] }}, {{ $geo['geoplugin_region'] }}</p>
+                                <p>Lokasi Saya: </p>
+                                <input class="form-control" id="link_location" name="link_google_map" required>
+                                <a type="button" onclick="myLocation()" target="_blank" rel="noopener noreferrer">Lihat di peta</a>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <p>*Jika lokasi Anda tidak sesuai, silahkan perbarui lokasi Anda dengan memasukkan link gmap baru.</p>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <div class="d-flex">
-                            <button type="submit" class="btn btn-primary w-100">Panggil
-                                Sekarang</button>
+                            <button type="submit" class="btn btn-primary w-100">Panggil Sekarang</button>
                         </div>
                     </div>
                 </form>
@@ -100,65 +106,46 @@
     </div>
     {{-- End Modal --}}
 
-                            {{-- Modal Konfirmasi --}}
-                            <div class="modal fade" id="konfirmasi{{ $partner['id'] }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Konfirmasi Panggilan?</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5 class="mb-3">Masalah</h5>
-                                            <ul>
-                                                <li>Minim sopan santun</li>
-                                                <li>Tidak berakhlak</li>
-                                                <li>Lainnya :
-                                                    <br> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Ducimus veniam ullam illum rem cumque rerum blanditiis pariatur
-                                                        quas
-                                                        repellat obcaecati!</span>
-                                                </li>
-                                            </ul>
-                                            <h5 class="mb-3 mt-3">Lokasi</h5>
-                                            <p>Titik Koordinat : 972304hk3qd+=</p>
-                                            <p>Lokasi Spesifik :
-                                                <br> <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                                    Eveniet, molestiae!</span>
-                                            </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-target="#exampleModalToggle"
-                                                data-bs-toggle="modal">Batal</button>
-                                            <a class="btn btn-primary" onclick="startCall()"
-                                                href="/call/{{ $partner['id'] }}">Panggil Sekarang</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- End Modal Konfirmasi --}}
-                        
-                        </div>
-                    </div>
-                @endforeach
-                {{-- END MITRA --}}
-            
-            </div>
-        </div>
-        {{-- MITRA --}}
-    </div>
-
 
 
     {{-- SWEET ALERT --}}
     <script>
         function parterModalPanggil(partnerJson) {
+            document.getElementById('link_location').value = "";
             const partner = JSON.parse(partnerJson);
             const title = document.getElementById('partner_name');
             title.textContent = partner.partner_name;
             console.log(partner.id);
             document.getElementById('formPanggilPartner').action = `call/${partner.id}`;
+            navigator.geolocation.getCurrentPosition(callback);
+        }
+
+        function callback(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            document.getElementById('link_location').value = "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon ;
+            var latLong = new google.maps.LatLng(lat, lon);
+            var marker = new google.maps.Marker({
+                position: latLong
+            });
+            marker.setMap(map);
+            map.setZoom(8);
+            map.setCenter(marker.getPosition());
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+        function initMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(0, 0),
+                zoom: 1,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        }
+
+        function myLocation(){
+            location.href = document.getElementById('link_location').value;
         }
 
         const searchInput = document.getElementById('kelurahan-filter');

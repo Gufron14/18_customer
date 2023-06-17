@@ -14,15 +14,17 @@
                                     <img src="http://localhost:5000/api/user/partner/avatar/{{ $call['partner_id'] }}?token={{ session('token') }}"
                                         alt="img-fluid" style="width: 100%; height:200px; object-fit:cover">
                                 </div>
-                                <div class="ps-3 col-xl-6 col-lg-6 col-sm-12 col-xs-12 d-flex flex-column py-3 gap-3">
-                                    <div class="d-flex fw-bold">
+                                <div
+                                    class="ps-3 col-xl-6 col-lg-6 col-sm-12 col-xs-12 d-flex flex-column py-4 px-3 py-sm-3">
+                                    <div class="d-flex fw-bold mb-3">
                                         <div class="bg-success text-white px-3 py-2 rounded-pill">
-                                            <i class="bi bi-telephone-fill me-3 fs-6 my-auto"></i>
+                                            <i class="bi bi-gear-fill me-3 fs-6 my-auto"></i>
                                             {{ $call['partner']['partner_name'] }}
                                         </div>
                                     </div>
-                                    {{-- <h4 class="fw-bold">Ini Judul Masalahnya</h4> --}}
-                                    <p><strong>Keterangan:</strong> {{ $call['message'] }}</p>
+                                    <p class="mb-2"><strong>Keterangan:</strong> {{ $call['message'] }}</p>
+
+                                    <p class="text-muted">{{ $call['address'] }}</p>
                                 </div>
                                 <div
                                     class="col-lg-3 col-xl-3 col-sm-12 col-xs-12 d-flex flex-column justify-content-center px-3 gap-2">

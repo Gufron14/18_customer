@@ -27,7 +27,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control @error('nophone') is-invalid @enderror"
-                                    id="nophone" name="nophone" placeholder="No. Telepon" value="{{ old('nophone') }}">
+                                    id="nophone" name="nophone" placeholder="No. Telepon (+62)" value="{{ old('nophone') }}">
                                 @error('nophone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

@@ -87,8 +87,8 @@ class AuthController extends Controller
                     'contents' => $request->username
                 ],
                 [
-                    'name' => 'phone_number',
-                    'contents' => $request->phone_number
+                    'name' => 'no_phone',
+                    'contents' => $request->no_phone
                 ],
                 [
                     'name' => 'avatar',
@@ -104,8 +104,8 @@ class AuthController extends Controller
                     'contents' => $request->username
                 ],
                 [
-                    'name' => 'phone_number',
-                    'contents' => $request->phone_number
+                    'name' => 'no_phone',
+                    'contents' => $request->no_phone
                 ],
             ]]);
         }

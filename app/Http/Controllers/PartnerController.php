@@ -115,4 +115,61 @@ class PartnerController extends Controller
         //$sesi = session()->put('role', 1);
         return redirect('/dashboard/profile');
     }
+    public function updateMitra(Request $request, $id){
+        $client = new Client(['headers' => [
+            'Content-Type' => 'multipart/form-data',
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+
+        if($request->file('avatar')){
+            $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner/update", ['multipart' => [
+                [
+                    'name' => 'partner_name',
+                    'contents' => $request->partner_name
+                ],
+                [
+                    'name' => 'phone_number',
+                    'contents' => $request->phone_number
+                ],
+                [
+                    'name' => 'avatar',
+                    'contents' => fopen( $request->file('avatar'), 'r' ),
+                    'filename' => $request->file('avatar')->getClientOriginalName(),
+                    'Mime-Type' => $request->file('avatar')->getmimeType()
+                ]
+            ]]);
+        } else {
+            $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner/update", ['multipart' => [
+                [
+                    'name' => 'partner_name',
+                    'contents' => $request->partner_name
+                ],
+                [
+                    'name' => 'phone_number',
+                    'contents' => $request->phone_number
+                ],
+                [
+                    'name' => 'village_id',
+                    'contents' => is_numeric($request->village) ? $request->village : null,
+                ],
+                [
+                    'name' => 'address',
+                    'contents' => $request->address
+                ],
+                [
+                    'name' => 'link_google_map',
+                    'contents' => $request->link_google_map
+                ],
+                [
+                    'name' => 'description',
+                    'contents' => $request->description
+                ],
+            ]]);
+        }
+        
+        
+        $aBody = $aResponse->getBody()->getContents();
+        $aData = json_decode($aBody, true);
+        return redirect('/dashboard/profile');
+    }
 }

@@ -10,9 +10,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="name" class="form-label">Nama</label>
-                                <input type="text" id="name" name="username" class="form-control mb-3">
+                                <input type="text" id="name" name="username" class="form-control mb-3" placeholder="{{ $user['username'] }}">
                                 <label for="nohp" class="form-label">Nomor Handphone</label>
-                                <input type="text" id="nohp" name="phone_number" class="form-control mb-3">
+                                <input type="text" id="nohp" name="phone_number" class="form-control mb-3" placeholder="">
                                 <label for="address" class="form-label d-block">Alamat</label>
                                 <div class="d-flex mb-3">                                
                                     <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>
@@ -21,7 +21,7 @@
                                 
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Alamat lengkap</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address" placeholder="""></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Foto Profil</label>

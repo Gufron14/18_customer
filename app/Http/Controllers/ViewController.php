@@ -81,7 +81,7 @@ class ViewController extends Controller
         return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
     }
 
-    public function riwayat()
+    public function riwayat() 
     {
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
@@ -126,8 +126,15 @@ class ViewController extends Controller
 
     public function editprofile()
     {
-        $title = 'Edit Profile';
-        return view('/editprofile', compact('title'));
+        $client = new Client(['headers' => [
+            'Authorization' => 'Bearer ' . session('token')
+        ]]);
+        $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+        $uBody = $uResponse->getBody()->getContents();
+        $uData = json_decode($uBody, true);
+        extract($uData);
+
+        return view('/editprofile', ['title' => 'Edit Profile', 'user' => $uData['user']]);
     }
 
     public function ubahpassword()

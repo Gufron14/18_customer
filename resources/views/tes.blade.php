@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-    <script type="text/javascript">
-        var map = null;
-
-        function showlocation() {
-            // One-shot position request.
-            navigator.geolocation.getCurrentPosition(callback);
-        }
-
-        function callback(position) {
-
-            var lat = position.coords.latitude;
-            var lon = position.coords.longitude;
-
-            document.getElementById('latitude').innerHTML = lat;
-            document.getElementById('longitude').innerHTML = lon;
-
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
 <body>
-    <center>
-        <input type="button" value="Show my location on Map" onclick="javascript:showlocation()" /> <br />
-    </center>
 
-    Latitude: <span id="latitude"></span> <br />
-    Longitude: <span id="longitude"></span>
-
+    <p>Latitude: {{ $geo['geoplugin_latitude'] }}</p>
+    <p>Longitude: {{ $geo['geoplugin_longitude'] }}</p>
+    <p>Country : {{ $geo['geoplugin_longitude'] }}</p>
+    <p>Region : {{ $geo['geoplugin_longitude'] }}</p>
+    <p>City : {{ $geo['geoplugin_longitude'] }}</p>
+    <p>Latitude : {{ $geo['geoplugin_longitude'] }}</p>
+    <p>Longitude : {{ $geo['geoplugin_longitude'] }}</p>
+    <a
+        href="{{ 'https://www.google.com/maps/search/?api=1&query=' . $geo['geoplugin_latitude'] . ',' . $geo['geoplugin_longitude'] }}">Open
+        in Maps</a>
 </body>
 
 </html>

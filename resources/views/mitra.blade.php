@@ -68,35 +68,29 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 fw-bold" id="partner_name" id="">
+                    <h1 class="modal-title fs-5 fw-normal d-flex">Calling
+                        <p id="partner_name" class="fw-semibold ms-1"></p>
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="#" method="POST" id="formPanggilPartner">
                     @csrf
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Masalah
-                                Spesifik</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="4"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Alamat
-                                lengkap</label>
-                            <div class="mb-3 d-block-flex">
-                                <a href="" class="btn btn-warning">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                </a>
-                                <label for="" class="form-label">Pilih dari Maps</label>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="input-group">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4"></textarea>
                             </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="address"></textarea>
+
+                            <div class="d-flex gap-2">
+                                <i class="bi bi-geo-alt-fill text-danger"></i>
+                                <p>Lokasi Saya: {{ $geo['geoplugin_city'] }}, {{ $geo['geoplugin_region'] }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer mt-3">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <div class="d-flex">
-                            <button type="submit" class="btn btn-primary mt-3 mb-3 w-100">Panggil
+                            <button type="submit" class="btn btn-primary w-100">Panggil
                                 Sekarang</button>
                         </div>
                     </div>

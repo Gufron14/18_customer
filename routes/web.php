@@ -80,15 +80,13 @@ Route::middleware('auth-jwt')->group(function ($router) {
 
         Route::get('/transaction',    [ViewController::class, 'transactionList'])->name('dashboard.transaction.index');
         Route::post('/transaction/update/{id}',    [TransactionController::class, 'updateTransaction']);
-
         Route::view('/review',     'mitra.dashboard.review.index')->name('dashboard.review.index');
         Route::view('/history',   'mitrwa.dashboard.history.index')->name('dashboard.history.index');
         Route::get('/activation', [DashboardController::class, 'activation'])->name('dashboard.activation.index');
-
         Route::get('/profile',   [DashboardController::class, 'profile'])->name('dashboard.profile.index');
         Route::post('/profile/update_operational_status',   [PartnerController::class, 'OperationalStatusUpdate'])->name('dashboard.profile.index');
     });
     // END PARTNER CMS
 });
 
-Route::view('/tes', 'tes');
+Route::get('/tes', [ViewController::class, 'tes']);

@@ -9,7 +9,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-filter-right"></i></span>
                     <input type="text" class="form-control" placeholder="Masukkan Kelurahan" aria-label="Kelurahan"
-                        aria-describedby="basic-addon1" id="kelurahan-filter">
+                        aria-describedby="basic-addon1" id="city-filter">
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                                 <p class="text-success">Buka</p>
                             @endif
                         </div>
-                        <p style="display: none" class="village_name">{{ $partner['village'] }}</p>
+                        <span style="display: none" class="city_name">{{ $partner['city']['city'] }}</span>
 
                         <div class="d-flex justify-content-between">
                             {{-- <p class="d-inline"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i>&nbsp&nbsp4.5</p> --}}
@@ -115,16 +115,16 @@
             document.getElementById('formPanggilPartner').action = `call/${partner.id}`;
         }
 
-        const searchInput = document.getElementById('kelurahan-filter');
+        const searchInput = document.getElementById('city-filter');
         searchInput.addEventListener('keyup', function() {
             const searchValue = searchInput.value.toLowerCase();
             const cards = document.querySelectorAll('.card');
 
             cards.forEach(function(card) {
-                const village_name = card.querySelector('.village_name').textContent.toLowerCase();
+                const city_name = card.querySelector('.city_name').textContent.toLowerCase();
 
                 // Show or hide the card based on the search value
-                if (village_name.includes(searchValue)) {
+                if (city_name.includes(searchValue)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';

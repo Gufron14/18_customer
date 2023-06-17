@@ -90,10 +90,11 @@ class ViewController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-        return view("/riwayat", ['title' => 'riwayat', 'calls' => $cData['call']]);
+        return view("/riwayat", ['title' => 'Riwayat', 'calls' => $cData['call']]);
     }
 
-    public function login(){
+    public function login()
+    {
         return view('auth.login', ['title' => 'Login', 'message' => null]);
     }
 
@@ -136,7 +137,8 @@ class ViewController extends Controller
         return view('/ubahpassword', compact('title'));
     }
 
-    public function transactionList(){
+    public function transactionList()
+    {
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);

@@ -4,13 +4,13 @@
     <div class="container py-4 mx-auto">
         <div class="row my-3">
             @if (count($calls) == 0)
-                <p class="mx-3">Belum ada riwayat panggilan</p>
+                <p class="text-center">Belum ada proses</p>
             @else
                 <div class="my-2">
                     @foreach ($calls as $call)
                         <div class="card border-0 shadow col-12 col-lg-10 mx-auto mb-3">
                             <div class="card-body d-lg-flex flex-lg-row d-sm-flex flex-sm-column">
-                                <div class="col-lg-3 col-xl-3 col-sm-12 col-xs-12 text-center">
+                                <div class="col-lg-3 col-xl-3 col-sm-12 col-xs-12 text-center d-flex align-items-center">
                                     <img src="http://localhost:5000/api/user/partner/avatar/{{ $call['partner_id'] }}?token={{ session('token') }}"
                                         alt="img-fluid" style="width: 100%; height:200px; object-fit:cover">
                                 </div>
@@ -22,7 +22,7 @@
                                             {{ $call['partner']['partner_name'] }}
                                         </div>
                                     </div>
-                                    <p class="mb-2"><strong>Keterangan:</strong> {{ $call['message'] }}</p>
+                                    <p class="mb-2 text-justify"><strong>Keterangan:</strong> {{ $call['message'] }}</p>
                                     <p class="text-muted">{{ $call['address'] }}</p>
                                     <a class="d-flex gap-2" href="{{ $call['link_google_map'] }}" target="_blank" rel="noopener noreferrer" >
                                         <i class="bi bi-geo-alt-fill text-danger"></i>

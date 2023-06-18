@@ -16,24 +16,24 @@
                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>Time</th>
                                 <th>Customer Name</th>
+                                <th>No. Telepon</th>
                                 <th>Address</th>
                                 <th>Location</th>
                                 <th>Problems</th>
-                                <th>Time</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ $order['id'] }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($order['created_at'])->format('Y-m-d H:i:s') }}</td>
                                     <td>{{ $order['user']['username'] }}</td>
+                                    <td><a href="https://wa.me/{{ $order['user']['no_phone'] }}" target="_blank" rel="noopener noreferrer">{{ $order['user']['no_phone'] }}</a></td>
                                     <td>{{ $order['address'] }}</td>
                                     <td><a href="{{ $order['link_google_map'] }}" target="_blank">Here</a></td>
-                                    <td>{{ $order['message'] }}</td>
-                                    <td>{{ $order['created_at'] }}</td>
+                                    <td> {{ $order['message'] }} </td>
                                     <td class="d-inline-flex">
                                         @if ($order['order_status'] < 6)
                                             <button class="btn btn-success me-2"data-toggle="modal"

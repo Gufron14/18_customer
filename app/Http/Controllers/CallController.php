@@ -14,15 +14,10 @@ class CallController extends Controller
             'Authorization' => 'Bearer ' . session('token')
         ]]);
 
-        $user_ip = getenv('REMOTE_ADDR');
-        $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
-        $gmapLink = 'https://www.google.com/maps/search/?api=1&query=' . $geo['geoplugin_latitude'] . ',' . $geo['geoplugin_longitude'];
-        $address = $geo['geoplugin_city'] . ', ' . $geo['geoplugin_region'] . ' (' . $request->address . ')';
-
         $cResponse = $client->request('POST', "http://localhost:5000/api/user/call/$id", ['json' => [
             'message' => $request->message,
-            'address' => $address,
-            'link_google_map' => $gmapLink,
+            'address' => $request->address,
+            'link_google_map' => $request->link_google_map,
         ]]);
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);

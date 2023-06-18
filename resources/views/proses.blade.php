@@ -23,8 +23,11 @@
                                         </div>
                                     </div>
                                     <p class="mb-2"><strong>Keterangan:</strong> {{ $call['message'] }}</p>
-
                                     <p class="text-muted">{{ $call['address'] }}</p>
+                                    <a class="d-flex gap-2" href="{{ $call['link_google_map'] }}" target="_blank" rel="noopener noreferrer" >
+                                        <i class="bi bi-geo-alt-fill text-danger"></i>
+                                        <p class="text-muted">Lokasi Anda saat ini</p>
+                                    </a>
                                 </div>
                                 <div
                                     class="col-lg-3 col-xl-3 col-sm-12 col-xs-12 d-flex flex-column justify-content-center px-3 gap-2">
@@ -33,10 +36,10 @@
                                             {{-- {{ \Carbon\Carbon::parse($call['updated_at'])->format('Y-m-d H:i:s') }} --}}
                                         </p>
                                         <p class="m-0">{{ $call['progres']['progres'] }}</p>
-                                        <p class="m-0 p-0 text-muted">
+                                        <a href="https://wa.me/{{ $call['partner']['phone_number'] }}" target="_blank" rel="noopener noreferrer" class="m-0 p-0 text-muted">
+                                            Hubungi Mitra : 
                                             <strong>{{ $call['partner']['phone_number'] }}</strong>
-                                            (Nomor Mitra)
-                                        </p>
+                                        </a>
                                     </div>
                                     <a type="button" href="dashboard/order/cancel/{{ $call['id'] }}"
                                         class="btn btn-danger my-0 {{ $call['order_status'] !== 1 ? 'disabled' : '' }}">

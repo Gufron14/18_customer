@@ -87,7 +87,7 @@ class PartnerController extends Controller
         extract($uData);
         if ($uData['partner']['request_status'] == 1) {
             session()->put('partner', $uData['partner']['id']);
-            return view('mitra.dashboard.index');
+            return redirect('dashboard/order');
         }
         return view('mitra.statusmitra', ['title' => 'Informasi Mitra', 'partner' => $uData['partner']]);
     }

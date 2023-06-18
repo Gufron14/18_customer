@@ -6,20 +6,18 @@
         <div class="sidebar-brand-icon">
             <img src="{{asset('assets/img/logo.png')}}" alt="" style="width: 80%">
         </div>
-        <div class="sidebar-brand-text mx-3"> Nama Partner </div>
+        <div class="sidebar-brand-text mx-3"> {{$userData['partner']['partner_name']}} </div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-
-
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item {{ Route::current()->getName() == 'dashboard.order.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/order') }}">
             <i class="fas fa-fw fa-shop"></i>
@@ -35,16 +33,16 @@
             <i class="fas fa-history"></i>
             <span>Order History</span></a>
     </li> --}}
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.review.index' ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Route::current()->getName() == 'dashboard.review.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/review') }}">
             <i class="fas fa-fw fa-star"></i>
             <span>Review</span></a>
-    </li>
-    <li class="nav-item {{ Route::current()->getName() == 'dashboard.activation.index' ? 'active' : '' }}">
+    </li> --}}
+    {{-- <li class="nav-item {{ Route::current()->getName() == 'dashboard.activation.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/activation') }}">
             <i class="fas fa-fw fa-images"></i>
             <span>Activation</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item {{ Route::current()->getName() == 'dashboard.profile.index' ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard/profile') }}">
             <i class="fas fa-fw fa-users"></i>

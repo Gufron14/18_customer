@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container py-4 mx-auto">
+
+        @if ($partners)
+                
         {{-- SEARCH BAR --}}
         <div class="d-flex justify-content-between">
             <h4 class="fw-bold">Mitra</h4>
@@ -56,55 +59,59 @@
                 </div>
             @endforeach
             {{-- END MITRA --}}
-
         </div>
         {{-- MITRA --}}
-    </div>
-
-    <!-- Modal Panggil -->
+        <!-- Modal Panggil -->
     <div class="modal fade modal-dialog-scrollable" id="call" aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 fw-normal d-flex">Calling
-                        <p id="partner_name" class="fw-semibold ms-1"></p>
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="#" method="POST" id="formPanggilPartner">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="d-flex flex-column gap-2">
-                            <div class="input-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4" required></textarea>
-                            </div>
-                            <div class="input-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Detail lokasi lebih lengkap" name="address"
-                                    rows="2" required></textarea>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <i class="bi bi-geo-alt-fill text-danger"></i>
-                                <p>Lokasi Saya: </p>
-                                <input class="form-control" id="link_location" name="link_google_map" required>
-                                <a type="button" onclick="myLocation()" target="_blank" rel="noopener noreferrer">Lihat di peta</a>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <p>*Jika lokasi Anda tidak sesuai, silahkan perbarui lokasi Anda dengan memasukkan link gmap baru.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <div class="d-flex">
-                            <button type="submit" class="btn btn-primary w-100">Panggil Sekarang</button>
-                        </div>
-                    </div>
-                </form>
+    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-normal d-flex">Calling
+                    <p id="partner_name" class="fw-semibold ms-1"></p>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="#" method="POST" id="formPanggilPartner">
+                @csrf
+                <div class="modal-body">
+                    <div class="d-flex flex-column gap-2">
+                        <div class="input-group">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Masalah" name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="input-group">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Detail lokasi lebih lengkap" name="address"
+                                rows="2" required></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                            <p>Lokasi Saya: </p>
+                            <input class="form-control" id="link_location" name="link_google_map" required>
+                            <a type="button" class="btn btn-warning" onclick="myLocation()" target="_blank" rel="noopener noreferrer">Lihat di peta</a>
+                        </div>
+                        <div class="d-flex gap-2 mt-3">
+                            <i class="text-muted">*Jika lokasi Anda tidak sesuai, silahkan perbarui lokasi Anda dengan memasukkan link gmap baru.</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-primary w-100">Panggil Sekarang</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    {{-- End Modal --}}
+
+</div>
+{{-- End Modal --}}
+@else
+    <p class="text-center">Belum ada Mitra terdaftar</p>
+@endif
+    </div>
+
+    
 
 
 

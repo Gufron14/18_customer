@@ -97,7 +97,7 @@
 
     <script type="text/javascript">
         function succes() {
-            swal({
+            Swal.fire({
                 title: "Berhasil membuat Akun Mitra",
                 text: "Mohon tunggu beberapa saat",
                 icon: "success",

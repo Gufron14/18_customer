@@ -64,7 +64,7 @@
 
             @foreach (array_slice($partners, 0, 6) as $partner)
                 <div class="col-1 col-lg-3 feed feed-hover-animation" style="height: 200px">
-                    <img src="http://localhost:5000/api/admin/partner/avatar/{{ $partner['id'] }}?token={{ session('token') }}"
+                    <img src="http://localhost:5000/api/user/partner/avatar/{{ $partner['id'] }}?token={{ session('token') }}"
                         style="width: 100%; height: 100%; object-fit: cover;" alt="">
                     {{-- <img src="{{ asset('assets/img/feed1.png') }}" style="width: 100%; height: 100%;"alt=""> --}}
                 </div>

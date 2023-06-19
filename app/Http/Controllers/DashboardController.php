@@ -16,9 +16,6 @@ class DashboardController extends Controller
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-
-
-        // return response()->json($uData);
         return view(
             "mitra.dashboard.index",
             [
@@ -37,8 +34,6 @@ class DashboardController extends Controller
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-
-        // return response()->json($uData);
         return view("mitra.dashboard.activation.index", ['title' => 'Aktivasi Mitra', 'partner' => $uData['partner']]);
     }
     public function profile()
@@ -54,8 +49,6 @@ class DashboardController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-
-        // return response()->json($uData);
         return view(
             "mitra.dashboard.profile.index",
             [

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -125,5 +126,24 @@ class AuthController extends Controller
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         //return response()->file(Storage::disk('local')->path($aBody));
+    }
+
+    public function updatePassword(Request $request){
+        $validated = $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $client = new Client(['headers' => [
+            'Content-Type' => 'multipart/form-data',
+            'Authorization' => 'Bearer '.session('token')
+        ]]);
+        $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+            [
+                'name' => 'password',
+                'contents' => $request->password
+            ],
+        ]]);
+        $aBody = $aResponse->getBody()->getContents();
+        $aData = json_decode($aBody, true);
+        return redirect('/ubahpassword ');
     }
 }

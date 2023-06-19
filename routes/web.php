@@ -51,6 +51,8 @@ Route::middleware('auth-jwt')->group(function ($router) {
     Route::post('/editProfile', [AuthController::class, 'editProfile']);
     Route::get('/avatar', [AuthController::class, 'getAvatar']);
 
+    Route::post('updatePassword', [AuthController::class, 'updatePassword']);
+
     Route::post('/gabungmitra', [PartnerController::class, 'store'])->name('gabungmitra')->middleware('auth-jwt');
     Route::post('/call/{id}', [CallController::class, 'callNow'])->name('callNow');
     // PARTNER CMS

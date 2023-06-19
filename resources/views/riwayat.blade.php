@@ -4,7 +4,7 @@
     <div class="container py-4 mx-auto">
         <div class="row my-3">
             @if (count($calls) == 0)
-                <p class="mx-3">Belum ada riwayat panggilan</p>
+                <p class="text-center">Belum ada riwayat panggilan</p>
             @else
                 <div class="my-2">
                     @foreach ($calls as $call)

@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $client = new Client();
-        $cResponse = $client->request('POST', env('url') . "user/register", [ 'json'=> [
+        $cResponse = $client->request('POST', env('url') . "user/register", ['json' => [
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password,
@@ -21,14 +21,14 @@ class AuthController extends Controller
         $cBody = $cResponse->getBody()->getContents();
         $data = json_decode($cBody, true);
         extract($data);
-        if($data['status']){
+        if ($data['status']) {
             // $message = 'Berhasil membuat akun';
             // Session::flash('message', $message);
             return redirect("/login")->with('success', 'Akun Berhasil dibuat');
         }
 
         $data['title'] = 'Register';
-        
+
         // return response()->json($data);
         return view("auth.register", $data);
     }
@@ -36,14 +36,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $client = new Client();
-        $cResponse = $client->request('POST', env('url') . "user/login", [ 'json'=> [
+        $cResponse = $client->request('POST', env('url') . "user/login", ['json' => [
             'email' => $request->email,
             'password' => $request->password
         ]]);
         $cBody = $cResponse->getBody()->getContents();
         $data = json_decode($cBody, true);
         extract($data);
-        if($data['status']){
+        if ($data['status']) {
             $sesi = session()->put('token', $data['token']);
             $sesi = session()->put('user', $data['user']['id']);
             //$hasilsesi = session('token');
@@ -56,16 +56,16 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request)
-    {   
+    {
         $client = new Client(['headers' => [
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $aResponse = $client->request('POST', env('url') . "user/logout");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         extract($aData);
-        if($aData['status']){
-            
+        if ($aData['status']) {
+
 
             return redirect("/login");
 
@@ -76,12 +76,13 @@ class AuthController extends Controller
 
     public function editProfile(Request $request)
     {
+        $request->no_phone = "+62" . $request->no_phone;
         $client = new Client(['headers' => [
             'Content-Type' => 'multipart/form-data',
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
 
-        if($request->file('avatar')){
+        if ($request->file('avatar')) {
             $aResponse = $client->request('POST', env('url') . "user/update", ['multipart' => [
                 [
                     'name' => 'username',
@@ -93,7 +94,7 @@ class AuthController extends Controller
                 ],
                 [
                     'name' => 'avatar',
-                    'contents' => fopen( $request->file('avatar'), 'r' ),
+                    'contents' => fopen($request->file('avatar'), 'r'),
                     'filename' => $request->file('avatar')->getClientOriginalName(),
                     'Mime-Type' => $request->file('avatar')->getmimeType()
                 ]
@@ -110,17 +111,18 @@ class AuthController extends Controller
                 ],
             ]]);
         }
-        
-        
+
+
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         return redirect('/editProfile');
     }
 
-    public function getAvatar(){
+    public function getAvatar()
+    {
         $client = new Client(['headers' => [
             'Content-Type' => 'multipart/form-data',
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $aResponse = $client->request('GET', env('url') . "user/avatar");
         $aBody = $aResponse->getBody()->getContents();
@@ -128,13 +130,14 @@ class AuthController extends Controller
         //return response()->file(Storage::disk('local')->path($aBody));
     }
 
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
         $validated = $request->validate([
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $client = new Client(['headers' => [
             'Content-Type' => 'multipart/form-data',
-            'Authorization' => 'Bearer '.session('token')
+            'Authorization' => 'Bearer ' . session('token')
         ]]);
         $aResponse = $client->request('POST', env('url') . "user/update", ['multipart' => [
             [

@@ -86,7 +86,7 @@ class ViewController extends Controller
         return view("/proses", ['title' => 'Proses', 'calls' => $cData['call']]);
     }
 
-    public function riwayat() 
+    public function riwayat()
     {
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
@@ -120,8 +120,17 @@ class ViewController extends Controller
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
+
+        $aResponse = $client->request('GET', env('url') . "provinsi");
+        $aBody = $aResponse->getBody()->getContents();
+        $aData = json_decode($aBody, true);
+        extract($aData);
         // $title = 'Gabung Mitra';
-        return view("mitra.gabungmitra", ['title' => 'Gabung Mitra', 'categories' => $uData['category']]);
+        return view("mitra.gabungmitra", [
+            'title' => 'Gabung Mitra',
+            'provinsis' => $aData['provinsi'],
+            'categories' => $uData['category'],
+        ]);
     }
 
     public function statusmitra()
@@ -154,12 +163,12 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        try{
+        try {
             $tResponse = $client->request('GET', env('url') . "user/partner/transaction/list");
             $tBody = $tResponse->getBody()->getContents();
             $tData = json_decode($tBody, true);
             extract($tData);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             $tData['transaction'] = [];
         }
         $pResponse = $client->request('GET', env('url') . "user/package");

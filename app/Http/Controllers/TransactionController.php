@@ -11,7 +11,7 @@ class TransactionController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $tResponse = $client->request('POST', "http://localhost:5000/api/user/partner/transaction/$id", ['multipart' => [
+        $tResponse = $client->request('POST', env('url') . "user/partner/transaction/$id", ['multipart' => [
             [
                 'name' => 'payment_proof',
                 'contents' => fopen($request->file('avatar'), 'r'),

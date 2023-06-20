@@ -22,7 +22,7 @@ class PartnerController extends Controller
             'Authorization' => 'Bearer ' . session('token')
         ]]);
 
-        $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner", ['multipart' => [
+        $aResponse = $client->request('POST', env('url') . "user/partner", ['multipart' => [
             [
                 'name' => 'partner_name',
                 'contents' => $request->partnername
@@ -81,7 +81,7 @@ class PartnerController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $uResponse = $client->request('GET', env('url') . "user/partner/you");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -108,7 +108,7 @@ class PartnerController extends Controller
         }
         // dd($validatedData);
 
-        $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner/update", [
+        $aResponse = $client->request('POST', env('url') . "user/partner/update", [
             'form_params' => $validatedData,
         ]);
 
@@ -122,7 +122,7 @@ class PartnerController extends Controller
         ]]);
 
         if($request->file('avatar')){
-            $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner/update", ['multipart' => [
+            $aResponse = $client->request('POST', env('url') . "user/partner/update", ['multipart' => [
                 [
                     'name' => 'partner_name',
                     'contents' => $request->partner_name
@@ -139,7 +139,7 @@ class PartnerController extends Controller
                 ]
             ]]);
         } else {
-            $aResponse = $client->request('POST', "http://localhost:5000/api/user/partner/update", ['multipart' => [
+            $aResponse = $client->request('POST', env('url') . "user/partner/update", ['multipart' => [
                 [
                     'name' => 'partner_name',
                     'contents' => $request->partner_name

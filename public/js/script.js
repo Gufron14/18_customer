@@ -1,9 +1,8 @@
-url = "http://localhost:5000/api/";
-
 //Register
 function login(){
     const request = new XMLHttpRequest();
-    request.open("GET", url + "provinsi");
+    request.open("POST", env('url') + "/user/login");
+    
     request.send();
     request.onload = ()=>{
         if (request.status === 200){
@@ -24,16 +23,11 @@ function login(){
 
 //menampilkan daftar provinsi
 const request = new XMLHttpRequest();
-request.open("GET", url + "provinsi");
+request.open("GET", env('url') + "provinsi");
 request.send();
 request.onload = ()=>{
     if (request.status === 200){
         var data = JSON.parse(request.response);
-        // var html = "<selected>";
-        // for(var i = 0; i < data.provinsi.length; i++ ){
-        //     html += "<option>"+ data.provinsi[i].province +'</option>'
-        // }
-        // document.getElementById('province').innerHTML = html;
         data.provinsi.forEach((item) => {
             let o = document.createElement('option');
             o.text = item.province;
@@ -53,7 +47,7 @@ function getCity() {
     document.getElementById('district').innerHTML = "";
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kota/" + document.getElementById('province').value);
+    request.open("GET", env('url') + "kota/" + document.getElementById('province').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);
@@ -76,7 +70,7 @@ function getDistrict() {
     document.getElementById('district').innerHTML = "";
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kecamatan/" + document.getElementById('city').value);
+    request.open("GET", env('url') + "kecamatan/" + document.getElementById('city').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);
@@ -98,7 +92,7 @@ function getDistrict() {
 function getVillage() {
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kelurahan/" + document.getElementById('district').value);
+    request.open("GET", env('url') + "kelurahan/" + document.getElementById('district').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);

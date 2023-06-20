@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $client = new Client();
-        $cResponse = $client->request('POST', "http://localhost:5000/api/user/register", [ 'json'=> [
+        $cResponse = $client->request('POST', env('url') . "user/register", [ 'json'=> [
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password,
@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $client = new Client();
-        $cResponse = $client->request('POST', "http://localhost:5000/api/user/login", [ 'json'=> [
+        $cResponse = $client->request('POST', env('url') . "user/login", [ 'json'=> [
             'email' => $request->email,
             'password' => $request->password
         ]]);
@@ -60,7 +60,7 @@ class AuthController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $aResponse = $client->request('POST', "http://localhost:5000/api/user/logout");
+        $aResponse = $client->request('POST', env('url') . "user/logout");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         extract($aData);
@@ -82,7 +82,7 @@ class AuthController extends Controller
         ]]);
 
         if($request->file('avatar')){
-            $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+            $aResponse = $client->request('POST', env('url') . "user/update", ['multipart' => [
                 [
                     'name' => 'username',
                     'contents' => $request->username
@@ -99,7 +99,7 @@ class AuthController extends Controller
                 ]
             ]]);
         } else {
-            $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+            $aResponse = $client->request('POST', env('url') . "user/update", ['multipart' => [
                 [
                     'name' => 'username',
                     'contents' => $request->username
@@ -122,7 +122,7 @@ class AuthController extends Controller
             'Content-Type' => 'multipart/form-data',
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $aResponse = $client->request('GET', "http://localhost:5000/api/user/avatar");
+        $aResponse = $client->request('GET', env('url') . "user/avatar");
         $aBody = $aResponse->getBody()->getContents();
         $aData = json_decode($aBody, true);
         //return response()->file(Storage::disk('local')->path($aBody));
@@ -136,7 +136,7 @@ class AuthController extends Controller
             'Content-Type' => 'multipart/form-data',
             'Authorization' => 'Bearer '.session('token')
         ]]);
-        $aResponse = $client->request('POST', "http://localhost:5000/api/user/update", ['multipart' => [
+        $aResponse = $client->request('POST', env('url') . "user/update", ['multipart' => [
             [
                 'name' => 'password',
                 'contents' => $request->password

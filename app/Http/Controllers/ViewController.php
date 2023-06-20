@@ -16,21 +16,21 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+        $uResponse = $client->request('GET', env('url') . "user/me");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        $cResponse = $client->request('GET', "http://localhost:5000/api/user/category");
+        $cResponse = $client->request('GET', env('url') . "user/category");
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
-        $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $pResponse = $client->request('GET', env('url') . "user/partner/active");
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
 
 
-        $bResponse = $client->request('GET', "http://localhost:5000/api/user/banner");
+        $bResponse = $client->request('GET', env('url') . "user/banner");
         $bBody = $bResponse->getBody()->getContents();
         $bData = json_decode($bBody, true);
         extract($bData);
@@ -50,7 +50,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $pResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $pResponse = $client->request('GET', env('url') . "user/partner/active");
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);
@@ -67,7 +67,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $qResponse = $client->request('GET', "http://localhost:5000/api/user/partner/$id");
+        $qResponse = $client->request('GET', env('url') . "user/partner/$id");
         $qBody = $qResponse->getBody()->getContents();
         $qData = json_decode($qBody, true);
         extract($qData);
@@ -79,7 +79,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/process");
+        $cResponse = $client->request('GET', env('url') . "user/call/process");
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
@@ -91,7 +91,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $cResponse = $client->request('GET', "http://localhost:5000/api/user/call/final");
+        $cResponse = $client->request('GET', env('url') . "user/call/final");
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
@@ -116,7 +116,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/category");
+        $uResponse = $client->request('GET', env('url') . "user/category");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -135,7 +135,7 @@ class ViewController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+        $uResponse = $client->request('GET', env('url') . "user/me");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -155,14 +155,14 @@ class ViewController extends Controller
             'Authorization' => 'Bearer ' . session('token')
         ]]);
         try{
-            $tResponse = $client->request('GET', "http://localhost:5000/api/user/partner/transaction/list");
+            $tResponse = $client->request('GET', env('url') . "user/partner/transaction/list");
             $tBody = $tResponse->getBody()->getContents();
             $tData = json_decode($tBody, true);
             extract($tData);
         }catch(Exception $e){
             $tData['transaction'] = [];
         }
-        $pResponse = $client->request('GET', "http://localhost:5000/api/user/package");
+        $pResponse = $client->request('GET', env('url') . "user/package");
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);

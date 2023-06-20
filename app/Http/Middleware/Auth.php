@@ -23,7 +23,7 @@ class Auth
                 $client = new Client(['headers' => [
                     'Authorization' => 'Bearer ' . session('token')
                 ]]);
-                $pResponse = $client->request('GET', "http://localhost:5000/api/user/me");
+                $pResponse = $client->request('GET', env('url') . "user/me");
                 $pBody = $pResponse->getBody()->getContents();
                 $pData = json_decode($pBody, true);
                 extract($pData);

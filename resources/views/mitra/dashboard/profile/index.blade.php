@@ -9,13 +9,16 @@
                     <p class="mb-0">Profil Mitra</p>
                     <div class="d-flex justify-content-end gap-3">
                         <div class="form-check form-switch my-auto">
-                            <input class="form-check-input" type="checkbox" role="switch" id="operational_status_toogle"
-                                {{ $partner['operational_status'] == '0' ? '' : 'checked' }}>
-                            <label class="form-check-label"
-                                for="operational_status_toogle">{{ $partner['operational_status'] == '0' ? 'Close' : 'Open' }}</label>
+                            @if($partner['account_status'] == 0)
+                                <div class="card bg-danger text-light p-2">
+                                    Akun Anda Belum aktif</div>
+                            @else
+                                <input class="form-check-input" type="checkbox" role="switch" id="operational_status_toogle" {{ $partner['operational_status'] == '0' ? '' : 'checked' }}>
+                                <label class="form-check-label" for="operational_status_toogle">{{ $partner['operational_status'] == '0' ? 'Close' : 'Open' }}</label>
+                            @endif
                         </div>
                         <div class="float-end">
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <button type="submit" class="btn btn-primary p-2">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
@@ -105,11 +108,10 @@
                 form.submit();
             });
 
-            url = "http://localhost:5000/api/";
 
 //menampilkan daftar provinsi
 const request = new XMLHttpRequest();
-request.open("GET", url + "provinsi");
+request.open("GET", env('url') + "provinsi");
 request.send();
 request.onload = ()=>{
     if (request.status === 200){
@@ -138,7 +140,7 @@ function getCity() {
     document.getElementById('district').innerHTML = "";
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kota/" + document.getElementById('province').value);
+    request.open("GET", env('url') + "kota/" + document.getElementById('province').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);
@@ -161,7 +163,7 @@ function getDistrict() {
     document.getElementById('district').innerHTML = "";
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kecamatan/" + document.getElementById('city').value);
+    request.open("GET", env('url') + "kecamatan/" + document.getElementById('city').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);
@@ -183,7 +185,7 @@ function getDistrict() {
 function getVillage() {
     document.getElementById('village').innerHTML = "";
     const request = new XMLHttpRequest();
-    request.open("GET", url + "kelurahan/" + document.getElementById('district').value);
+    request.open("GET", env('url') + "kelurahan/" + document.getElementById('district').value);
     request.onload = ()=>{
         if (request.status === 200){
             data = JSON.parse(request.response);

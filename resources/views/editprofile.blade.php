@@ -12,8 +12,8 @@
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama</label>
                                 <input type="text" id="name" name="username" class="form-control mb-3" placeholder="{{ $user['username'] }}">
-                                <label for="nohp" class="form-label">Nomor Handphone</label>
-                                <input type="text" id="nohp" name="phone_number" class="form-control mb-3" placeholder="">
+                                <label for="nohp" class="form-label">Nomor Handphone (+62)</label>
+                                <input type="text" id="nohp" name="no_phone" onchange="(phone())" class="form-control mb-3" placeholder="{{ $user['no_phone'] }}">
                                 <label for="address" class="form-label d-block">Alamat</label>
                                 <div class="d-flex mb-3">                                
                                     <button class="btn btn-warning d-inline-flex me-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><i class="bi bi-geo-fill"></i></button>

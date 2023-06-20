@@ -12,7 +12,7 @@ class DashboardController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/active");
+        $uResponse = $client->request('GET', env('url') ."user/partner/active");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $uResponse = $client->request('GET', env('url') ."user/partner/you");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
@@ -41,11 +41,11 @@ class DashboardController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/partner/you");
+        $uResponse = $client->request('GET', env('url') ."user/partner/you");
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        $cResponse = $client->request('GET', "http://localhost:5000/api/user/category");
+        $cResponse = $client->request('GET', env('url') ."user/category");
         $cBody = $cResponse->getBody()->getContents();
         $cData = json_decode($cBody, true);
         extract($cData);
@@ -142,11 +142,11 @@ class DashboardController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => 'Bearer ' . session('token')
         ]]);
-        $uResponse = $client->request('GET', "http://localhost:5000/api/user/call/partner/" . session('partner'));
+        $uResponse = $client->request('GET', env('url') ."user/call/partner/" . session('partner'));
         $uBody = $uResponse->getBody()->getContents();
         $uData = json_decode($uBody, true);
         extract($uData);
-        $pResponse = $client->request('GET', "http://localhost:5000/api/user/progres");
+        $pResponse = $client->request('GET', env('url') ."user/progres");
         $pBody = $pResponse->getBody()->getContents();
         $pData = json_decode($pBody, true);
         extract($pData);

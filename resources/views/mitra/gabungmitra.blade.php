@@ -12,7 +12,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control @error('partnername') is-invalid @enderror"
                                     id="name" name="partnername" placeholder="Nama Mitra"
-                                    value="{{ old('partnername') }}">
+                                    value="{{ old('partnername') }}" required>
                                 @error('partnername')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -20,7 +20,7 @@
                             <div class="input-group mb-3">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" placeholder="Email Perusahaan"
-                                    value="{{ old('email') }}">
+                                    value="{{ old('email') }}" required>
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -28,7 +28,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control @error('nophone') is-invalid @enderror"
                                     id="nophone" name="nophone" placeholder="No. Telepon (+62)"
-                                    value="{{ old('nophone') }}">
+                                    value="{{ old('nophone') }}" required>
                                 @error('nophone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -52,7 +52,7 @@
 
 
                             <select name="province" id="pilih_provinsi" class="form-select mb-3"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option value="0" disabled selected>Provinsi</option>
                                 @foreach ($provinsis as $provinsi)
                                     <option value="{{ $provinsi['id'] }}">{{ $provinsi['province'] }}</option>
@@ -60,16 +60,16 @@
                             </select>
 
                             <select name="city" id="pilih_city" class="form-select mb-3"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option value="0" disabled selected>Pilih Kabupaten/Kota</option>
                             </select>
 
                             <select name="district" id="pilih_kecamatan" class="form-select mb-3"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option>Pilih Kecamatan</option>
                             </select>
                             <select name="village" id="pilih_kelurahan" id="village" class="form-select mb-3"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option>Pilih Kelurahan / Desa</option>
                             </select>
                             <div class="input-group mb-3">
@@ -83,13 +83,13 @@
                         </div>
                         <div class="col-xs-12 col-lg-12 mb-2">
                             <div class="input-group">
-                                <textarea name="desc" id="desc" rows="2" class="form-control" placeholder="Deskripsi"></textarea>
+                                <textarea name="desc" id="desc" rows="2" class="form-control" placeholder="Deskripsi" required></textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-lg-12 mb-2">
                             <div class="">
                                 <label for="avatar" class="form-label">Foto Profil</label>
-                                <input type="file" class="form-control" name="avatar">
+                                <input type="file" class="form-control" name="avatar" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-lg-12 my-2">

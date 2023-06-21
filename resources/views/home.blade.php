@@ -13,15 +13,11 @@
         {{-- END SEARCH BAR --}}
 
 
-        {{-- BANNER --}}
+        <!-- {{-- BANNER --}}
         <div id="carouselExampleControlsNoTouching" class="carousel slide mt-3" data-bs-touch="false">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{env('url')}}user/banner/{{$banners[0]['id']}}?token={{session('token')}}" class="d-block w-100" alt="">
-                    {{--<img src="{{ asset('assets/img/banner1.png') }}" class="d-block w-100" alt="">--}}
-                </div>
                 @for($i = 1; $i < count($banners); $i++ )
-                <div class="carousel-item">
+                <div class="carousel-item {{ $banners[$i] == 1 ? 'active' : '' }}">
                     <img src="{{env('url')}}user/banner/{{$banners[$i]['id']}}?token={{session('token')}}" class="d-block w-100" alt="...">
                 </div>
                 @endfor
@@ -47,7 +43,7 @@
             </button>
         </div>
 
-        {{-- END BANNER --}}
+        {{-- END BANNER --}} -->
 
         <div class="d-flex justify-content-between mt-5">
             <h5 class="fw-bold">Mitra Kami</h5>
